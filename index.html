@@ -6,10 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Workout Calendar</title>
 <style>
-:root{--bg:#f6f7f9;--card:#fff;--fg:#1c1f26;--mut:#6b7280;--line:#e3e6eb;--acc:#16a34a;--accfg:#fff;--today:#dcfce7;
+:root{--bg:#f6f7f9;--card:#fff;--fg:#1c1f26;--mut:#6b7280;--line:#e3e6eb;--acc:#16a34a;--accfg:#fff;--today:#dcfce7;--done:#e6f4ec;--donebd:#9fd8b4;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111418;--card:#1a1e25;--fg:#eceff4;--mut:#9aa3b2;--line:#2a303a;--acc:#22c55e;--accfg:#06240f;--today:#14321f}}
-:root[data-theme="dark"]{--bg:#111418;--card:#1a1e25;--fg:#eceff4;--mut:#9aa3b2;--line:#2a303a;--acc:#22c55e;--accfg:#06240f;--today:#14321f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111418;--card:#1a1e25;--fg:#eceff4;--mut:#9aa3b2;--line:#2a303a;--acc:#22c55e;--accfg:#06240f;--today:#14321f;--done:#16301f;--donebd:#2f6b45}}
+:root[data-theme="dark"]{--bg:#111418;--card:#1a1e25;--fg:#eceff4;--mut:#9aa3b2;--line:#2a303a;--acc:#22c55e;--accfg:#06240f;--today:#14321f;--done:#16301f;--donebd:#2f6b45}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
 .wrap{max-width:760px;margin:0 auto;padding:16px}
@@ -71,6 +71,19 @@ tr.first td{border-top:2px solid var(--line)}
 .stt{position:absolute;top:0;display:none;pointer-events:none;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 9px;font-size:12px;line-height:1.4;box-shadow:0 2px 8px rgba(0,0,0,.18);white-space:nowrap;z-index:2}
 .tr2{position:relative;display:flex;align-items:center;gap:8px;margin:6px 0;font-size:14px}.tr2 span{width:90px;flex:none}.tr2 i{display:block;height:8px;border-radius:4px;background:var(--acc)}.tr2 b{font-weight:600}
 em{color:var(--acc);font-style:normal;font-size:12px}
+.day.done{background:var(--done);border-color:var(--donebd)}
+.day.done .lab{background:var(--acc);color:var(--accfg);border-left-color:var(--accfg);font-weight:600}
+#fsave{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;border-radius:999px;padding:12px 18px;box-shadow:0 4px 14px rgba(0,0,0,.18);font-weight:600}
+@media (max-width:560px){
+ .wrap{padding:10px 10px 80px}
+ h1{font-size:18px}
+ header{gap:6px}
+ .seg{width:100%}.seg button{flex:1 1 0;padding:8px 2px;font-size:14px;min-width:0}
+ .tools button{font-size:14px;padding:8px 10px}
+ .day{min-height:62px;padding:3px;border-radius:8px}
+ .lab{font-size:9px;padding:1px 2px;letter-spacing:-.2px;word-break:normal;overflow-wrap:normal}
+ .grid,.cal{gap:3px}
+}
 </style>
 </head>
 <body>
@@ -78,7 +91,7 @@ em{color:var(--acc);font-style:normal;font-size:12px}
   <header><h1>🏋️ Workout Calendar</h1>
     <div class="seg"><button id="vc" class="on">Calendar</button><button id="vl">Log</button><button id="ve">Exercises</button><button id="vp">Plan</button><button id="vs">Stats</button></div></header>
   <div class="tools"><button class="pri" id="retro">＋ Log past workout</button><button id="goto">📅 Go to date</button></div>
-  <div class="tools"><button id="cb"></button><button id="fsb"></button><button id="bkb" style="display:none">⬇️ Download backup</button><button id="imb" style="display:none">⬆️ Import backup</button><input type="file" id="imf" accept=".json,application/json" hidden></div>
+  <div class="tools"><button id="cb"></button><button id="fsb"></button><button id="bkb" style="display:none">⬇️ Download backup</button><button id="imb" style="display:none">⬆️ Import backup</button><button id="fsave" style="display:none"></button><input type="file" id="imf" accept=".json,application/json" hidden></div>
   <div class="panel" id="dp" style="display:none;margin:0 0 12px"><div class="lbl" id="dpl" style="margin:0 0 6px"></div>
     <div class="row" style="margin:0"><input type="date" id="dpi" style="flex:1"><button class="pri" id="dpg">Go</button><button id="dpx">✕</button></div></div>
   <div id="cal">
@@ -159,8 +172,8 @@ function render(){
   for(var d=1;d<=days;d++){
     var k=iso(new Date(y,m,d)),w=data[k]||[];
     if(w.length){active++;total+=w.length}
-    h+='<button class="day'+(k===iso(now)?' today':'')+(k===sel?' sel':'')+'" data-k="'+k+'"><span>'+d+'</span><span class="labs">'+
-      w.slice(0,2).map(function(x){return '<span class="lab">'+esc(nm(x))+'</span>'}).join("")+
+    h+='<button class="day'+(w.length?' done':'')+(k===iso(now)?' today':'')+(k===sel?' sel':'')+'" data-k="'+k+'"><span>'+d+'</span><span class="labs">'+
+      w.slice(0,2).map(function(x){return '<span class="lab">'+esc(innerWidth<560?(x.sub||x.cat||x.type||nm(x)):nm(x))+'</span>'}).join("")+
       (w.length>2?'<span class="lab">+'+(w.length-2)+' more</span>':'')+(!w.length&&PLAN[k]?'<span class="lab pl">'+esc(PLAN[k].a||PLAN[k].t)+'</span>':'')+'</span></button>';
   }
   $("grid").innerHTML=h;
@@ -550,11 +563,15 @@ $("fsb").onclick=async function(){
 var FB_CFG={apiKey:"AIzaSyDK3gQ4NmgG6O7-wz8s2a6ce28pAn5Pmeo",authDomain:"workout-log-3db1e.firebaseapp.com",databaseURL:"https://workout-log-3db1e-default-rtdb.europe-west1.firebasedatabase.app",projectId:"workout-log-3db1e",appId:"1:394689356997:web:e85862a92c4cb4fe883cac"};
 var cuser=null,cref=null,cState="off",cT=null,cLast=null,cReady=false;
 function cUi(){var b=$("cb");if(!b)return;var t={off:["🔐 Sign in with Google to save your workouts",1],loading:["⏳ Signing in…",0],on:["✅ Saved to your account"+(cuser&&cuser.email?" ("+cuser.email+")":""),0],
-  saving:["⏳ Saving…",0],err:["⚠️ Not saved yet. Tap to retry",1],na:["⚠️ Cloud saving unavailable (no connection)",0]}[cState];
+  saving:["⏳ Saving…",0],dirty:["📝 Unsaved changes (autosaves every minute)",0],err:["⚠️ Not saved yet. Tap to retry",1],na:["⚠️ Cloud saving unavailable (no connection)",0]}[cState];
   b.textContent=t[0];b.className=t[1]?"pri":"";b.title=cState=="on"?"Tap to sign out on this device":"";cTools()}
-function cWrite(){if(!cref||!cReady)return;var t=snap();cLast=t;cState="saving";cUi();
-  cref.set(t).then(function(){if(cLast===t){cState="on";cUi()}}).catch(function(){cState="err";cUi()})}
-function cQueue(){if(!cref||!cReady)return;clearTimeout(cT);cT=setTimeout(cWrite,800)}
+function cWrite(){if(!cref||!cReady)return;var t=snap();cLast=t;cDirty=false;cState="saving";cUi();
+  cref.set(t).then(function(){if(cLast===t&&!cDirty){cState="on";cUi()}}).catch(function(){cDirty=true;cState="err";cUi()})}
+var cDirty=false;
+function cQueue(){if(!cref||!cReady)return;cDirty=true;if(cState!="saving"){cState="dirty";cUi()}}
+setInterval(function(){if(cDirty)cWrite()},60000);
+document.addEventListener("visibilitychange",function(){if(document.visibilityState=="hidden"&&cDirty)cWrite()});
+addEventListener("beforeunload",function(e){if(cDirty&&cref){cWrite();e.preventDefault();e.returnValue=""}});
 function cApply(t){var o=null;try{o=JSON.parse(t)}catch(e){return}
   data=o.data||{};bw=o.bodyWeight||{};S=o.settings||{types:[],mv:{},eq:[]};S.types=S.types||[];S.mv=S.mv||{};S.eq=S.eq||[];S.ex=S.ex||[];
 }
@@ -566,7 +583,8 @@ async function cStart(u){cuser=u;cReady=false;cState="loading";cUi();cref=fireba
     cReady=true;render();cWrite();
     cref.on("value",function(v){var t=v.val();if(!t||t===cLast)return;cLast=t;cApply(t);render()});
   }catch(e){cState="err";cUi()}}
-function cTools(){var on=!!(cuser&&cReady);$("bkb").style.display=on?"":"none";$("imb").style.display=on?"":"none"}
+function cTools(){var on=!!(cuser&&cReady);var f=$("fsave");f.style.display=on?"":"none";f.textContent={dirty:"💾 Save",err:"⚠️ Retry save",saving:"⏳ Saving…"}[cState]||"✅ Saved";f.className=(cState=="dirty"||cState=="err")?"pri":"";$("bkb").style.display=on?"":"none";$("imb").style.display=on?"":"none"}
+$("fsave").onclick=function(){if(cuser&&cReady)cWrite()};
 $("bkb").onclick=function(){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([snap()],{type:"application/json"}));a.download="workout-data-"+iso(new Date())+".json";document.body.appendChild(a);a.click();a.remove()};
 $("imb").onclick=function(){$("imf").value="";$("imf").click()};
 $("imf").onchange=async function(){var f=this.files[0];if(!f)return;var o=null;try{o=JSON.parse(await f.text())}catch(e){}
@@ -578,7 +596,7 @@ function cInit(){
   firebase.initializeApp(FB_CFG);
   firebase.auth().onAuthStateChanged(function(u){if(u)cStart(u);else{if(cref)cref.off();cuser=null;cref=null;cReady=false;cState="off";cUi();cClear()}});
   $("cb").onclick=function(){
-    if(cState=="err"){cWrite();return}
+    if(cState=="err"||cState=="dirty"){cWrite();return}
     if(cuser){if(confirm("Sign out on this device? Your workouts stay saved in your account."))firebase.auth().signOut();return}
     var p=new firebase.auth.GoogleAuthProvider();cState="loading";cUi();
     firebase.auth().signInWithPopup(p).catch(function(e){if(e&&(e.code=="auth/popup-blocked"||e.code=="auth/operation-not-supported-in-this-environment"))return firebase.auth().signInWithRedirect(p);
