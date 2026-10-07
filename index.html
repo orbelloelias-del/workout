@@ -78,7 +78,7 @@ em{color:var(--acc);font-style:normal;font-size:12px}
   <header><h1>🏋️ Workout Calendar</h1>
     <div class="seg"><button id="vc" class="on">Calendar</button><button id="vl">Log</button><button id="ve">Exercises</button><button id="vp">Plan</button><button id="vs">Stats</button></div></header>
   <div class="tools"><button class="pri" id="retro">＋ Log past workout</button><button id="goto">📅 Go to date</button></div>
-  <div class="tools"><button id="ghb"></button><button id="fsb"></button></div>
+  <div class="tools"><button id="cb"></button><button id="fsb"></button></div>
   <div class="panel" id="dp" style="display:none;margin:0 0 12px"><div class="lbl" id="dpl" style="margin:0 0 6px"></div>
     <div class="row" style="margin:0"><input type="date" id="dpi" style="flex:1"><button class="pri" id="dpg">Go</button><button id="dpx">✕</button></div></div>
   <div id="cal">
@@ -102,6 +102,9 @@ em{color:var(--acc);font-style:normal;font-size:12px}
   <div id="plv" style="display:none"></div>
   <div id="stv" style="display:none"></div>
 </div>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 <script>
 var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
 var DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
@@ -116,7 +119,7 @@ var EQ=["Machine","Barbell","Dumbbells","Kettlebell","Cable","Bar","Pulley","Ban
 function ld(k,d){try{return JSON.parse(localStorage.getItem(k)||"null")||d}catch(e){return d}}
 var data=ld(KEY,{}),bw=ld(BK,{}),S=ld(LK,{types:[],mv:{},eq:[]});
 S.types=S.types||[];S.mv=S.mv||{};S.eq=S.eq||[];S.ex=S.ex||[];
-function save(){try{localStorage.setItem(KEY,JSON.stringify(data));localStorage.setItem(BK,JSON.stringify(bw));localStorage.setItem(LK,JSON.stringify(S))}catch(e){}fsQueue();if(typeof ghQueue=="function")ghQueue()}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(data));localStorage.setItem(BK,JSON.stringify(bw));localStorage.setItem(LK,JSON.stringify(S))}catch(e){}fsQueue();if(typeof cQueue=="function")cQueue()}
 function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function fmt(k){var p=k.split("-");return MONTHS[+p[1]-1].slice(0,3)+" "+(+p[2])+", "+p[0]}
@@ -934,46 +937,41 @@ $("fsb").onclick=async function(){
 (async function(){fsUi();if(location.protocol!="file:")$("fsb").style.display="none";if(fsState=="unsupported")return;
   try{var h=await idb("readonly",function(s){return s.get("dir")});if(!h)return;FH=h;
     if(await h.queryPermission({mode:"readwrite"})=="granted")await fsLoad(false);else{fsState="ask";fsUi()}}catch(e){fsState="none";fsUi()}})();
-// ---- GitHub sync: loads and saves data/workout-data.json in the GitHub repository ----
-var GH={owner:"orbelloelias-del",repo:"workout",path:"data/workout-data.json",branch:"main"},ghTok=null,ghSha=null,ghT=null,ghBusy=false,ghAgain=false,ghState="off";
-try{ghTok=localStorage.getItem("workout-gh-token")}catch(e){}
-function ghApi(p,o){o=o||{};o.headers=Object.assign({"Accept":"application/vnd.github+json"},ghTok?{"Authorization":"Bearer "+ghTok}:{},o.headers||{});o.cache="no-store";
-  return fetch("https://api.github.com/repos/"+GH.owner+"/"+GH.repo+p,o)}
-function b64(t){var u=new TextEncoder().encode(t),s="";for(var i=0;i<u.length;i+=32768)s+=String.fromCharCode.apply(null,u.subarray(i,i+32768));return btoa(s)}
-async function ghGetSha(){var r=await ghApi("/contents/data?ref="+GH.branch);if(!r.ok)throw new Error("GitHub "+r.status);
-  var f=(await r.json()).find(function(x){return x.path==GH.path});return f?f.sha:null}
-async function ghLoad(){var txt="";
-  if(ghTok){var r=await ghApi("/contents/"+GH.path+"?ref="+GH.branch,{headers:{"Accept":"application/vnd.github.raw+json"}});if(r.status==401){ghState="bad";throw new Error("token")}if(r.ok)txt=await r.text();ghSha=await ghGetSha()}
-  else{var q=await fetch(GH.path+"?t="+Date.now(),{cache:"no-store"});if(q.ok)txt=await q.text()}
-  var o=null;try{o=txt.trim()?JSON.parse(txt):null}catch(e){}
-  if(o)fsMerge(o);
-  seedAll();try{localStorage.setItem(KEY,JSON.stringify(data));localStorage.setItem(BK,JSON.stringify(bw));localStorage.setItem(LK,JSON.stringify(S))}catch(e){}
-  render()}
-async function ghWrite(){if(ghBusy){ghAgain=true;return}ghBusy=true;ghState="saving";ghUi();
-  try{for(var tries=0;tries<2;tries++){
-      var body={message:"Update workout data "+new Date().toISOString().slice(0,16).replace("T"," "),content:b64(snap()),branch:GH.branch};if(ghSha)body.sha=ghSha;
-      var r=await ghApi("/contents/"+GH.path,{method:"PUT",body:JSON.stringify(body)});
-      if(r.ok){ghSha=(await r.json()).content.sha;ghState="on";break}
-      if(r.status==401||r.status==403||r.status==404){ghState="bad";break}
-      if(r.status==409||r.status==422){ghSha=await ghGetSha();continue}
-      ghState="err";break}
-    if(ghState=="saving")ghState="err"}
-  catch(e){ghState="err"}
-  ghBusy=false;ghUi();if(ghAgain){ghAgain=false;ghWrite()}}
-function ghQueue(){if(!ghTok||ghState=="bad")return;clearTimeout(ghT);ghState="pending";ghUi();ghT=setTimeout(ghWrite,1500)}
-function ghUi(){var b=$("ghb");if(!b)return;var t={off:["🔑 Connect GitHub to save your workouts",1],on:["✅ Saved to GitHub",0],pending:["⏳ Saving to GitHub…",0],saving:["⏳ Saving to GitHub…",0],
-  err:["⚠️ Not saved to GitHub. Tap to retry",1],bad:["⚠️ GitHub key not working. Tap to enter a new one",1]}[ghTok?ghState:"off"];
-  b.textContent=t[0];b.className=t[1]?"pri":"";b.title=ghTok?"Saving to github.com/"+GH.owner+"/"+GH.repo:""}
-$("ghb").onclick=async function(){
-  if(ghTok&&ghState=="err"){ghWrite();return}
-  if(ghTok&&(ghState=="on"||ghState=="pending")){if(!confirm("Disconnect GitHub on this browser? Workouts will stop saving to GitHub here."))return;ghTok=null;try{localStorage.removeItem("workout-gh-token")}catch(e){}ghState="off";ghUi();return}
-  var k=prompt("Paste your GitHub key (a fine-grained personal access token with Contents: Read and write on the \""+GH.repo+"\" repository). It is stored only in this browser.");
-  if(!k)return;ghTok=k.trim();try{localStorage.setItem("workout-gh-token",ghTok)}catch(e){}ghState="pending";ghUi();
-  try{await ghLoad();ghState="on";await ghWrite()}catch(e){ghState="bad";ghUi();alert("That key could not open the repository. Check it has Contents: Read and write on "+GH.owner+"/"+GH.repo+".")}};
+// ---- Cloud sync: Google sign-in + Firebase Realtime Database (users/<uid>/log) ----
+var FB_CFG={apiKey:"AIzaSyDK3gQ4NmgG6O7-wz8s2a6ce28pAn5Pmeo",authDomain:"workout-log-3db1e.firebaseapp.com",databaseURL:"https://workout-log-3db1e-default-rtdb.europe-west1.firebasedatabase.app",projectId:"workout-log-3db1e",appId:"1:394689356997:web:e85862a92c4cb4fe883cac"};
+var cuser=null,cref=null,cState="off",cT=null,cLast=null,cReady=false;
+function cUi(){var b=$("cb");if(!b)return;var t={off:["🔐 Sign in with Google to save your workouts",1],loading:["⏳ Signing in…",0],on:["✅ Saved to your account"+(cuser&&cuser.email?" ("+cuser.email+")":""),0],
+  saving:["⏳ Saving…",0],err:["⚠️ Not saved yet. Tap to retry",1],na:["⚠️ Cloud saving unavailable (no connection)",0]}[cState];
+  b.textContent=t[0];b.className=t[1]?"pri":"";b.title=cState=="on"?"Tap to sign out on this device":""}
+function cWrite(){if(!cref||!cReady)return;var t=snap();cLast=t;cState="saving";cUi();
+  cref.set(t).then(function(){if(cLast===t){cState="on";cUi()}}).catch(function(){cState="err";cUi()})}
+function cQueue(){if(!cref||!cReady)return;clearTimeout(cT);cT=setTimeout(cWrite,800)}
+function cApply(t){var o=null;try{o=JSON.parse(t)}catch(e){return}
+  data=o.data||{};bw=o.bodyWeight||{};S=o.settings||{types:[],mv:{},eq:[]};S.types=S.types||[];S.mv=S.mv||{};S.eq=S.eq||[];S.ex=S.ex||[];
+  try{localStorage.setItem(KEY,JSON.stringify(data));localStorage.setItem(BK,JSON.stringify(bw));localStorage.setItem(LK,JSON.stringify(S))}catch(e){}}
+async function cMergePublic(){try{var q=await fetch("data/workout-data.json?t="+Date.now(),{cache:"no-store"});if(q.ok)fsMerge(await q.json())}catch(e){}}
+async function cStart(u){cuser=u;cReady=false;cState="loading";cUi();cref=firebase.database().ref("users/"+u.uid+"/log");
+  try{var s=await cref.get();
+    if(s.exists()){cApply(s.val());seedAll()}
+    else{await cMergePublic();seedAll()}
+    cReady=true;render();cWrite();
+    cref.on("value",function(v){var t=v.val();if(!t||t===cLast)return;cLast=t;cApply(t);render()});
+  }catch(e){cState="err";cUi()}}
+function cInit(){
+  if(!window.firebase){cState="na";cUi();cMergePublic().then(function(){seedAll();render()});return}
+  firebase.initializeApp(FB_CFG);
+  firebase.auth().onAuthStateChanged(function(u){if(u)cStart(u);else{if(cref)cref.off();cuser=null;cref=null;cReady=false;cState="off";cUi();cMergePublic().then(function(){seedAll();render()})}});
+  $("cb").onclick=function(){
+    if(cState=="err"){cWrite();return}
+    if(cuser){if(confirm("Sign out on this device? Your workouts stay saved in your account."))firebase.auth().signOut();return}
+    var p=new firebase.auth.GoogleAuthProvider();cState="loading";cUi();
+    firebase.auth().signInWithPopup(p).catch(function(e){if(e&&(e.code=="auth/popup-blocked"||e.code=="auth/operation-not-supported-in-this-environment"))return firebase.auth().signInWithRedirect(p);
+      cState="off";cUi();if(e&&e.code!="auth/popup-closed-by-user"&&e.code!="auth/cancelled-popup-request")alert("Sign-in failed: "+(e.message||e))})}}
 seedAll();
 render();
-ghUi();
-if(location.protocol!="file:")ghLoad().then(function(){if(ghTok)ghState="on";ghUi()}).catch(function(){ghUi()});
+cUi();
+if(location.protocol!="file:")cInit();
 </script>
+
 </body>
 </html>
