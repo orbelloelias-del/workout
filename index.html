@@ -591,7 +591,8 @@ async function cStart(u){cuser=u;cReady=false;cState="loading";cUi();cref=fireba
   try{var s=await cref.get();
     if(s.exists()){cApply(s.val());seedAll()}
     else cClear();
-    cReady=true;render();cWrite();cPlanLink();
+    cReady=true;if(S.calOn&&S.calev&&S.calVer!=2){var pd=(S.calPend||[]).map(String);S.calPend=pd.concat(Object.keys(S.calev).filter(function(x){return pd.indexOf(x)<0}));S.calVer=2;save()}
+    render();cWrite();cPlanLink();
     cref.on("value",function(v){var t=v.val();if(!t||t===cLast)return;cLast=t;cApply(t);render()});
   }catch(e){cState="err";cUi()}}
 // ---- Theme: auto / light / dark (remembered on this device) ----
@@ -608,11 +609,14 @@ function gcKeep(r){var t=r&&r.credential&&r.credential.accessToken;if(!t)return 
   try{sessionStorage.setItem("wc-gtok",gTok);sessionStorage.setItem("wc-gexp",gExp)}catch(e){}return true}
 function gcToken(){if(gTok&&Date.now()<gExp)return Promise.resolve(gTok);
   return firebase.auth().currentUser.reauthenticateWithPopup(gcProv()).then(function(r){if(!gcKeep(r))throw new Error("no token");return gTok})}
-function gcTitle(w){return (w.sub||w.cat||w.type||"")+" Workout"}
+function gcTitle(w){var c=(w.cat||w.type||"").toLowerCase(),t;
+  if(c=="endurance"||c=="cardio")t="Cardio";else if(c=="flexibility"||c=="mobility")t="Flexibility";else if(c=="core")t="Core";
+  else if(c=="strength")t=w.sub||"Strength";else t=w.cat||w.type||"";
+  return t+" Workout"}
 function gcDesc(w){var L=[];if(w.dur)L.push(w.dur+" min"+(w.dist?" · "+w.dist+" km":""));
   (w.ex||[]).forEach(function(e){var a=[e.name+(e.eq?" ("+e.eq+")":"")];var r=e.t?e.t+" s hold":e.reps?e.reps+" reps":"";a.push((e.sets?e.sets+" × ":"")+r+(e.iso?" each":"")+(e.kg?" @ "+e.kg+" kg":""));L.push("• "+a.join(": "))});
   if(w.notes)L.push("",w.notes);return L.join("\n")}
-function gcBody(w,k){var d=new Date(k+"T12:00:00");d.setDate(d.getDate()+1);return {summary:gcTitle(w),description:gcDesc(w),start:{date:k},end:{date:iso(d)},transparency:"transparent"}}
+function gcBody(w,k){var d=new Date(k+"T12:00:00");d.setDate(d.getDate()+1);return {summary:gcTitle(w),description:gcDesc(w),start:{date:k},end:{date:iso(d)},transparency:"transparent",colorId:"11"}}
 async function gcCall(method,path,body){var tk=await gcToken();
   var r=await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events"+path,{method:method,headers:{"Authorization":"Bearer "+tk,"Content-Type":"application/json"},body:body?JSON.stringify(body):undefined});
   if(r.status==401){gTok=null;gExp=0;throw new Error("expired")}
@@ -640,7 +644,7 @@ async function gcFlush(){var ids=(S.calPend||[]).slice();
   gcProg="";save();gcUi()}
 function gcUi(){var b=$("gcb");if(!b)return;var on=!!(cuser&&cReady);b.style.display=on?"":"none";if(!on)return;
   var n=(S.calPend||[]).length;
-  b.textContent=gcProg?"⏳ Adding to Google Calendar "+gcProg+"…":!S.calOn||!Object.keys(S.calev||{}).length&&!n?"📅 Add logged workouts to Google Calendar":n?"📅 Add "+n+" workout"+(n>1?"s":"")+" to Google Calendar":"📅 Google Calendar: on";
+  b.textContent=gcProg?"⏳ Adding to Google Calendar "+gcProg+"…":!S.calOn||!Object.keys(S.calev||{}).length&&!n?"📅 Add logged workouts to Google Calendar":n?"📅 Sync "+n+" workout"+(n>1?"s":"")+" to Google Calendar":"📅 Google Calendar: on";
   b.className=S.calOn&&n?"pri":"";b.title=S.calOn&&!n?"Tap to turn off":""}
 $("gcb").onclick=function(){
   if(S.calOn&&!(S.calPend||[]).length&&Object.keys(S.calev||{}).length){if(confirm("Stop adding workouts to Google Calendar? Events already created stay in your calendar.")){S.calOn=false;save();gcUi()}return}
