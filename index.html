@@ -89,9 +89,9 @@ em{color:var(--acc);font-style:normal;font-size:12px}
 <body>
 <div class="wrap">
   <header><h1>🏋️ Workout Calendar</h1>
-    <div class="seg"><button id="vc" class="on">Calendar</button><button id="vl">Log</button><button id="ve">Exercises</button><button id="vp">Plan</button><button id="vs">Stats</button></div></header>
+    <button id="thb" title="Switch light / dark mode"></button><div class="seg"><button id="vc" class="on">Calendar</button><button id="vl">Log</button><button id="ve">Exercises</button><button id="vp">Plan</button><button id="vs">Stats</button></div></header>
   <div class="tools"><button class="pri" id="retro">＋ Log past workout</button><button id="goto">📅 Go to date</button></div>
-  <div class="tools"><button id="cb"></button><button id="fsb"></button><button id="bkb" style="display:none">⬇️ Download backup</button><button id="imb" style="display:none">⬆️ Import backup</button><button id="fsave" style="display:none"></button><input type="file" id="imf" accept=".json,application/json" hidden></div>
+  <div class="tools"><button id="cb"></button><button id="fsb"></button><button id="gcb" style="display:none"></button><button id="bkb" style="display:none">⬇️ Download backup</button><button id="imb" style="display:none">⬆️ Import backup</button><button id="fsave" style="display:none"></button><input type="file" id="imf" accept=".json,application/json" hidden></div>
   <div class="panel" id="dp" style="display:none;margin:0 0 12px"><div class="lbl" id="dpl" style="margin:0 0 6px"></div>
     <div class="row" style="margin:0"><input type="date" id="dpi" style="flex:1"><button class="pri" id="dpg">Go</button><button id="dpx">✕</button></div></div>
   <div id="cal">
@@ -303,7 +303,7 @@ $("wiz").onclick=function(e){
     var L=data[sel]=data[sel]||[],ix=-1;
     if(W.id)L.forEach(function(x,i){if(x.id==W.id)ix=i});
     if(ix>=0)L[ix]=w;else L.push(w);
-    save();W=null;render();return;
+    save();W=null;render();gcSync(w,sel);return;
   }
   wiz();
 };
@@ -323,7 +323,7 @@ $("list").onclick=function(e){
     wiz();$("wiz").scrollIntoView({behavior:"smooth",block:"start"});return}
   var id=e.target.getAttribute("data-del");if(!id)return;
   data[sel]=(data[sel]||[]).filter(function(x){return String(x.id)!==id});
-  if(!data[sel].length)delete data[sel];save();render()};
+  if(!data[sel].length)delete data[sel];gcDel(id);save();render()};
 $("logv").onclick=function(e){var r=e.target.closest("[data-k]");if(!r)return;
   sel=r.dataset.k;var p=sel.split("-");cur=new Date(+p[0],+p[1]-1,1);mode="cal";W=null;render()};
 $("vc").onclick=function(){mode="cal";render()};
@@ -537,7 +537,7 @@ function fsMerge(o){
   var od=o.data||{};Object.keys(data).forEach(function(k){var L=od[k]=od[k]||[];data[k].forEach(function(x){if(!L.some(function(y){return y.id==x.id}))L.push(x)})});data=od;
   var ob=o.bodyWeight||{};Object.keys(bw).forEach(function(k){if(ob[k]==null)ob[k]=bw[k]});bw=ob;
   var os=o.settings||{};os.seeded=uni(os.seeded||[],S.seeded);os.types=uni(os.types||[],S.types);os.eq=uni(os.eq||[],S.eq);os.mv=os.mv||{};Object.keys(S.mv).forEach(function(k){os.mv[k]=uni(os.mv[k]||[],S.mv[k])});
-  var ex=os.ex||[];(S.ex||[]).forEach(function(t){if(!ex.some(function(u){return u.pat==t.pat&&u.name==t.name}))ex.push(t)});os.ex=ex;S=os}
+  var ex=os.ex||[];(S.ex||[]).forEach(function(t){if(!ex.some(function(u){return u.pat==t.pat&&u.name==t.name}))ex.push(t)});os.ex=ex;["calOn","calev","calPend"].forEach(function(k){if(os[k]==null&&S[k]!=null)os[k]=S[k]});S=os}
 async function fsLoad(first){
   var d=await FH.getDirectoryHandle("data",{create:true}),txt="";
   try{txt=await (await (await d.getFileHandle("workout-data.json")).getFile()).text()}catch(e){}
@@ -583,7 +583,54 @@ async function cStart(u){cuser=u;cReady=false;cState="loading";cUi();cref=fireba
     cReady=true;render();cWrite();
     cref.on("value",function(v){var t=v.val();if(!t||t===cLast)return;cLast=t;cApply(t);render()});
   }catch(e){cState="err";cUi()}}
-function cTools(){var on=!!(cuser&&cReady);var f=$("fsave");f.style.display=on?"":"none";f.textContent={dirty:"💾 Save",err:"⚠️ Retry save",saving:"⏳ Saving…"}[cState]||"✅ Saved";f.className=(cState=="dirty"||cState=="err")?"pri":"";$("bkb").style.display=on?"":"none";$("imb").style.display=on?"":"none"}
+// ---- Theme: auto / light / dark (remembered on this device) ----
+var THEMES=["auto","light","dark"],theme="auto";try{theme=localStorage.getItem("wc-theme")||"auto"}catch(e){}
+function thApply(){if(theme=="auto")delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=theme;
+  $("thb").textContent={auto:"🌓 Auto",light:"☀️ Light",dark:"🌙 Dark"}[theme]}
+$("thb").onclick=function(){theme=THEMES[(THEMES.indexOf(theme)+1)%3];try{localStorage.setItem("wc-theme",theme)}catch(e){}thApply()};
+thApply();
+// ---- Google Calendar: each logged workout becomes an all-day "X Workout" event ----
+var GC_SCOPE="https://www.googleapis.com/auth/calendar.events",gTok=null,gExp=0;
+try{gTok=sessionStorage.getItem("wc-gtok");gExp=+sessionStorage.getItem("wc-gexp")||0}catch(e){}
+function gcProv(){var p=new firebase.auth.GoogleAuthProvider();p.addScope(GC_SCOPE);if(cuser&&cuser.email)p.setCustomParameters({login_hint:cuser.email});return p}
+function gcKeep(r){var t=r&&r.credential&&r.credential.accessToken;if(!t)return false;gTok=t;gExp=Date.now()+55*60000;
+  try{sessionStorage.setItem("wc-gtok",gTok);sessionStorage.setItem("wc-gexp",gExp)}catch(e){}return true}
+function gcToken(){if(gTok&&Date.now()<gExp)return Promise.resolve(gTok);
+  return firebase.auth().currentUser.reauthenticateWithPopup(gcProv()).then(function(r){if(!gcKeep(r))throw new Error("no token");return gTok})}
+function gcTitle(w){return (w.sub||w.cat||w.type||"")+" Workout"}
+function gcDesc(w){var L=[];if(w.dur)L.push(w.dur+" min"+(w.dist?" · "+w.dist+" km":""));
+  (w.ex||[]).forEach(function(e){var a=[e.name+(e.eq?" ("+e.eq+")":"")];var r=e.t?e.t+" s hold":e.reps?e.reps+" reps":"";a.push((e.sets?e.sets+" × ":"")+r+(e.iso?" each":"")+(e.kg?" @ "+e.kg+" kg":""));L.push("• "+a.join(": "))});
+  if(w.notes)L.push("",w.notes);return L.join("\n")}
+function gcBody(w,k){var d=new Date(k+"T12:00:00");d.setDate(d.getDate()+1);return {summary:gcTitle(w),description:gcDesc(w),start:{date:k},end:{date:iso(d)},transparency:"transparent"}}
+async function gcCall(method,path,body){var tk=await gcToken();
+  var r=await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events"+path,{method:method,headers:{"Authorization":"Bearer "+tk,"Content-Type":"application/json"},body:body?JSON.stringify(body):undefined});
+  if(r.status==401){gTok=null;gExp=0;throw new Error("expired")}
+  if(r.status==403){var j={};try{j=await r.json()}catch(e){}var m=JSON.stringify(j);if(/accessNotConfigured|SERVICE_DISABLED|has not been used/.test(m))throw new Error("api-off");throw new Error("forbidden")}
+  if(!r.ok&&!(method=="DELETE"&&(r.status==404||r.status==410)))throw new Error("http "+r.status);
+  return method=="DELETE"?null:r.json()}
+function gcFind(id){for(var k in data)for(var i=0;i<data[k].length;i++)if(String(data[k][i].id)===String(id))return [data[k][i],k];return null}
+async function gcPush(id){var f=gcFind(id);if(!f)return;var w=f[0],k=f[1],ev=S.calev[id];
+  var j=ev?await gcCall("PUT","/"+encodeURIComponent(ev),gcBody(w,k)):await gcCall("POST","",gcBody(w,k));
+  S.calev[id]=j.id;S.calPend=S.calPend.filter(function(x){return String(x)!==String(id)})}
+function gcErr(e){var m=e&&e.message;
+  if(m=="api-off")alert("Google Calendar isn't switched on for this site yet. Turn on the Google Calendar API in Google Cloud for project workout-log-3db1e, then tap the 📅 button.");
+  else if(m&&m!="expired"&&!/popup/.test(m)&&e.code!="auth/popup-closed-by-user"&&e.code!="auth/cancelled-popup-request")console.warn("Calendar:",e)}
+function gcSync(w,k){if(!S.calOn||!cuser)return;S.calev=S.calev||{};S.calPend=S.calPend||[];
+  if(S.calPend.indexOf(w.id)<0)S.calPend.push(w.id);gcUi();
+  gcPush(w.id).catch(gcErr).then(function(){save();gcUi()})}
+function gcDel(id){if(!S.calOn||!S.calev||!S.calev[id])return;var ev=S.calev[id];delete S.calev[id];S.calPend=(S.calPend||[]).filter(function(x){return String(x)!==String(id)});
+  gcCall("DELETE","/"+encodeURIComponent(ev)).catch(function(e){gcErr(e)})}
+async function gcFlush(){var ids=(S.calPend||[]).slice();for(var i=0;i<ids.length;i++){try{await gcPush(ids[i])}catch(e){gcErr(e);break}}save();gcUi()}
+function gcUi(){var b=$("gcb");if(!b)return;var on=!!(cuser&&cReady);b.style.display=on?"":"none";if(!on)return;
+  var n=(S.calPend||[]).length;
+  b.textContent=!S.calOn?"📅 Add logged workouts to Google Calendar":n?"📅 Add "+n+" workout"+(n>1?"s":"")+" to Google Calendar":"📅 Google Calendar: on";
+  b.className=S.calOn&&n?"pri":"";b.title=S.calOn&&!n?"Tap to turn off":""}
+$("gcb").onclick=function(){
+  if(S.calOn&&!(S.calPend||[]).length){if(confirm("Stop adding workouts to Google Calendar? Events already created stay in your calendar.")){S.calOn=false;save();gcUi()}return}
+  var go=function(){S.calOn=true;S.calev=S.calev||{};S.calPend=S.calPend||[];save();gcUi();return gcFlush()};
+  if(gTok&&Date.now()<gExp){go();return}
+  firebase.auth().currentUser.reauthenticateWithPopup(gcProv()).then(function(r){gcKeep(r);return go()}).catch(gcErr)};
+function cTools(){var on=!!(cuser&&cReady);gcUi();var f=$("fsave");f.style.display=on?"":"none";f.textContent={dirty:"💾 Save",err:"⚠️ Retry save",saving:"⏳ Saving…"}[cState]||"✅ Saved";f.className=(cState=="dirty"||cState=="err")?"pri":"";$("bkb").style.display=on?"":"none";$("imb").style.display=on?"":"none"}
 $("fsave").onclick=function(){if(cuser&&cReady)cWrite()};
 $("bkb").onclick=function(){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([snap()],{type:"application/json"}));a.download="workout-data-"+iso(new Date())+".json";document.body.appendChild(a);a.click();a.remove()};
 $("imb").onclick=function(){$("imf").value="";$("imf").click()};
