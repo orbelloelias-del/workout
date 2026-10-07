@@ -580,11 +580,18 @@ function cApply(t){var o=null;try{o=JSON.parse(t)}catch(e){return}
   data=o.data||{};bw=o.bodyWeight||{};S=o.settings||{types:[],mv:{},eq:[]};S.types=S.types||[];S.mv=S.mv||{};S.eq=S.eq||[];S.ex=S.ex||[];PLAN=S.plan||{};
 }
 function cClear(){data={};bw={};S={types:[],mv:{},eq:[],ex:[]};PLAN={};render()}
+// ---- Private plan link: #plan=<deflate-raw, base64url JSON> loads a training plan into the signed-in account ----
+async function cPlanLink(){var m=/[#&]plan=([A-Za-z0-9_-]+)/.exec(location.hash);if(!m||!cuser||!cReady)return;
+  try{var b=atob(m[1].replace(/-/g,"+").replace(/_/g,"/")),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);
+    var txt=await new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).text(),p=JSON.parse(txt);
+    S.plan=p;PLAN=p;save();cWrite();render();history.replaceState(null,"",location.pathname+location.search);
+    alert("Your training plan ("+Object.keys(p).length+" days) is now saved to your account.")}
+  catch(e){alert("That plan link didn't work: "+(e.message||e))}}
 async function cStart(u){cuser=u;cReady=false;cState="loading";cUi();cref=firebase.database().ref("users/"+u.uid+"/log");
   try{var s=await cref.get();
     if(s.exists()){cApply(s.val());seedAll()}
     else cClear();
-    cReady=true;render();cWrite();
+    cReady=true;render();cWrite();cPlanLink();
     cref.on("value",function(v){var t=v.val();if(!t||t===cLast)return;cLast=t;cApply(t);render()});
   }catch(e){cState="err";cUi()}}
 // ---- Theme: auto / light / dark (remembered on this device) ----
