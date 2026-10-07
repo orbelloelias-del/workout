@@ -624,21 +624,32 @@ async function gcPush(id){var f=gcFind(id);if(!f)return;var w=f[0],k=f[1],ev=S.c
   var j=ev?await gcCall("PUT","/"+encodeURIComponent(ev),gcBody(w,k)):await gcCall("POST","",gcBody(w,k));
   S.calev[id]=j.id;S.calPend=S.calPend.filter(function(x){return String(x)!==String(id)})}
 function gcErr(e){var m=e&&e.message;
-  if(m=="api-off")alert("Google Calendar isn't switched on for this site yet. Turn on the Google Calendar API in Google Cloud for project workout-log-3db1e, then tap the 📅 button.");
-  else if(m&&m!="expired"&&!/popup/.test(m)&&e.code!="auth/popup-closed-by-user"&&e.code!="auth/cancelled-popup-request")console.warn("Calendar:",e)}
+  if(m=="api-off"){if(confirm("Google Calendar isn't switched on for this site yet. Open the page to turn it on? (Click Enable there, wait a minute, then tap the 📅 button again.)"))open("https://console.cloud.google.com/apis/library/calendar-json.googleapis.com?project=workout-log-3db1e","_blank")}
+  else if(e&&(e.code=="auth/popup-closed-by-user"||e.code=="auth/cancelled-popup-request"))return;
+  else if(e&&e.code=="auth/popup-blocked")alert("Your browser blocked the Google popup. Allow popups for this site and tap the 📅 button again.");
+  else if(m=="expired")alert("Google Calendar access expired. Tap the 📅 button to reconnect.");
+  else alert("Couldn't add to Google Calendar: "+(m||e))}
 function gcSync(w,k){if(!S.calOn||!cuser)return;S.calev=S.calev||{};S.calPend=S.calPend||[];
   if(S.calPend.indexOf(w.id)<0)S.calPend.push(w.id);gcUi();
   gcPush(w.id).catch(gcErr).then(function(){save();gcUi()})}
 function gcDel(id){if(!S.calOn||!S.calev||!S.calev[id])return;var ev=S.calev[id];delete S.calev[id];S.calPend=(S.calPend||[]).filter(function(x){return String(x)!==String(id)});
   gcCall("DELETE","/"+encodeURIComponent(ev)).catch(function(e){gcErr(e)})}
-async function gcFlush(){var ids=(S.calPend||[]).slice();for(var i=0;i<ids.length;i++){try{await gcPush(ids[i])}catch(e){gcErr(e);break}}save();gcUi()}
+var gcProg="";
+async function gcFlush(){var ids=(S.calPend||[]).slice();
+  for(var i=0;i<ids.length;i++){gcProg=(i+1)+"/"+ids.length;gcUi();try{await gcPush(ids[i])}catch(e){gcProg="";gcErr(e);break}if(i%20==19)save();await new Promise(function(r){setTimeout(r,120)})}
+  gcProg="";save();gcUi()}
 function gcUi(){var b=$("gcb");if(!b)return;var on=!!(cuser&&cReady);b.style.display=on?"":"none";if(!on)return;
   var n=(S.calPend||[]).length;
-  b.textContent=!S.calOn?"📅 Add logged workouts to Google Calendar":n?"📅 Add "+n+" workout"+(n>1?"s":"")+" to Google Calendar":"📅 Google Calendar: on";
+  b.textContent=gcProg?"⏳ Adding to Google Calendar "+gcProg+"…":!S.calOn||!Object.keys(S.calev||{}).length&&!n?"📅 Add logged workouts to Google Calendar":n?"📅 Add "+n+" workout"+(n>1?"s":"")+" to Google Calendar":"📅 Google Calendar: on";
   b.className=S.calOn&&n?"pri":"";b.title=S.calOn&&!n?"Tap to turn off":""}
 $("gcb").onclick=function(){
-  if(S.calOn&&!(S.calPend||[]).length){if(confirm("Stop adding workouts to Google Calendar? Events already created stay in your calendar.")){S.calOn=false;save();gcUi()}return}
-  var go=function(){S.calOn=true;S.calev=S.calev||{};S.calPend=S.calPend||[];save();gcUi();return gcFlush()};
+  if(S.calOn&&!(S.calPend||[]).length&&Object.keys(S.calev||{}).length){if(confirm("Stop adding workouts to Google Calendar? Events already created stay in your calendar.")){S.calOn=false;save();gcUi()}return}
+  var go=async function(){
+    try{await gcCall("GET","?maxResults=1")}catch(e){gcErr(e);return}
+    var first=!S.calOn||!Object.keys(S.calev||{}).length;S.calOn=true;S.calev=S.calev||{};S.calPend=S.calPend||[];
+    if(first){var past=[];Object.keys(data).sort().forEach(function(k){data[k].forEach(function(w){if(!S.calev[w.id]&&S.calPend.indexOf(w.id)<0)past.push(w.id)})});
+      if(past.length&&confirm("Google Calendar connected. New workouts will be added automatically.\n\nAlso add your "+past.length+" past workouts to the calendar now?"))S.calPend=S.calPend.concat(past)}
+    save();gcUi();return gcFlush()};
   if(gTok&&Date.now()<gExp){go();return}
   firebase.auth().currentUser.reauthenticateWithPopup(gcProv()).then(function(r){gcKeep(r);return go()}).catch(gcErr)};
 function cTools(){var on=!!(cuser&&cReady);gcUi();var f=$("fsave");f.style.display=on?"":"none";f.textContent={dirty:"💾 Save",err:"⚠️ Retry save",saving:"⏳ Saving…"}[cState]||"✅ Saved";f.className=(cState=="dirty"||cState=="err")?"pri":"";$("bkb").style.display=on?"":"none";$("imb").style.display=on?"":"none"}
