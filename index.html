@@ -157,6 +157,7 @@ function exLine(e,ss){var p=[];
   return '<span class="xl"><u>'+esc(e.name)+(g?" · "+g:"")+(e.iso?" · <em>isolateral</em>":"")+'</u>'+(p.length?'<span class="xd">'+p.join(" · ")+'</span>':"")+'</span>'}
 function ssTitle(e){return 'Superset · '+esc(e.gr||e.sets||"")+(e.gr==1?" round":" rounds")}
 function det(x){var d=[],l=[];
+  if(x.start)l.push('<span class="xl">Time started: '+esc(x.start)+' · Lasted: '+esc(x.len||60)+' minutes</span>');
   if(x.dur)d.push(x.dur+" min");if(x.dist)d.push(x.dist+" km");
   if(d.length)l.push('<span class="xl">'+esc(d.join(" · "))+'</span>');
   if(x.ex){var gi=null;x.ex.forEach(function(e,i){
@@ -240,7 +241,11 @@ function exForm(){var f=W.f,N='type="number" min="0" step="any" inputmode="decim
   '<div class="row"><button class="pri" data-a="savex" style="flex:1">'+(W.fi>=0?"Save changes":"Add exercise")+'</button><button data-a="xcancel">Cancel</button></div>'}
 function foot(){
   var ok=!(W.cat=="Strength"&&!W.ex.length);
-  return '<textarea id="notes" rows="2" style="margin-top:10px" placeholder="Notes (optional)">'+esc(W.notes||"")+'</textarea>'+
+  var en=W.cat=="Endurance";
+  return '<div class="row" style="margin-top:10px"><div><div class="lbl">Time started (optional)</div><input id="wst" type="time" value="'+esc(W.start||"")+'"></div>'+
+  (en?'':'<div><div class="lbl">Lasted (minutes)</div><input id="wlen" type="number" min="1" step="1" value="'+esc(W.len||60)+'"></div>')+'</div>'+
+  '<div class="lbl">'+(en?'Leave the time empty to use the time you save. Lasted = the minutes above.':'Leave the time empty to use the time you save.')+'</div>'+
+  '<textarea id="notes" rows="2" style="margin-top:10px" placeholder="Notes (optional)">'+esc(W.notes||"")+'</textarea>'+
   '<div class="lbl">Body weight today (kg, optional)</div><input id="bw" type="number" min="0" step="any" value="'+esc(W.bw!=null?W.bw:(bw[sel]||""))+'">'+
   '<div class="row"><button class="pri" data-a="save" style="width:100%"'+(ok?'':' disabled')+'>'+(W.id?"Save changes":"Save workout")+'</button></div>'}
 function wiz(){
@@ -301,8 +306,10 @@ $("wiz").onclick=function(e){
   else if(a=="rmex"){W.ex.splice(+b.dataset.i,1)}
   else if(a=="save"){
     var w={id:W.id||Date.now(),cat:W.cat,sub:W.sub,notes:$("notes").value.trim()};
+    var nw=new Date();w.start=($("wst")&&$("wst").value)||W.start||(String(nw.getHours()).padStart(2,"0")+":"+String(nw.getMinutes()).padStart(2,"0"));
     if(W.cat=="Strength"){if(!W.ex.length)return;w.ex=W.ex}
     else{w.dur=$("dur").value;w.dist=$("dist")?$("dist").value:"";if(W.ex&&W.ex.length)w.ex=W.ex;if(W.cat=="Endurance"&&!w.dur&&!w.dist)return}
+    w.len=String(W.cat=="Endurance"?(+w.dur||60):(+(($("wlen")&&$("wlen").value)||W.len)||60));
     var v=$("bw").value.trim();if(v!=="")bw[sel]=v;
     var L=data[sel]=data[sel]||[],ix=-1;
     if(W.id)L.forEach(function(x,i){if(x.id==W.id)ix=i});
@@ -313,7 +320,7 @@ $("wiz").onclick=function(e){
 };
 $("wiz").oninput=function(e){var t=e.target,k=t.dataset.f;
   if(k&&W&&W.f){W[ "f"][k]=t.type=="checkbox"?t.checked:t.value;if(k=="iso")wiz();return}
-  if(t.id=="notes")W.notes=t.value;if(t.id=="bw")W.bw=t.value;if(t.id=="dur")W.dur=t.value;if(t.id=="dist")W.dist=t.value;
+  if(t.id=="wst")W.start=t.value;if(t.id=="wlen")W.len=t.value;if(t.id=="notes")W.notes=t.value;if(t.id=="bw")W.bw=t.value;if(t.id=="dur")W.dur=t.value;if(t.id=="dist")W.dist=t.value;
   if(t.dataset.gr&&W){W.ex.forEach(function(e){if(e.g===t.dataset.gr){e.gr=t.value;e.sets=t.value}});var hh=t.closest(".ss");if(hh)hh.querySelector(".sst").textContent=ssTitle({gr:t.value})}};
 $("wiz").onkeydown=function(e){var t=e.target;if(e.key=="Enter"&&t.id=="na"){e.preventDefault();t.nextElementSibling.click()}};
 $("grid").onclick=function(e){var b=e.target.closest("[data-k]");if(b){sel=b.dataset.k;W=null;adding=null;render()}};
@@ -326,7 +333,7 @@ $("list").onclick=function(e){
     gcPush(gc).then(function(){save();render()}).catch(function(x){gcErr(x);render()});return}
   var ed=e.target.getAttribute("data-edit");
   if(ed){var x=(data[sel]||[]).filter(function(y){return String(y.id)===ed})[0];if(!x)return;
-    W={id:x.id,cat:x.cat,sub:x.sub,ex:(x.ex||[]).map(nx),notes:x.notes||"",bw:bw[sel]||"",dur:x.dur,dist:x.dist,f:null,fi:-1};
+    W={id:x.id,cat:x.cat,sub:x.sub,ex:(x.ex||[]).map(nx),notes:x.notes||"",bw:bw[sel]||"",dur:x.dur,dist:x.dist,start:x.start||"",len:x.len||"",f:null,fi:-1};
     wiz();$("wiz").scrollIntoView({behavior:"smooth",block:"start"});return}
   var id=e.target.getAttribute("data-del");if(!id)return;
   data[sel]=(data[sel]||[]).filter(function(x){return String(x.id)!==id});
@@ -616,10 +623,14 @@ function gcTitle(w){var c=(w.cat||w.type||"").toLowerCase(),t;
   if(c=="endurance"||c=="cardio")t="Cardio";else if(c=="flexibility"||c=="mobility")t="Flexibility";else if(c=="core")t="Core";
   else if(c=="strength")t=w.sub||"Strength";else t=w.cat||w.type||"";
   return t+" Workout"}
-function gcDesc(w){var L=[];if(w.dur)L.push(w.dur+" min"+(w.dist?" · "+w.dist+" km":""));
+function gcDesc(w){var L=[];if(w.start)L.push("Time started: "+w.start+" · Lasted: "+(w.len||60)+" minutes");if(w.dur)L.push(w.dur+" min"+(w.dist?" · "+w.dist+" km":""));
   (w.ex||[]).forEach(function(e){var a=[e.name+(e.eq?" ("+e.eq+")":"")];var r=e.t?e.t+" s hold":e.reps?e.reps+" reps":"";a.push((e.sets?e.sets+" × ":"")+r+(e.iso?" each":"")+(e.kg?" @ "+e.kg+" kg":""));L.push("• "+a.join(": "))});
   if(w.notes)L.push("",w.notes);return L.join("\n")}
-function gcBody(w,k){var d=new Date(k+"T12:00:00");d.setDate(d.getDate()+1);return {summary:gcTitle(w),description:gcDesc(w),start:{date:k},end:{date:iso(d)},transparency:"transparent",colorId:"11",extendedProperties:{private:{wkid:String(w.id)}}}}
+function gcWhen(w,k){if(!w.start){var d=new Date(k+"T12:00:00");d.setDate(d.getDate()+1);return [{date:k},{date:iso(d)}]}
+  var tz=Intl.DateTimeFormat().resolvedOptions().timeZone,a=new Date(k+"T"+w.start+":00"),z=new Date(a.getTime()+(+w.len||60)*60000);
+  var f=function(t){return iso(t)+"T"+String(t.getHours()).padStart(2,"0")+":"+String(t.getMinutes()).padStart(2,"0")+":00"};
+  return [{dateTime:f(a),timeZone:tz},{dateTime:f(z),timeZone:tz}]}
+function gcBody(w,k){var se=gcWhen(w,k);return {summary:gcTitle(w),description:gcDesc(w),start:se[0],end:se[1],transparency:"transparent",colorId:"11",extendedProperties:{private:{wkid:String(w.id)}}}}
 async function gcCall(method,path,body){var tk=await gcToken();
   var r=await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events"+path,{method:method,headers:{"Authorization":"Bearer "+tk,"Content-Type":"application/json"},body:body?JSON.stringify(body):undefined});
   if(r.status==401){gTok=null;gExp=0;throw new Error("expired")}
@@ -633,8 +644,9 @@ async function gcExisting(w,k,title){
   var hit=(r.items||[]).filter(function(e){return e.status!="cancelled"})[0];if(hit)return hit;
   var d=new Date(k+"T12:00:00"),a=new Date(d),z=new Date(d);a.setDate(a.getDate()-1);z.setDate(z.getDate()+2);
   r=await gcCall("GET","?singleEvents=true&maxResults=50&timeMin="+encodeURIComponent(a.toISOString())+"&timeMax="+encodeURIComponent(z.toISOString()));
-  return (r.items||[]).filter(function(e){return e.status!="cancelled"&&e.summary==title&&e.start&&e.start.date==k})[0]||null}
-function gcSame(e,b){return e.summary==b.summary&&(e.description||"")==b.description&&e.colorId==b.colorId&&e.start&&e.start.date==b.start.date}
+  return (r.items||[]).filter(function(e){return e.status!="cancelled"&&e.summary==title&&e.start&&(e.start.date==k||(e.start.dateTime||"").slice(0,10)==k)})[0]||null}
+function gcT(x){return x?(x.date||(x.dateTime||"").slice(0,16)):""}
+function gcSame(e,b){return e.summary==b.summary&&(e.description||"")==b.description&&e.colorId==b.colorId&&gcT(e.start)==gcT(b.start)&&gcT(e.end)==gcT(b.end)}
 async function gcPush(id){var f=gcFind(id);if(!f)return;S.calev=S.calev||{};var w=f[0],k=f[1],body=gcBody(w,k),ev=S.calev[id],cur=null;
   if(ev){try{cur=await gcCall("GET","/"+encodeURIComponent(ev))}catch(e){if(!/http 40[34]|http 410/.test(e.message))throw e}if(cur&&cur.status=="cancelled")cur=null}
   if(!cur)cur=await gcExisting(w,k,body.summary);
