@@ -591,12 +591,17 @@ function cApply(t){var o=null;try{o=JSON.parse(t)}catch(e){return}
 }
 function cClear(){data={};bw={};S={types:[],mv:{},eq:[],ex:[]};PLAN={};render()}
 // ---- Private plan link: #plan=<deflate-raw, base64url JSON> loads a training plan into the signed-in account ----
-async function cPlanLink(){var m=/[#&]plan=([A-Za-z0-9_-]+)/.exec(location.hash);if(!m||!cuser||!cReady)return;
-  try{var b=atob(m[1].replace(/-/g,"+").replace(/_/g,"/")),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);
-    var txt=await new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).text(),p=JSON.parse(txt);
-    S.plan=p;PLAN=p;save();cWrite();render();history.replaceState(null,"",location.pathname+location.search);
-    alert("Your training plan ("+Object.keys(p).length+" days) is now saved to your account.")}
-  catch(e){alert("That plan link didn't work: "+(e.message||e))}}
+async function unz(z){var b=atob(z.replace(/-/g,"+").replace(/_/g,"/")),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);
+  return JSON.parse(await new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).text())}
+async function cPlanLink(){var m=/[#&](plan|add)=([A-Za-z0-9_-]+)/.exec(location.hash);if(!m||!cuser||!cReady)return;
+  history.replaceState(null,"",location.pathname+location.search);
+  try{var p=await unz(m[2]);
+    if(m[1]=="plan"){S.plan=p;PLAN=p;save();cWrite();render();alert("Your training plan ("+Object.keys(p).length+" days) is now saved to your account.");return}
+    if(p.to&&cuser.email&&p.to.toLowerCase()!=cuser.email.toLowerCase()&&!confirm("This link is meant for "+p.to+" but you're signed in as "+cuser.email+". Add it to this account anyway?"))return;
+    var n=0,d=p.data||{};Object.keys(d).forEach(function(k){var L=data[k]=data[k]||[];d[k].forEach(function(x){var i=L.findIndex(function(y){return y.id==x.id});if(i<0){L.push(x);n++}else L[i]=x})});
+    save();cWrite();render();Object.keys(d).forEach(function(k){d[k].forEach(function(x){gcSync(x,k)})});alert(n?"Added "+n+" workout"+(n>1?"s":"")+" to your account.":"Updated the workout in your account (it was already there).")}
+  catch(e){alert("That link didn't work: "+(e.message||e))}}
+addEventListener("hashchange",cPlanLink);
 async function cStart(u){cuser=u;cReady=false;cState="loading";cUi();cref=firebase.database().ref("users/"+u.uid+"/log");
   try{var s=await cref.get();
     if(s.exists()){cApply(s.val());seedAll()}
