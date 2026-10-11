@@ -595,7 +595,7 @@ async function cPlanLink(){var m=/[#&](plan|add)=([A-Za-z0-9_-]+)/.exec(location
   history.replaceState(null,"",location.pathname+location.search);
   try{var p=await unz(m[2]);
     if(m[1]=="plan"){S.plan=p;PLAN=p;save();cWrite();render();alert("Your training plan ("+Object.keys(p).length+" days) is now saved to your account.");return}
-    var ex=[];if(p.plan){S.plan=p.plan;PLAN=p.plan;ex.push("your plan")}if(p.goals){S.goals=p.goals;ex.push("your goals")}if(p.focus!=null)S.focus=p.focus;
+    var ex=[];if(p.plan){S.plan=p.plan;PLAN=p.plan;ex.push("your plan")}if(p.patch){S.plan=PLAN;Object.keys(p.patch).forEach(function(k){var P=PLAN[k];if(!P||!P.ex)return;P.ex.forEach(function(e){var f=p.patch[k][e.name];if(f)Object.assign(e,f)})});ex.push("your plan")}if(p.goals){S.goals=p.goals;ex.push("your goals")}if(p.focus!=null)S.focus=p.focus;
     if(p.to&&cuser.email&&p.to.toLowerCase()!=cuser.email.toLowerCase()&&!confirm("This link is meant for "+p.to+" but you're signed in as "+cuser.email+". Add it to this account anyway?"))return;
     var n=0,d=p.data||{};Object.keys(d).forEach(function(k){var L=data[k]=data[k]||[];d[k].forEach(function(x){var i=L.findIndex(function(y){return y.id==x.id});if(i<0){L.push(x);n++}else L[i]=x})});
     save();cWrite();render();Object.keys(d).forEach(function(k){d[k].forEach(function(x){gcSync(x,k)})});alert((n?"Added "+n+" workout"+(n>1?"s":"")+" to your account.":Object.keys(d).length?"Updated the workout in your account (it was already there).":"")+(ex.length?" Updated "+ex.join(" and ")+".":""))}
