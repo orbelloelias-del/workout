@@ -402,7 +402,6 @@ $("dbv").onclick=function(e){var b=e.target.closest("[data-a],[data-rm]");if(!b)
   save();dbf={pat:f.pat,name:"",eq:"",pos:"",grip:"",det:""};dbRender()};
 // ---- Training plan (Sep 30 - Oct 31, 2026) ----
 var PLAN={};
-var GOALS=[{m:"October 2026",t:"Pull ups · 3 sets × 8 reps @ 20 kg",ex:"Pull ups"},{m:"November 2026",t:"Bench press · 3 sets × 6 reps @ 80 kg",ex:"Bench press"}];
 function bestOf(n){var b=null;eachEx(function(p,e,d){if(e.name!=n||(+e.sets||0)<3)return;var k=+e.kg||0,r=+e.reps||0;if(!b||k>b.k||(k==b.k&&r>b.r))b={k:k,r:r,d:d}});return b?b.r+" reps @ "+b.k+" kg ("+fmt(b.d)+")":"not logged yet"}
 function pex(p){if(!p.ex||!p.ex.length)return "";
   if(p.t=="Endurance"){var r=p.ex[0].sets||"3";return '<div class="ss"><span class="sst">'+ssTitle({gr:r})+'</span>'+p.ex.map(function(e){return exLine(Object.assign({},e,{g:"gp"}))}).join("")+'</div>'}
@@ -414,8 +413,7 @@ function planCard(){var p=PLAN[sel];if(!p)return"";
   if(p.t!="Rest"&&!W&&!(data[sel]||[]).length)h+='<button class="pri" data-useplan="1">Use this plan</button>';
   return h+'</div>'}
 function planRender(){var ks=Object.keys(PLAN).sort(),wk="",
-  h='<div class="panel" style="margin-top:0"><h2>🎯 Monthly focus</h2>'+GOALS.map(function(g){return '<div class="item"><div><b>'+g.m+': '+esc(g.t)+'</b><small>Best logged (3+ sets): '+esc(bestOf(g.ex))+'</small></div></div>'}).join("")+
-  '<div class="none" style="margin-top:8px">October: Pull is the focus. Push, Squat and Hinge are on maintenance (same weights, no progression). Endurance days: walking, running or jump rope + 3 core exercises. No training on Fridays and Saturdays (Sun–Thu: Push, Squat, Endurance, Pull, Hinge). Week 4 is a deload; on Oct 28 you test the goal.</div></div>';
+  G=S.goals||[],h=G.length||S.focus?'<div class="panel" style="margin-top:0"><h2>🎯 Monthly focus</h2>'+G.map(function(g){return '<div class="item"><div><b>'+esc(g.m)+': '+esc(g.t)+'</b><small>Best logged (3+ sets): '+esc(bestOf(g.ex))+'</small></div></div>'}).join("")+(S.focus?'<div class="none" style="margin-top:8px">'+esc(S.focus)+'</div>':'')+'</div>':'';
   ks.forEach(function(k){var p=PLAN[k];
     if(p.w!=wk){if(wk)h+='</div>';wk=p.w;h+='<div class="panel"><h2>'+esc(wk)+'</h2>'}
     var d=new Date(k+"T00:00:00"),done=(data[k]||[]).length;
@@ -597,9 +595,10 @@ async function cPlanLink(){var m=/[#&](plan|add)=([A-Za-z0-9_-]+)/.exec(location
   history.replaceState(null,"",location.pathname+location.search);
   try{var p=await unz(m[2]);
     if(m[1]=="plan"){S.plan=p;PLAN=p;save();cWrite();render();alert("Your training plan ("+Object.keys(p).length+" days) is now saved to your account.");return}
+    var ex=[];if(p.plan){S.plan=p.plan;PLAN=p.plan;ex.push("your plan")}if(p.goals){S.goals=p.goals;ex.push("your goals")}if(p.focus!=null)S.focus=p.focus;
     if(p.to&&cuser.email&&p.to.toLowerCase()!=cuser.email.toLowerCase()&&!confirm("This link is meant for "+p.to+" but you're signed in as "+cuser.email+". Add it to this account anyway?"))return;
     var n=0,d=p.data||{};Object.keys(d).forEach(function(k){var L=data[k]=data[k]||[];d[k].forEach(function(x){var i=L.findIndex(function(y){return y.id==x.id});if(i<0){L.push(x);n++}else L[i]=x})});
-    save();cWrite();render();Object.keys(d).forEach(function(k){d[k].forEach(function(x){gcSync(x,k)})});alert(n?"Added "+n+" workout"+(n>1?"s":"")+" to your account.":"Updated the workout in your account (it was already there).")}
+    save();cWrite();render();Object.keys(d).forEach(function(k){d[k].forEach(function(x){gcSync(x,k)})});alert((n?"Added "+n+" workout"+(n>1?"s":"")+" to your account.":Object.keys(d).length?"Updated the workout in your account (it was already there).":"")+(ex.length?" Updated "+ex.join(" and ")+".":""))}
   catch(e){alert("That link didn't work: "+(e.message||e))}}
 addEventListener("hashchange",cPlanLink);
 async function cStart(u){cuser=u;cReady=false;cState="loading";cUi();cref=firebase.database().ref("users/"+u.uid+"/log");
