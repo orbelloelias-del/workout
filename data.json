@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-10-14T18:30:03.892Z",
+ "saved": "2026-10-14T18:44:08.025Z",
  "data": {
   "2026-09-06": [
    {
@@ -29597,7 +29597,7 @@
     "id": 1796600000001,
     "cat": "Strength",
     "sub": "Hinge",
-    "notes": "Deadlift added (3×8 @ 100 kg); single-leg leg press skipped.",
+    "notes": "Deadlift added (3×8 @ 100 kg); single-leg leg press skipped; Nordic hamstring curls instead of hip thrusts.",
     "ex": [
      {
       "pat": "Hinge",
@@ -29646,15 +29646,15 @@
      },
      {
       "pat": "Hinge",
-      "name": "Hip thrusts",
-      "eq": "Machine",
-      "pos": "",
+      "name": "Nordic hamstring curl",
+      "eq": "",
+      "pos": "Kneeling",
       "grip": "",
       "det": "",
       "iso": false,
-      "sets": "3",
+      "sets": "2",
       "reps": "10",
-      "kg": "30",
+      "kg": "",
       "rest": "",
       "ru": "m",
       "stars": ""
@@ -29700,7 +29700,8 @@
   "2026-09-02": "72.8",
   "2025-09-15": "78.7",
   "2025-03-11": "76.1",
-  "2025-03-10": "76.8"
+  "2025-03-10": "76.8",
+  "2026-10-14": "73.4"
  },
  "settings": {
   "types": [],
