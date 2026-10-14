@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-10-14T13:06:08.813Z",
+ "saved": "2026-10-14T17:47:18.728Z",
  "data": {
   "2026-09-06": [
    {
@@ -30306,6 +30306,21 @@
     "t": "Hinge",
     "w": "Week 2 · Build · Oct 11 – Oct 17",
     "ex": [
+     {
+      "pat": "Hinge",
+      "name": "Deadlift",
+      "eq": "Barbell",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "8",
+      "kg": "100",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
      {
       "pat": "Hinge",
       "name": "Leg press",
