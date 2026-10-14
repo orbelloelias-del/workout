@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-10-14T17:50:17.722Z",
+ "saved": "2026-10-14T17:56:01.558Z",
  "data": {
   "2026-09-06": [
    {
@@ -29589,6 +29589,108 @@
      }
     ],
     "start": "21:29",
+    "len": "60"
+   }
+  ],
+  "2026-10-14": [
+   {
+    "id": 1796600000001,
+    "cat": "Strength",
+    "sub": "Hinge",
+    "notes": "Deadlift added (3×8 @ 100 kg); single-leg leg press skipped.",
+    "ex": [
+     {
+      "pat": "Hinge",
+      "name": "Deadlift",
+      "eq": "Barbell",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "8",
+      "kg": "100",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Leg press",
+      "eq": "Machine",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "10",
+      "kg": "86",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Knee flexion",
+      "eq": "Cable",
+      "pos": "Lying",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "8",
+      "kg": "23",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Hip thrusts",
+      "eq": "Machine",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "10",
+      "kg": "30",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Hip abduction",
+      "eq": "Machine",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "10",
+      "kg": "32",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Calf press",
+      "eq": "Smith machine",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "10",
+      "kg": "40",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     }
+    ],
+    "start": "20:40",
     "len": "60"
    }
   ]
