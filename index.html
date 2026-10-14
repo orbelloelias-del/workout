@@ -121,7 +121,6 @@ html{font-size:16px}body,button,input,select,textarea,small{font-size:var(--fs0)
 </div>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
 <script>
 var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
 var DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
@@ -137,7 +136,6 @@ function ld(k,d){try{return JSON.parse(localStorage.getItem(k)||"null")||d}catch
 var data={},bw={},S={types:[],mv:{},eq:[]};
 try{[KEY,BK,LK,"workout-calendar-seed-v1","workout-calendar-seed-v2","workout-gh-token"].forEach(function(k){localStorage.removeItem(k)})}catch(e){}
 S.types=S.types||[];S.mv=S.mv||{};S.eq=S.eq||[];S.ex=S.ex||[];
-function save(){fsQueue();if(typeof cQueue=="function")cQueue()}
 function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function fmt(k){var p=k.split("-");return MONTHS[+p[1]-1].slice(0,3)+" "+(+p[2])+", "+p[0]}
@@ -572,43 +570,34 @@ $("fsb").onclick=async function(){
   try{var h=await idb("readonly",function(s){return s.get("dir")});if(!h)return;FH=h;
     if(await h.queryPermission({mode:"readwrite"})=="granted")await fsLoad(false);else{fsState="ask";fsUi()}}catch(e){fsState="none";fsUi()}})();
 // ---- Cloud sync: Google sign-in + Firebase Realtime Database (users/<uid>/log) ----
-var FB_CFG={apiKey:"AIzaSyDK3gQ4NmgG6O7-wz8s2a6ce28pAn5Pmeo",authDomain:"workout-log-3db1e.firebaseapp.com",databaseURL:"https://workout-log-3db1e-default-rtdb.europe-west1.firebasedatabase.app",projectId:"workout-log-3db1e",appId:"1:394689356997:web:e85862a92c4cb4fe883cac"};
-var cuser=null,cref=null,cState="off",cT=null,cLast=null,cReady=false;
-function cUi(){var b=$("cb");if(!b)return;var t={off:["🔐 Sign in with Google to save your workouts",1],loading:["⏳ Signing in…",0],on:["✅ Saved to your account"+(cuser&&cuser.email?" ("+cuser.email+")":""),0],
-  saving:["⏳ Saving…",0],dirty:["📝 Unsaved changes (autosaves every minute)",0],err:["⚠️ Not saved yet. Tap to retry",1],na:["⚠️ Cloud saving unavailable (no connection)",0]}[cState];
-  b.textContent=t[0];b.className=t[1]?"pri":"";b.title=cState=="on"?"Tap to sign out on this device":"";cTools()}
-function cWrite(){if(!cref||!cReady)return;var t=snap();cLast=t;cDirty=false;cState="saving";cUi();
-  cref.set(t).then(function(){if(cLast===t&&!cDirty){cState="on";cUi()}}).catch(function(){cDirty=true;cState="err";cUi()})}
-var cDirty=false;
-function cQueue(){if(!cref||!cReady)return;cDirty=true;if(cState!="saving"){cState="dirty";cUi()}}
-setInterval(function(){if(cDirty)cWrite()},60000);
-document.addEventListener("visibilitychange",function(){if(document.visibilityState=="hidden"&&cDirty)cWrite()});
-addEventListener("beforeunload",function(e){if(cDirty&&cref){cWrite();e.preventDefault();e.returnValue=""}});
-function cApply(t){var o=null;try{o=JSON.parse(t)}catch(e){return}
-  data=o.data||{};bw=o.bodyWeight||{};S=o.settings||{types:[],mv:{},eq:[]};S.types=S.types||[];S.mv=S.mv||{};S.eq=S.eq||[];S.ex=S.ex||[];PLAN=S.plan||{};
-}
-function cClear(){data={};bw={};S={types:[],mv:{},eq:[],ex:[]};PLAN={};render()}
-// ---- Private plan link: #plan=<deflate-raw, base64url JSON> loads a training plan into the signed-in account ----
-async function unz(z){var b=atob(z.replace(/-/g,"+").replace(/_/g,"/")),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);
-  return JSON.parse(await new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).text())}
-async function cPlanLink(){var m=/[#&](plan|add)=([A-Za-z0-9_-]+)/.exec(location.hash);if(!m||!cuser||!cReady)return;
-  history.replaceState(null,"",location.pathname+location.search);
-  try{var p=await unz(m[2]);
-    if(m[1]=="plan"){S.plan=p;PLAN=p;save();cWrite();render();alert("Your training plan ("+Object.keys(p).length+" days) is now saved to your account.");return}
-    var ex=[];if(p.plan){S.plan=p.plan;PLAN=p.plan;ex.push("your plan")}if(p.patch){S.plan=PLAN;Object.keys(p.patch).forEach(function(k){var P=PLAN[k];if(!P||!P.ex)return;P.ex.forEach(function(e){var f=p.patch[k][e.name];if(f)Object.assign(e,f)})});ex.push("your plan")}if(p.goals){S.goals=p.goals;ex.push("your goals")}if(p.focus!=null)S.focus=p.focus;
-    if(p.to&&cuser.email&&p.to.toLowerCase()!=cuser.email.toLowerCase()&&!confirm("This link is meant for "+p.to+" but you're signed in as "+cuser.email+". Add it to this account anyway?"))return;
-    var n=0,d=p.data||{};Object.keys(d).forEach(function(k){var L=data[k]=data[k]||[];d[k].forEach(function(x){var i=L.findIndex(function(y){return y.id==x.id});if(i<0){L.push(x);n++}else L[i]=x})});
-    save();cWrite();render();Object.keys(d).forEach(function(k){d[k].forEach(function(x){gcSync(x,k)})});alert((n?"Added "+n+" workout"+(n>1?"s":"")+" to your account.":Object.keys(d).length?"Updated the workout in your account (it was already there).":"")+(ex.length?" Updated "+ex.join(" and ")+".":""))}
-  catch(e){alert("That link didn't work: "+(e.message||e))}}
-addEventListener("hashchange",cPlanLink);
-async function cStart(u){cuser=u;cReady=false;cState="loading";cUi();cref=firebase.database().ref("users/"+u.uid+"/log");
-  try{var s=await cref.get();
-    if(s.exists()){cApply(s.val());seedAll()}
-    else cClear();
-    cReady=true;
-    render();cWrite();cPlanLink();
-    cref.on("value",function(v){var t=v.val();if(!t||t===cLast)return;cLast=t;cApply(t);render()});
-  }catch(e){cState="err";cUi()}}
+var FB_CFG={apiKey:"AIzaSyDK3gQ4NmgG6O7-wz8s2a6ce28pAn5Pmeo",authDomain:"workout-log-3db1e.firebaseapp.com",projectId:"workout-log-3db1e",appId:"1:394689356997:web:e85862a92c4cb4fe883cac"};
+// ---- Data: data.json in this repo is the shared copy (Claude updates it). Changes made on this device are kept here until they show up in data.json ----
+var SRV=null,cReady=false,cErr="",LK2="wc-local";
+function jq(x){return JSON.stringify(x)}
+function srvIdx(){var m={};Object.keys(SRV.data||{}).forEach(function(k){SRV.data[k].forEach(function(w){m[w.id]=[k,jq(w)]})});return m}
+function pendCalc(){if(!SRV)return null;var m=srvIdx(),seen={},P={w:{},del:[],bw:{},calev:{}};
+  Object.keys(data).forEach(function(k){data[k].forEach(function(w){seen[w.id]=1;var o=m[w.id];if(!o||o[0]!=k||o[1]!=jq(w))P.w[w.id]=[k,w]})});
+  Object.keys(m).forEach(function(id){if(!seen[id])P.del.push(id)});
+  var sb=SRV.bodyWeight||{};Object.keys(bw).forEach(function(k){if(jq(bw[k])!=jq(sb[k]))P.bw[k]=bw[k]});Object.keys(sb).forEach(function(k){if(!(k in bw))P.bw[k]=null});
+  var sc=(SRV.settings||{}).calev||{};Object.keys(S.calev||{}).forEach(function(id){if(sc[id]!=S.calev[id])P.calev[id]=S.calev[id]});
+  return P}
+function pendN(P){return P?Object.keys(P.w).length+P.del.length+Object.keys(P.bw).length:0}
+function save(){fsQueue();if(!cReady)return;var P=pendCalc();try{if(pendN(P)||Object.keys(P.calev).length)localStorage.setItem(LK2,jq(P));else localStorage.removeItem(LK2)}catch(e){}cUi()}
+function cApplySrv(o){SRV=JSON.parse(jq(o));data=o.data||{};bw=o.bodyWeight||{};S=o.settings||{};S.types=S.types||[];S.mv=S.mv||{};S.eq=S.eq||[];S.ex=S.ex||[];PLAN=S.plan||{};
+  var P=null;try{P=JSON.parse(localStorage.getItem(LK2)||"null")}catch(e){}
+  if(P){Object.keys(P.w||{}).forEach(function(id){var k=P.w[id][0],w=P.w[id][1];Object.keys(data).forEach(function(d){data[d]=data[d].filter(function(x){return String(x.id)!==String(id)});if(!data[d].length)delete data[d]});(data[k]=data[k]||[]).push(w)});
+    (P.del||[]).forEach(function(id){Object.keys(data).forEach(function(d){data[d]=data[d].filter(function(x){return String(x.id)!==String(id)});if(!data[d].length)delete data[d]})});
+    Object.keys(P.bw||{}).forEach(function(k){if(P.bw[k]==null)delete bw[k];else bw[k]=P.bw[k]});
+    S.calev=Object.assign({},S.calev||{},P.calev||{})}}
+async function cLoad(){try{var r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});if(!r.ok)throw new Error("http "+r.status);var o=await r.json();
+    cApplySrv(o);cReady=true;cErr="";seedAll();save();render()}catch(e){cErr=e.message||String(e);cUi()}}
+function cUi(){var b=$("cb");if(!b)return;var P=cReady?pendCalc():null,n=pendN(P);
+  b.textContent=!cReady?(cErr?"⚠️ Couldn't load your data. Tap to retry":"⏳ Loading your workouts…"):n?"📱 "+n+" change"+(n>1?"s":"")+" saved only on this device. Tap to copy them for Claude":"✅ Up to date"+(SRV&&SRV.saved?" · updated "+fmt(SRV.saved.slice(0,10)):"");
+  b.className=(!cReady&&cErr)||n?"pri":"";cTools()}
+async function cCopy(){var P=pendCalc();var t="Please add these changes from my phone to the workout site:\n"+jq({data:Object.keys(P.w).reduce(function(a,id){var k=P.w[id][0];(a[k]=a[k]||[]).push(P.w[id][1]);return a},{}),del:P.del,bodyWeight:P.bw});
+  try{await navigator.clipboard.writeText(t);alert("Copied. Paste it to Claude and they'll be saved for all your devices.")}catch(e){prompt("Copy this and send it to Claude:",t)}}
+setInterval(function(){if(cReady&&document.visibilityState=="visible"&&!W)cLoad()},120000);
+document.addEventListener("visibilitychange",function(){if(document.visibilityState=="visible"&&cReady&&!W)cLoad()});
 // ---- Theme: auto / light / dark (remembered on this device) ----
 var THEMES=["auto","light","dark"],theme="auto";try{theme=localStorage.getItem("wc-theme")||"auto"}catch(e){}
 function thApply(){if(theme=="auto")delete document.documentElement.dataset.theme;else document.documentElement.dataset.theme=theme;
@@ -618,11 +607,12 @@ thApply();
 // ---- Google Calendar: each logged workout becomes an all-day "X Workout" event ----
 var GC_SCOPE="https://www.googleapis.com/auth/calendar.events",gTok=null,gExp=0;
 try{gTok=sessionStorage.getItem("wc-gtok");gExp=+sessionStorage.getItem("wc-gexp")||0}catch(e){}
-function gcProv(){var p=new firebase.auth.GoogleAuthProvider();p.addScope(GC_SCOPE);if(cuser&&cuser.email)p.setCustomParameters({login_hint:cuser.email});return p}
+function gcProv(){var p=new firebase.auth.GoogleAuthProvider();p.addScope(GC_SCOPE);return p}
 function gcKeep(r){var t=r&&r.credential&&r.credential.accessToken;if(!t)return false;gTok=t;gExp=Date.now()+55*60000;
   try{sessionStorage.setItem("wc-gtok",gTok);sessionStorage.setItem("wc-gexp",gExp)}catch(e){}return true}
 function gcToken(){if(gTok&&Date.now()<gExp)return Promise.resolve(gTok);
-  return firebase.auth().currentUser.reauthenticateWithPopup(gcProv()).then(function(r){if(!gcKeep(r))throw new Error("no token");return gTok})}
+  if(!window.firebase)return Promise.reject(new Error("Google isn't reachable right now"));if(!firebase.apps.length)firebase.initializeApp(FB_CFG);
+  return firebase.auth().signInWithPopup(gcProv()).then(function(r){if(!gcKeep(r))throw new Error("no token");return gTok})}
 function gcTitle(w){var c=(w.cat||w.type||"").toLowerCase(),t;
   if(c=="endurance"||c=="cardio")t="Cardio";else if(c=="flexibility"||c=="mobility")t="Flexibility";else if(c=="core")t="Core";
   else if(c=="strength")t=w.sub||"Strength";else t=w.cat||w.type||"";
@@ -664,37 +654,21 @@ function gcErr(e){var m=e&&e.message;
   else if(m=="expired")alert("Google Calendar access expired. Tap 📅 Add to calendar on the workout to reconnect.");
   else alert("Couldn't add to Google Calendar: "+(m||e))}
 // every logged or edited workout goes to the calendar automatically
-function gcSync(w,k){if(!cuser||!cReady)return;S.calev=S.calev||{};S.calPend=S.calPend||[];
+function gcSync(w,k){if(!cReady)return;S.calev=S.calev||{};S.calPend=S.calPend||[];
   if(S.calPend.map(String).indexOf(String(w.id))<0)S.calPend.push(w.id);
   gcPush(w.id).then(gcFlush).catch(gcErr).then(function(){save();render()})}
 function gcDel(id){if(!S.calev||!S.calev[id])return;var ev=S.calev[id];delete S.calev[id];S.calPend=(S.calPend||[]).filter(function(x){return String(x)!==String(id)});
   gcCall("DELETE","/"+encodeURIComponent(ev)).catch(function(e){gcErr(e)})}
 // retry workouts whose calendar update failed earlier
 async function gcFlush(){var ids=(S.calPend||[]).slice();for(var i=0;i<ids.length;i++){try{await gcPush(ids[i])}catch(e){break}}}
-function gcBtn(x){if(!cuser||!cReady)return "";var on=S.calev&&S.calev[x.id];
+function gcBtn(x){if(!cReady)return "";var on=S.calev&&S.calev[x.id];
   return '<button class="ed" data-gc="'+x.id+'" title="'+(on?"Already in Google Calendar. Tap to check it is up to date":"Add this workout to Google Calendar")+'">'+(on?"📅 In calendar ✓":"📅 Add to calendar")+'</button>'}
-function cTools(){var on=!!(cuser&&cReady);var f=$("fsave");f.style.display=on?"":"none";f.textContent={dirty:"💾 Save",err:"⚠️ Retry save",saving:"⏳ Saving…"}[cState]||"✅ Saved";f.className=(cState=="dirty"||cState=="err")?"pri":"";$("bkb").style.display=on?"":"none";$("imb").style.display=on?"":"none"}
-$("fsave").onclick=function(){if(cuser&&cReady)cWrite()};
+function cTools(){$("fsave").style.display="none";$("bkb").style.display=cReady?"":"none";$("imb").style.display="none"}
 $("bkb").onclick=function(){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([snap()],{type:"application/json"}));a.download="workout-data-"+iso(new Date())+".json";document.body.appendChild(a);a.click();a.remove()};
-$("imb").onclick=function(){$("imf").value="";$("imf").click()};
-$("imf").onchange=async function(){var f=this.files[0];if(!f)return;var o=null;try{o=JSON.parse(await f.text())}catch(e){}
-  if(!o||!(o.data||(o.settings&&o.settings.plan))){alert("That file isn't a workout backup.");return}
-  var n=Object.keys(o.data||{}).length,np=o.settings&&o.settings.plan?Object.keys(o.settings.plan).length:0;if(!confirm("Add this file to your account?"+(n?"\n• "+n+" days of workouts (workouts already in your account are kept)":"")+(np?"\n• a training plan of "+np+" days (replaces your current plan)":"")))return;
-  fsMerge(o);PLAN=S.plan||{};seedAll();save();render();alert("Imported. Your account now has "+Object.keys(data).length+" days with workouts and "+Object.keys(PLAN).length+" planned days.")};
-function cInit(){
-  if(!window.firebase){cState="na";cUi();return}
-  firebase.initializeApp(FB_CFG);
-  firebase.auth().onAuthStateChanged(function(u){if(u)cStart(u);else{if(cref)cref.off();cuser=null;cref=null;cReady=false;cState="off";cUi();cClear()}});
-  $("cb").onclick=function(){
-    if(cState=="err"||cState=="dirty"){cWrite();return}
-    if(cuser){if(confirm("Sign out on this device? Your workouts stay saved in your account."))firebase.auth().signOut();return}
-    var p=new firebase.auth.GoogleAuthProvider();cState="loading";cUi();
-    firebase.auth().signInWithPopup(p).catch(function(e){if(e&&(e.code=="auth/popup-blocked"||e.code=="auth/operation-not-supported-in-this-environment"))return firebase.auth().signInWithRedirect(p);
-      cState="off";cUi();if(e&&e.code!="auth/popup-closed-by-user"&&e.code!="auth/cancelled-popup-request")alert("Sign-in failed: "+(e.message||e))})}}
-seedAll();
+$("cb").onclick=function(){if(!cReady){cLoad();return}if(pendN(pendCalc()))cCopy()};
 render();
 cUi();
-if(location.protocol!="file:")cInit();
+if(location.protocol!="file:")cLoad();
 </script>
 
 </body>

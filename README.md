@@ -2,6 +2,7 @@
 
 Personal workout log. Open it at https://orbelloelias-del.github.io/workout/
 
-- `index.html` is the whole site.
-- Your workouts are saved to your own Firebase database (project `workout-log-3db1e`) after you tap **Sign in with Google**. Each Google account has its own separate log and training plan; a new account starts empty and nothing is shown when signed out.
-- Use **Download backup** / **Import backup** on the site to export or restore your data as a JSON file.
+- `index.html` is the whole site. No sign-in is needed.
+- `data.json` holds all workouts, body weight, the training plan and goals. It is public, like the rest of this repo.
+- Workouts logged on the site are kept on that device until they are added to `data.json`. The site shows how many are waiting and can copy them so they can be sent to Claude.
+- Google Calendar sync asks for Google permission only when it adds an event.
