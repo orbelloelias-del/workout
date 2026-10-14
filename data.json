@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-10-14T17:47:18.728Z",
+ "saved": "2026-10-14T17:50:17.722Z",
  "data": {
   "2026-09-06": [
    {
@@ -30332,21 +30332,6 @@
       "sets": "3",
       "reps": "10",
       "kg": "86",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Hinge",
-      "name": "Leg press",
-      "eq": "Machine",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": true,
-      "sets": "3",
-      "reps": "8",
-      "kg": "32",
       "rest": "",
       "ru": "m",
       "stars": ""
