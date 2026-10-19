@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-10-19T17:41:53.291Z",
+ "saved": "2026-10-19T17:57:20.524Z",
  "data": {
   "2026-09-06": [
    {
@@ -29699,7 +29699,7 @@
     "id": 1797000000001,
     "cat": "Strength",
     "sub": "Push",
-    "notes": "Shoulder press 3×6 @ 35 kg (planned 3×8 @ 30 kg).",
+    "notes": "Shoulder press 3×6 @ 35 kg (planned 3×8 @ 30 kg). Frontal raises + elbow extension as a superset.",
     "ex": [
      {
       "pat": "Push",
@@ -29774,7 +29774,9 @@
       "kg": "5",
       "rest": "2",
       "ru": "m",
-      "stars": ""
+      "stars": "",
+      "g": "g1",
+      "gr": "3"
      },
      {
       "pat": "Push",
@@ -29786,10 +29788,12 @@
       "iso": false,
       "sets": "3",
       "reps": "8",
-      "kg": "22.5",
+      "kg": "23",
       "rest": "2",
       "ru": "m",
-      "stars": ""
+      "stars": "",
+      "g": "g1",
+      "gr": "3"
      }
     ],
     "start": "20:41",
