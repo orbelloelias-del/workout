@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-10-19T16:48:06.055Z",
+ "saved": "2026-10-19T17:41:53.291Z",
  "data": {
   "2026-09-06": [
    {
@@ -29691,6 +29691,108 @@
      }
     ],
     "start": "20:40",
+    "len": "60"
+   }
+  ],
+  "2026-10-19": [
+   {
+    "id": 1797000000001,
+    "cat": "Strength",
+    "sub": "Push",
+    "notes": "Shoulder press 3×6 @ 35 kg (planned 3×8 @ 30 kg).",
+    "ex": [
+     {
+      "pat": "Push",
+      "name": "Bench press",
+      "eq": "Barbell",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "6",
+      "kg": "75",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Push",
+      "name": "Dips",
+      "eq": "Parallettes",
+      "pos": "",
+      "grip": "",
+      "det": "weighted",
+      "iso": false,
+      "sets": "3",
+      "reps": "8",
+      "kg": "20",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Push",
+      "name": "Shoulder press",
+      "eq": "Dumbbells",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "6",
+      "kg": "35",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Push",
+      "name": "Lateral raises",
+      "eq": "Dumbbells",
+      "pos": "Seated",
+      "grip": "Neutral",
+      "det": "",
+      "iso": true,
+      "sets": "3",
+      "reps": "10",
+      "kg": "5",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Push",
+      "name": "Frontal raises",
+      "eq": "Dumbbells",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": true,
+      "sets": "3",
+      "reps": "10",
+      "kg": "5",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Push",
+      "name": "Elbow extension",
+      "eq": "Cable",
+      "pos": "Standing",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "8",
+      "kg": "22.5",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     }
+    ],
+    "start": "20:41",
     "len": "60"
    }
   ]
