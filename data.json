@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-10-14T18:44:08.025Z",
+ "saved": "2026-10-19T16:48:06.055Z",
  "data": {
   "2026-09-06": [
    {
@@ -30503,155 +30503,14 @@
     "n": "Maintenance: same weights as last time, stay 2+ reps from failure. No progression this month. (Moved from Mon 12.10.)"
    },
    "2026-10-15": {
-    "t": "Push",
+    "t": "Rest",
     "w": "Week 2 · Build · Oct 11 – Oct 17",
-    "ex": [
-     {
-      "pat": "Push",
-      "name": "Bench press",
-      "eq": "Barbell",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "6",
-      "kg": "75",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Push",
-      "name": "Dips",
-      "eq": "Parallettes",
-      "pos": "",
-      "grip": "",
-      "det": "weighted",
-      "iso": false,
-      "sets": "3",
-      "reps": "8",
-      "kg": "20",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Push",
-      "name": "Shoulder press",
-      "eq": "Dumbbells",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "8",
-      "kg": "30",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Push",
-      "name": "Lateral raises",
-      "eq": "Dumbbells",
-      "pos": "Seated",
-      "grip": "Neutral",
-      "det": "",
-      "iso": true,
-      "sets": "3",
-      "reps": "10",
-      "kg": "5",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Push",
-      "name": "Frontal raises",
-      "eq": "Dumbbells",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": true,
-      "sets": "3",
-      "reps": "10",
-      "kg": "5",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Push",
-      "name": "Elbow extension",
-      "eq": "Cable",
-      "pos": "Standing",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "8",
-      "kg": "22.5",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     }
-    ],
-    "n": "Maintenance: same weights as last time, stay 2+ reps from failure. No progression this month. (Moved from Tue 13.10.)"
+    "n": "Missed."
    },
    "2026-10-16": {
-    "t": "Endurance",
+    "t": "Rest",
     "w": "Week 2 · Build · Oct 11 – Oct 17",
-    "a": "Running",
-    "dur": 30,
-    "n": "Run/walk: 5 × (5 min easy run + 1 min walk). (Moved from Thu 15.10.)",
-    "ex": [
-     {
-      "pat": "Core",
-      "name": "Bicycle crunches",
-      "eq": "",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "24",
-      "kg": "",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Core",
-      "name": "Dead bug",
-      "eq": "",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": true,
-      "sets": "3",
-      "reps": "10",
-      "kg": "",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Core",
-      "name": "Russian twists",
-      "eq": "",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "24",
-      "kg": "",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     }
-    ]
+    "n": "Missed."
    },
    "2026-10-17": {
     "t": "Rest",
@@ -30659,200 +30518,11 @@
     "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
    },
    "2026-10-18": {
-    "t": "Pull",
+    "t": "Rest",
     "w": "Week 3 · Build · Oct 18 – Oct 24",
-    "ex": [
-     {
-      "pat": "Pull",
-      "name": "Pull ups",
-      "eq": "Bar",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "6",
-      "kg": "20",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Cable pulls",
-      "eq": "Cable",
-      "pos": "Seated",
-      "grip": "Pronated",
-      "det": "wide",
-      "iso": false,
-      "sets": "3",
-      "reps": "10",
-      "kg": "45",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Rows",
-      "eq": "Pulley",
-      "pos": "Seated",
-      "grip": "Pronated",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "9",
-      "kg": "32",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Rear delt pulls",
-      "eq": "Cable",
-      "pos": "Standing",
-      "grip": "",
-      "det": "",
-      "iso": true,
-      "sets": "3",
-      "reps": "10",
-      "kg": "4.5",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Concentration curls",
-      "eq": "Dumbbells",
-      "pos": "Seated",
-      "grip": "Supinated",
-      "det": "",
-      "iso": true,
-      "sets": "3",
-      "reps": "9",
-      "kg": "10",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Bicep curls",
-      "eq": "Cable",
-      "pos": "Standing",
-      "grip": "Pronated",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "9",
-      "kg": "15",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     }
-    ],
-    "n": "🎯 Pull ups: 3×6 @ 20 kg. Add reps within the range on the other exercises. (Shifted from Wed 14.10.)"
+    "n": "Missed. The schedule restarts with Push on Mon 19.10."
    },
    "2026-10-19": {
-    "t": "Hinge",
-    "w": "Week 3 · Build · Oct 18 – Oct 24",
-    "ex": [
-     {
-      "pat": "Hinge",
-      "name": "Leg press",
-      "eq": "Machine",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "10",
-      "kg": "86",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Hinge",
-      "name": "Leg press",
-      "eq": "Machine",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": true,
-      "sets": "3",
-      "reps": "8",
-      "kg": "32",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Hinge",
-      "name": "Knee flexion",
-      "eq": "Cable",
-      "pos": "Lying",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "8",
-      "kg": "23",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Hinge",
-      "name": "Hip thrusts",
-      "eq": "Machine",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "10",
-      "kg": "30",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Hinge",
-      "name": "Hip abduction",
-      "eq": "Machine",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "10",
-      "kg": "32",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Hinge",
-      "name": "Calf press",
-      "eq": "Smith machine",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "10",
-      "kg": "40",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     }
-    ],
-    "n": "Maintenance: same weights as last time, stay 2+ reps from failure. No progression this month. (Shifted from Thu 15.10.)"
-   },
-   "2026-10-20": {
     "t": "Push",
     "w": "Week 3 · Build · Oct 18 – Oct 24",
     "ex": [
@@ -30947,9 +30617,9 @@
       "stars": ""
      }
     ],
-    "n": "Maintenance: same weights as last time, stay 2+ reps from failure. No progression this month. (Shifted from Sun 18.10.)"
+    "n": "Maintenance: same weights as last time, stay 2+ reps from failure. No progression this month. (Moved from Tue 20.10.)"
    },
-   "2026-10-21": {
+   "2026-10-20": {
     "t": "Squat",
     "w": "Week 3 · Build · Oct 18 – Oct 24",
     "ex": [
@@ -31044,14 +30714,14 @@
       "stars": ""
      }
     ],
-    "n": "Maintenance: same weights as last time, stay 2+ reps from failure. No progression this month. (Shifted from Mon 19.10.)"
+    "n": "Maintenance: same weights as last time, stay 2+ reps from failure. No progression this month. (Moved from Wed 21.10.)"
    },
-   "2026-10-22": {
+   "2026-10-21": {
     "t": "Endurance",
     "w": "Week 3 · Build · Oct 18 – Oct 24",
     "a": "Running",
     "dur": 30,
-    "n": "5 min walk warm-up, 25 min continuous easy run. (Shifted from Tue 20.10.)",
+    "n": "5 min walk warm-up, 25 min continuous easy run. (Moved from Thu 22.10.)",
     "ex": [
      {
       "pat": "Core",
@@ -31100,19 +30770,9 @@
      }
     ]
    },
-   "2026-10-23": {
-    "t": "Rest",
-    "w": "Week 3 · Build · Oct 18 – Oct 24",
-    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
-   },
-   "2026-10-24": {
-    "t": "Rest",
-    "w": "Week 3 · Build · Oct 18 – Oct 24",
-    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
-   },
-   "2026-10-25": {
+   "2026-10-22": {
     "t": "Pull",
-    "w": "Week 4 · Deload · Oct 25 – Oct 31",
+    "w": "Week 3 · Build · Oct 18 – Oct 24",
     "ex": [
      {
       "pat": "Pull",
@@ -31123,7 +30783,7 @@
       "det": "",
       "iso": false,
       "sets": "3",
-      "reps": "7",
+      "reps": "6",
       "kg": "20",
       "rest": "2",
       "ru": "m",
@@ -31153,7 +30813,7 @@
       "det": "",
       "iso": false,
       "sets": "3",
-      "reps": "10",
+      "reps": "9",
       "kg": "32",
       "rest": "",
       "ru": "m",
@@ -31168,7 +30828,7 @@
       "det": "",
       "iso": true,
       "sets": "3",
-      "reps": "12",
+      "reps": "10",
       "kg": "4.5",
       "rest": "",
       "ru": "m",
@@ -31183,7 +30843,7 @@
       "det": "",
       "iso": true,
       "sets": "3",
-      "reps": "10",
+      "reps": "9",
       "kg": "10",
       "rest": "",
       "ru": "m",
@@ -31198,16 +30858,26 @@
       "det": "",
       "iso": false,
       "sets": "3",
-      "reps": "10",
+      "reps": "9",
       "kg": "15",
       "rest": "",
       "ru": "m",
       "stars": ""
      }
     ],
-    "n": "🎯 Pull ups: 3×7 @ 20 kg. Top of the range on the other exercises. (Shifted from Wed 21.10.)"
+    "n": "🎯 Pull ups: 3×6 @ 20 kg. Add reps within the range on the other exercises. (Moved from Sun 18.10.)"
    },
-   "2026-10-26": {
+   "2026-10-23": {
+    "t": "Rest",
+    "w": "Week 3 · Build · Oct 18 – Oct 24",
+    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
+   },
+   "2026-10-24": {
+    "t": "Rest",
+    "w": "Week 3 · Build · Oct 18 – Oct 24",
+    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
+   },
+   "2026-10-25": {
     "t": "Hinge",
     "w": "Week 4 · Deload · Oct 25 – Oct 31",
     "ex": [
@@ -31302,9 +30972,9 @@
       "stars": ""
      }
     ],
-    "n": "Maintenance: same weights as last time, stay 2+ reps from failure. No progression this month. (Shifted from Thu 22.10.)"
+    "n": "Maintenance: same weights as last time, stay 2+ reps from failure. No progression this month. (Moved from Mon 19.10.)"
    },
-   "2026-10-27": {
+   "2026-10-26": {
     "t": "Push",
     "w": "Week 4 · Deload · Oct 25 – Oct 31",
     "ex": [
@@ -31399,9 +31069,9 @@
       "stars": ""
      }
     ],
-    "n": "DELOAD: 2 sets, a bit lighter, well short of failure. (Shifted from Sun 25.10.)"
+    "n": "DELOAD: 2 sets, a bit lighter, well short of failure. (Moved from Tue 27.10.)"
    },
-   "2026-10-28": {
+   "2026-10-27": {
     "t": "Squat",
     "w": "Week 4 · Deload · Oct 25 – Oct 31",
     "ex": [
@@ -31496,14 +31166,14 @@
       "stars": ""
      }
     ],
-    "n": "DELOAD: 2 sets, a bit lighter, well short of failure. (Shifted from Mon 26.10.)"
+    "n": "DELOAD: 2 sets, a bit lighter, well short of failure. (Moved from Wed 28.10.)"
    },
-   "2026-10-29": {
+   "2026-10-28": {
     "t": "Endurance",
     "w": "Week 4 · Deload · Oct 25 – Oct 31",
     "a": "Walking",
     "dur": 30,
-    "n": "DELOAD: easy 30 min walk. (Shifted from Tue 27.10.)",
+    "n": "DELOAD: easy 30 min walk. (Moved from Thu 29.10.)",
     "ex": [
      {
       "pat": "Core",
@@ -31553,6 +31223,103 @@
      }
     ]
    },
+   "2026-10-29": {
+    "t": "Pull",
+    "w": "Week 4 · Deload · Oct 25 – Oct 31",
+    "ex": [
+     {
+      "pat": "Pull",
+      "name": "Pull ups",
+      "eq": "Bar",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "7",
+      "kg": "20",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Pull",
+      "name": "Cable pulls",
+      "eq": "Cable",
+      "pos": "Seated",
+      "grip": "Pronated",
+      "det": "wide",
+      "iso": false,
+      "sets": "3",
+      "reps": "10",
+      "kg": "45",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Pull",
+      "name": "Rows",
+      "eq": "Pulley",
+      "pos": "Seated",
+      "grip": "Pronated",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "10",
+      "kg": "32",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Pull",
+      "name": "Rear delt pulls",
+      "eq": "Cable",
+      "pos": "Standing",
+      "grip": "",
+      "det": "",
+      "iso": true,
+      "sets": "3",
+      "reps": "12",
+      "kg": "4.5",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Pull",
+      "name": "Concentration curls",
+      "eq": "Dumbbells",
+      "pos": "Seated",
+      "grip": "Supinated",
+      "det": "",
+      "iso": true,
+      "sets": "3",
+      "reps": "10",
+      "kg": "10",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Pull",
+      "name": "Bicep curls",
+      "eq": "Cable",
+      "pos": "Standing",
+      "grip": "Pronated",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "10",
+      "kg": "15",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     }
+    ],
+    "n": "🎯 Pull ups: 3×7 @ 20 kg. Top of the range on the other exercises. (Moved from Sun 25.10.)"
+   },
    "2026-10-30": {
     "t": "Rest",
     "w": "Week 4 · Deload · Oct 25 – Oct 31",
@@ -31564,8 +31331,105 @@
     "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
    },
    "2026-11-01": {
+    "t": "Hinge",
+    "w": "Week 5 · Goal test · Nov 1 – Nov 3",
+    "ex": [
+     {
+      "pat": "Hinge",
+      "name": "Leg press",
+      "eq": "Machine",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "10",
+      "kg": "86",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Leg press",
+      "eq": "Machine",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": true,
+      "sets": "3",
+      "reps": "8",
+      "kg": "32",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Knee flexion",
+      "eq": "Cable",
+      "pos": "Lying",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "8",
+      "kg": "23",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Hip thrusts",
+      "eq": "Machine",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "10",
+      "kg": "30",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Hip abduction",
+      "eq": "Machine",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "10",
+      "kg": "32",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Calf press",
+      "eq": "Smith machine",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "10",
+      "kg": "40",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     }
+    ],
+    "n": "Maintenance: same weights as last time, stay 2+ reps from failure. No progression this month. (Moved from Mon 26.10.)"
+   },
+   "2026-11-02": {
     "t": "Pull",
-    "w": "Week 5 · Goal test · Nov 1 – Nov 2",
+    "w": "Week 5 · Goal test · Nov 1 – Nov 3",
     "ex": [
      {
       "pat": "Pull",
@@ -31658,11 +31522,11 @@
       "stars": ""
      }
     ],
-    "n": "🎯 GOAL ATTEMPT: pull ups 3×8 @ 20 kg, 2 min rest. The other exercises are lighter this week so you are fresh. (Shifted from Wed 28.10.)"
+    "n": "🎯 GOAL ATTEMPT: pull ups 3×8 @ 20 kg, 2 min rest. The other exercises are lighter this week so you are fresh. (Moved from Sun 1.11.)"
    },
-   "2026-11-02": {
+   "2026-11-03": {
     "t": "Hinge",
-    "w": "Week 5 · Goal test · Nov 1 – Nov 2",
+    "w": "Week 5 · Goal test · Nov 1 – Nov 3",
     "ex": [
      {
       "pat": "Hinge",
@@ -31755,7 +31619,7 @@
       "stars": ""
      }
     ],
-    "n": "DELOAD: 2 sets, a bit lighter, well short of failure. (Shifted from Thu 29.10.)"
+    "n": "DELOAD: 2 sets, a bit lighter, well short of failure. (Moved from Mon 2.11.)"
    }
   },
   "calOn": true,
@@ -31777,6 +31641,6 @@
     "ex": "Bench press"
    }
   ],
-  "focus": "October: Pull is the focus. Push, Squat and Hinge are on maintenance (same weights, no progression). Endurance days: walking, running or jump rope + 3 core exercises. No training on Fridays and Saturdays (Sun–Thu: Pull, Hinge, Push, Squat, Endurance). Week 4 is a deload; on Sun Nov 1 you test the pull-up goal."
+  "focus": "October: Pull is the focus. Push, Squat and Hinge are on maintenance (same weights, no progression). Endurance days: walking, running or jump rope + 3 core exercises. No training on Fridays and Saturdays (Sun–Thu: Pull, Hinge, Push, Squat, Endurance). Week 4 is a deload; on Mon Nov 2 you test the pull-up goal."
  }
 }
