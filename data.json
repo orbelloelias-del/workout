@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-11-01T18:07:36.000Z",
+ "saved": "2026-11-01T18:08:43.000Z",
  "data": {
   "2026-09-06": [
    {
@@ -30798,8 +30798,8 @@
       "det": "deep, full ROM, 3 s down, 1 s pause at the bottom",
       "iso": false,
       "sets": "2",
-      "reps": "8",
-      "kg": "60",
+      "reps": "6",
+      "kg": "70",
       "rest": "",
       "ru": "m",
       "stars": ""
