@@ -62,7 +62,7 @@ tr.first td{border-top:2px solid var(--line)}
 .bt{display:flex;gap:6px;align-self:flex-start}
 .item>div:first-child{flex:1;min-width:0}
 .ss{width:100%;box-sizing:border-box;align-self:stretch;border:2px solid var(--acc);border-radius:12px;padding:6px 12px 10px;margin:10px 0}.sst{display:block;color:var(--acc);font-weight:700}.ssh{display:flex;justify-content:space-between;align-items:center;gap:8px}.ssh .sst{flex:1}.ss .xl:first-child{margin-top:2px}
-.xl{display:block;margin:6px 0}.xl u{color:var(--fg);text-underline-offset:2px}.xd{display:block;color:var(--mut)}.xn{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px;color:var(--fg)}.sds{display:inline-flex;gap:5px;align-items:center}.sd{width:.9em;height:.9em;min-height:0;min-width:0;padding:0;margin:0;box-sizing:border-box;border-radius:50%;border:1.5px solid var(--mut);background:transparent;cursor:pointer;box-shadow:none}.sd.on{background:var(--acc);border-color:var(--acc)}
+.xl{display:block;margin:6px 0}.xl u{color:var(--fg);text-underline-offset:2px}.xd{display:block;color:var(--mut)}.xn{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px;color:var(--fg)}.sds{display:inline-flex;gap:5px;align-items:center;margin-left:auto}.xe+.xe{border-top:1px dashed var(--mut);border-top-style:dotted;padding-top:6px}.sd{width:.9em;height:.9em;min-height:0;min-width:0;padding:0;margin:0;box-sizing:border-box;border-radius:50%;border:1.5px solid var(--mut);background:transparent;cursor:pointer;box-shadow:none}.sd.on{background:var(--acc);border-color:var(--acc)}
 .lab.pl{background:none;border:1px dashed var(--mut);border-left:3px solid var(--mut);color:var(--mut)}
 .pc{margin-top:12px;padding:10px;border:1px dashed var(--line);border-radius:10px}.pc small{display:block;color:var(--mut);margin:6px 0}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:12px}
@@ -153,7 +153,7 @@ function exLine(e,ss,k,i){var p=[],n=[],hs=e.sets&&!e.g;
   if(e.rest)p.push("rest "+esc(e.rest)+(e.ru=="m"?" min":" s"));
   if(e.stars)p.push(esc(e.stars).replace(/\*/g,"★"));
   var g=[e.eq,e.pos,e.grip,e.det].filter(Boolean).map(esc);if(e.iso)g.push("<em>isolateral</em>");
-  return '<span class="xl"><u>'+esc(e.name)+'</u>'+(g.length?'<span class="xd">'+g.join(" · ")+'</span>':"")+(p.length||k?'<span class="xd xn">'+p.join(" · ")+(k!=null?sDots(e,k,i):"")+'</span>':"")+'</span>'}
+  return '<span class="xl xe"><u>'+esc(e.name)+'</u>'+(g.length?'<span class="xd">'+g.join(" · ")+'</span>':"")+(p.length||k?'<span class="xd xn">'+p.join(" · ")+(k!=null?sDots(e,k,i):"")+'</span>':"")+'</span>'}
 function sGet(){try{return JSON.parse(localStorage.getItem("wc-sets")||"{}")}catch(x){return {}}}
 function sDone(e,k,i){var l=sGet()[k+"|"+i],s=+e.done||0;return l&&l.s===s?l.v:s}
 function sDots(e,k,i){var n=parseInt(e.sets,10)||0;if(e.g||!n||n>12)return"";var d=sDone(e,k,i),h='<span class="sds">';
