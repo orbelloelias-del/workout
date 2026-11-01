@@ -410,10 +410,10 @@ var PLAN={};
 function bestOf(n){var b=null;eachEx(function(p,e,d){if(e.name!=n||(+e.sets||0)<3)return;var k=+e.kg||0,r=+e.reps||0;if(!b||k>b.k||(k==b.k&&r>b.r))b={k:k,r:r,d:d}});return b?b.r+" reps @ "+b.k+" kg ("+fmt(b.d)+")":"not logged yet"}
 function pex(p,k){if(!p.ex||!p.ex.length)return "";
   if(p.t=="Endurance"){var r=p.ex[0].sets||"3";return '<div class="ss"><span class="sst">'+ssTitle({gr:r})+'</span>'+p.ex.map(function(e){return exLine(Object.assign({},e,{g:"gp"}))}).join("")+'</div>'}
-  var h="",x=p.ex;x.forEach(function(e,i){
-    if(e.g&&(i==0||x[i-1].g!==e.g))h+='<div class="ss"><span class="sst xn">'+ssTitle(e)+(k!=null?sDots(e,k,i,1):"")+'</span>';
+  var h="",x=p.ex,g0=0;x.forEach(function(e,i){
+    if(e.g&&(i==0||x[i-1].g!==e.g)){h+='<div class="ss"><span class="sst">'+ssTitle(e)+'</span>';g0=i}
     h+=exLine(e,0,k,i);
-    if(e.g&&(i==x.length-1||x[i+1].g!==e.g))h+='</div>'});return h}
+    if(e.g&&(i==x.length-1||x[i+1].g!==e.g))h+=(k!=null?'<span class="xd xn">'+sDots(x[g0],k,g0,1)+'</span>':'')+'</div>'});return h}
 function planCard(){var p=PLAN[sel];if(!p)return"";
   var h='<div class="pc"><b>📋 Plan: '+esc(p.t)+(p.a?" · "+esc(p.a):"")+'</b><span class="none"> · '+esc(p.w)+'</span>'+
     (p.dur?'<span class="xl">'+p.dur+' min</span>':"")+(p.n?'<small>'+esc(p.n)+'</small>':"")+
