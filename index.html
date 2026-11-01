@@ -582,8 +582,8 @@ var FB_CFG={apiKey:"AIzaSyDK3gQ4NmgG6O7-wz8s2a6ce28pAn5Pmeo",authDomain:"workout
 var SRV=null,cReady=false,cErr="",LK2="wc-local";
 function jq(x){return JSON.stringify(x)}
 function srvIdx(){var m={};Object.keys(SRV.data||{}).forEach(function(k){SRV.data[k].forEach(function(w){m[w.id]=[k,jq(w)]})});return m}
-function pendCalc(){if(!SRV)return null;var m=srvIdx(),seen={},P={w:{},del:[],bw:{},calev:{}};
-  Object.keys(data).forEach(function(k){data[k].forEach(function(w){seen[w.id]=1;var o=m[w.id];if(!o||o[0]!=k||o[1]!=jq(w))P.w[w.id]=[k,w]})});
+function pendCalc(){if(!SRV)return null;var m=srvIdx(),seen={},P={w:{},del:[],bw:{},calev:{},base:{}};
+  Object.keys(data).forEach(function(k){data[k].forEach(function(w){seen[w.id]=1;var o=m[w.id];if(!o||o[0]!=k||o[1]!=jq(w)){P.w[w.id]=[k,w];P.base[w.id]=o?o[1]:null}})});
   Object.keys(m).forEach(function(id){if(!seen[id])P.del.push(id)});
   var sb=SRV.bodyWeight||{};Object.keys(bw).forEach(function(k){if(jq(bw[k])!=jq(sb[k]))P.bw[k]=bw[k]});Object.keys(sb).forEach(function(k){if(!(k in bw))P.bw[k]=null});
   var sc=(SRV.settings||{}).calev||{};Object.keys(S.calev||{}).forEach(function(id){if(sc[id]!=S.calev[id])P.calev[id]=S.calev[id]});
@@ -592,7 +592,8 @@ function pendN(P){return P?Object.keys(P.w).length+P.del.length+Object.keys(P.bw
 function save(){fsQueue();if(!cReady)return;var P=pendCalc();try{if(pendN(P)||Object.keys(P.calev).length)localStorage.setItem(LK2,jq(P));else localStorage.removeItem(LK2)}catch(e){}cUi()}
 function cApplySrv(o){SRV=JSON.parse(jq(o));data=o.data||{};bw=o.bodyWeight||{};S=o.settings||{};S.types=S.types||[];S.mv=S.mv||{};S.eq=S.eq||[];S.ex=S.ex||[];PLAN=S.plan||{};
   var P=null;try{P=JSON.parse(localStorage.getItem(LK2)||"null")}catch(e){}
-  if(P){Object.keys(P.w||{}).forEach(function(id){var k=P.w[id][0],w=P.w[id][1];Object.keys(data).forEach(function(d){data[d]=data[d].filter(function(x){return String(x.id)!==String(id)});if(!data[d].length)delete data[d]});(data[k]=data[k]||[]).push(w)});
+  if(P){var m0=srvIdx(),B=P.base||{};Object.keys(P.w||{}).forEach(function(id){var cur=m0[id]?m0[id][1]:null;if(cur!==null&&(B[id]===undefined||B[id]!==cur))delete P.w[id]});
+    Object.keys(P.w||{}).forEach(function(id){var k=P.w[id][0],w=P.w[id][1];Object.keys(data).forEach(function(d){data[d]=data[d].filter(function(x){return String(x.id)!==String(id)});if(!data[d].length)delete data[d]});(data[k]=data[k]||[]).push(w)});
     (P.del||[]).forEach(function(id){Object.keys(data).forEach(function(d){data[d]=data[d].filter(function(x){return String(x.id)!==String(id)});if(!data[d].length)delete data[d]})});
     Object.keys(P.bw||{}).forEach(function(k){if(P.bw[k]==null)delete bw[k];else bw[k]=P.bw[k]});
     S.calev=Object.assign({},S.calev||{},P.calev||{})}}
