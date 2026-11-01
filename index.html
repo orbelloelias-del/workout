@@ -62,7 +62,7 @@ tr.first td{border-top:2px solid var(--line)}
 .bt{display:flex;gap:6px;align-self:flex-start}
 .item>div:first-child{flex:1;min-width:0}
 .ss{width:100%;box-sizing:border-box;align-self:stretch;border:2px solid var(--acc);border-radius:12px;padding:6px 12px 10px;margin:10px 0}.sst{display:block;color:var(--acc);font-weight:700}.ssh{display:flex;justify-content:space-between;align-items:center;gap:8px}.ssh .sst{flex:1}.ss .xl:first-child{margin-top:2px}
-.xl{display:block;margin:6px 0}.xl u{color:var(--fg);text-underline-offset:2px}.xd{display:block;color:var(--mut)}
+.xl{display:block;margin:6px 0}.xl u{color:var(--fg);text-underline-offset:2px}.xd{display:block;color:var(--mut)}.xn{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px;color:var(--fg)}.sds{display:inline-flex;gap:6px}.sd{width:20px;height:20px;min-height:0;padding:0;border-radius:50%;border:2px solid var(--acc);background:transparent;cursor:pointer}.sd.on{background:var(--acc)}
 .lab.pl{background:none;border:1px dashed var(--mut);border-left:3px solid var(--mut);color:var(--mut)}
 .pc{margin-top:12px;padding:10px;border:1px dashed var(--line);border-radius:10px}.pc small{display:block;color:var(--mut);margin:6px 0}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:12px}
@@ -144,15 +144,19 @@ var $=function(i){return document.getElementById(i)};
 $("dows").innerHTML=DOW.map(function(d){return '<div class="dow">'+d+'</div>'}).join("");
 
 function nm(x){return x.cat?(x.cat+(x.sub?" · "+x.sub:"")):x.type}
-function exLine(e,ss){var p=[];
-  if(e.kg)p.push(esc(e.kg)+" kg");
-  if(e.sets&&!e.g)p.push(esc(e.sets)+(e.sets==1?" set":" sets"));
-  if(e.t)p.push(esc(e.t)+" s hold"+(e.iso?" each":""));
-  if(e.reps)p.push(esc(e.reps)+(e.reps==1?" rep":" reps")+(e.iso?" each":""));
+function exLine(e,ss,k,i){var p=[],n=[],hs=e.sets&&!e.g,r=e.t?esc(e.t)+" s hold":e.reps?esc(e.reps)+(hs?"":(e.reps==1?" rep":" reps")):"";
+  if(hs)n.push(esc(e.sets)+(r?"":(e.sets==1?" set":" sets")));
+  if(r)n.push(r+(e.iso?" each":""));
+  if(e.kg)n.push(esc(e.kg)+" kg");
+  if(n.length)p.push(n.join(" × "));
   if(e.rest)p.push("rest "+esc(e.rest)+(e.ru=="m"?" min":" s"));
   if(e.stars)p.push(esc(e.stars).replace(/\*/g,"★"));
-  var g=[e.eq,e.pos,e.grip,e.det].filter(Boolean).map(esc).join(" · ");
-  return '<span class="xl"><u>'+esc(e.name)+(g?" · "+g:"")+(e.iso?" · <em>isolateral</em>":"")+'</u>'+(p.length?'<span class="xd">'+p.join(" · ")+'</span>':"")+'</span>'}
+  var g=[e.eq,e.pos,e.grip,e.det].filter(Boolean).map(esc);if(e.iso)g.push("<em>isolateral</em>");
+  return '<span class="xl"><u>'+esc(e.name)+'</u>'+(g.length?'<span class="xd">'+g.join(" · ")+'</span>':"")+(p.length||k?'<span class="xd xn">'+p.join(" · ")+(k!=null?sDots(e,k,i):"")+'</span>':"")+'</span>'}
+function sGet(){try{return JSON.parse(localStorage.getItem("wc-sets")||"{}")}catch(x){return {}}}
+function sDone(e,k,i){var l=sGet()[k+"|"+i],s=+e.done||0;return l&&l.s===s?l.v:s}
+function sDots(e,k,i){var n=parseInt(e.sets,10)||0;if(e.g||!n||n>12)return"";var d=sDone(e,k,i),h='<span class="sds">';
+  for(var j=1;j<=n;j++)h+='<button class="sd'+(j<=d?' on':'')+'" data-sd="'+k+'|'+i+'|'+j+'" aria-label="Set '+j+'"></button>';return h+'</span>'}
 function ssTitle(e){return 'Superset · '+esc(e.gr||e.sets||"")+(e.gr==1?" round":" rounds")}
 function det(x){var d=[],l=[];
   if(x.start)l.push('<span class="xl">Time started: '+esc(x.start)+' · Lasted: '+esc(x.len||60)+' minutes</span>');
@@ -323,8 +327,10 @@ $("wiz").oninput=function(e){var t=e.target,k=t.dataset.f;
 $("wiz").onkeydown=function(e){var t=e.target;if(e.key=="Enter"&&t.id=="na"){e.preventDefault();t.nextElementSibling.click()}};
 $("grid").onclick=function(e){var b=e.target.closest("[data-k]");if(b){sel=b.dataset.k;W=null;adding=null;render()}};
 $("list").onclick=function(e){
+  var sdv=e.target.getAttribute("data-sd");if(sdv){var q=sdv.split("|"),pk=q[0],pi=+q[1],j=+q[2],pe=(PLAN[pk]||{ex:[]}).ex[pi];if(pe){var cd=sDone(pe,pk,pi),nv=cd==j?j-1:j,L=sGet();L[pk+"|"+pi]={v:nv,s:+pe.done||0};try{localStorage.setItem("wc-sets",JSON.stringify(L))}catch(x){}
+    document.querySelectorAll('[data-sd^="'+pk+'|'+pi+'|"]').forEach(function(b){b.classList.toggle("on",+b.dataset.sd.split("|")[2]<=nv)})}return}
   if(e.target.getAttribute("data-useplan")){var pl=PLAN[sel];if(!pl||W)return;W=newW();
-    W.ex=JSON.parse(JSON.stringify(pl.ex||[]));if(pl.t=="Endurance"){W.cat="Endurance";W.sub=pl.a;W.dur=String(pl.dur);W.notes=pl.n;W.ex.forEach(function(e){e.g="gp";e.gr=W.ex[0].sets||"3"})}else{W.cat="Strength";W.sub=pl.t}
+    W.ex=JSON.parse(JSON.stringify(pl.ex||[]));W.ex.forEach(function(e){delete e.done});if(pl.t=="Endurance"){W.cat="Endurance";W.sub=pl.a;W.dur=String(pl.dur);W.notes=pl.n;W.ex.forEach(function(e){e.g="gp";e.gr=W.ex[0].sets||"3"})}else{W.cat="Strength";W.sub=pl.t}
     panel();wiz();$("wiz").scrollIntoView({behavior:"smooth",block:"start"});return}
   var gc=e.target.getAttribute("data-gc");
   if(gc){var bt=e.target;bt.disabled=true;bt.textContent="⏳ Checking…";
@@ -401,13 +407,13 @@ $("dbv").onclick=function(e){var b=e.target.closest("[data-a],[data-rm]");if(!b)
 // ---- Training plan (Sep 30 - Oct 31, 2026) ----
 var PLAN={};
 function bestOf(n){var b=null;eachEx(function(p,e,d){if(e.name!=n||(+e.sets||0)<3)return;var k=+e.kg||0,r=+e.reps||0;if(!b||k>b.k||(k==b.k&&r>b.r))b={k:k,r:r,d:d}});return b?b.r+" reps @ "+b.k+" kg ("+fmt(b.d)+")":"not logged yet"}
-function pex(p){if(!p.ex||!p.ex.length)return "";
+function pex(p,k){if(!p.ex||!p.ex.length)return "";
   if(p.t=="Endurance"){var r=p.ex[0].sets||"3";return '<div class="ss"><span class="sst">'+ssTitle({gr:r})+'</span>'+p.ex.map(function(e){return exLine(Object.assign({},e,{g:"gp"}))}).join("")+'</div>'}
-  return p.ex.map(function(e){return exLine(e)}).join("")}
+  return p.ex.map(function(e,i){return exLine(e,0,k,i)}).join("")}
 function planCard(){var p=PLAN[sel];if(!p)return"";
   var h='<div class="pc"><b>📋 Plan: '+esc(p.t)+(p.a?" · "+esc(p.a):"")+'</b><span class="none"> · '+esc(p.w)+'</span>'+
     (p.dur?'<span class="xl">'+p.dur+' min</span>':"")+(p.n?'<small>'+esc(p.n)+'</small>':"")+
-    (p.t=="Endurance"?'<div class="lbl">Core (3 exercises)</div>':"")+pex(p);
+    (p.t=="Endurance"?'<div class="lbl">Core (3 exercises)</div>':"")+pex(p,sel);
   if(p.t!="Rest"&&!W&&!(data[sel]||[]).length)h+='<button class="pri" data-useplan="1">Use this plan</button>';
   return h+'</div>'}
 function planRender(){var ks=Object.keys(PLAN).sort(),wk="",
