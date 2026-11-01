@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-11-01T18:42:43.000Z",
+ "saved": "2026-11-01T18:44:21.000Z",
  "data": {
   "2026-09-06": [
    {
@@ -30866,7 +30866,9 @@
       "kg": "35",
       "rest": "",
       "ru": "m",
-      "stars": ""
+      "stars": "",
+      "g": "ss1",
+      "gr": "3"
      },
      {
       "pat": "Squat",
@@ -30881,7 +30883,9 @@
       "kg": "35",
       "rest": "",
       "ru": "m",
-      "stars": ""
+      "stars": "",
+      "g": "ss1",
+      "gr": "3"
      }
     ],
     "n": "COMEBACK after a 2-week break: 3 sets, about 10% lighter, stop 3+ reps before failure. Barbell squat instead of hack squat today, with full range of motion as the focus."

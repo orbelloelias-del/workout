@@ -61,7 +61,7 @@ tr.first td{border-top:2px solid var(--line)}
 .item button.ed,.ex>button.ed{color:var(--fg)}
 .bt{display:flex;gap:6px;align-self:flex-start}
 .item>div:first-child{flex:1;min-width:0}
-.ss{width:100%;box-sizing:border-box;align-self:stretch;border:2px solid var(--acc);border-radius:12px;padding:6px 12px 10px;margin:10px 0}.sst{display:block;color:var(--acc);font-weight:700}.ssh{display:flex;justify-content:space-between;align-items:center;gap:8px}.ssh .sst{flex:1}.ss .xl:first-child{margin-top:2px}
+.ss{position:relative;width:100%;box-sizing:border-box;align-self:stretch;padding:2px 0 2px 16px;margin:10px 0}.sst.xn{color:var(--acc)}.ss::before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:7px;border:2px solid var(--acc);border-right:none}.sst{display:block;color:var(--acc);font-weight:700}.ssh{display:flex;justify-content:space-between;align-items:center;gap:8px}.ssh .sst{flex:1}.ss .xl:first-child{margin-top:2px}
 .xl{display:block;margin:6px 0}.xl u{color:var(--fg);text-underline-offset:2px}.xd{display:block;color:var(--mut)}.xn{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px;color:var(--fg)}.sds{display:inline-flex;gap:5px;align-items:center;margin-left:auto}.xe+.xe{border-top:1px dashed var(--mut);border-top-style:dotted;padding-top:6px}.sd{width:.9em;height:.9em;min-height:0;min-width:0;padding:0;margin:0;box-sizing:border-box;border-radius:50%;border:1.5px solid var(--mut);background:transparent;cursor:pointer;box-shadow:none}.sd.on{background:var(--acc);border-color:var(--acc)}
 .lab.pl{background:none;border:1px dashed var(--mut);border-left:3px solid var(--mut);color:var(--mut)}
 .pc{margin-top:12px;padding:10px;border:1px dashed var(--line);border-radius:10px}.pc small{display:block;color:var(--mut);margin:6px 0}
@@ -156,7 +156,7 @@ function exLine(e,ss,k,i){var p=[],n=[],hs=e.sets&&!e.g;
   return '<span class="xl xe"><u>'+esc(e.name)+'</u>'+(g.length?'<span class="xd">'+g.join(" · ")+'</span>':"")+(p.length||k?'<span class="xd xn">'+p.join(" · ")+(k!=null?sDots(e,k,i):"")+'</span>':"")+'</span>'}
 function sGet(){try{return JSON.parse(localStorage.getItem("wc-sets")||"{}")}catch(x){return {}}}
 function sDone(e,k,i){var l=sGet()[k+"|"+i],s=+e.done||0;return l&&l.s===s?l.v:s}
-function sDots(e,k,i){var n=parseInt(e.sets,10)||0;if(e.g||!n||n>12)return"";var d=sDone(e,k,i),h='<span class="sds">';
+function sDots(e,k,i,f){var n=parseInt(f?(e.gr||e.sets):e.sets,10)||0;if((e.g&&!f)||!n||n>12)return"";var d=sDone(e,k,i),h='<span class="sds">';
   for(var j=1;j<=n;j++)h+='<button class="sd'+(j<=d?' on':'')+'" data-sd="'+k+'|'+i+'|'+j+'" aria-label="Set '+j+'"></button>';return h+'</span>'}
 function ssTitle(e){return 'Superset · '+esc(e.gr||e.sets||"")+(e.gr==1?" round":" rounds")}
 function det(x){var d=[],l=[];
@@ -410,7 +410,10 @@ var PLAN={};
 function bestOf(n){var b=null;eachEx(function(p,e,d){if(e.name!=n||(+e.sets||0)<3)return;var k=+e.kg||0,r=+e.reps||0;if(!b||k>b.k||(k==b.k&&r>b.r))b={k:k,r:r,d:d}});return b?b.r+" reps @ "+b.k+" kg ("+fmt(b.d)+")":"not logged yet"}
 function pex(p,k){if(!p.ex||!p.ex.length)return "";
   if(p.t=="Endurance"){var r=p.ex[0].sets||"3";return '<div class="ss"><span class="sst">'+ssTitle({gr:r})+'</span>'+p.ex.map(function(e){return exLine(Object.assign({},e,{g:"gp"}))}).join("")+'</div>'}
-  return p.ex.map(function(e,i){return exLine(e,0,k,i)}).join("")}
+  var h="",x=p.ex;x.forEach(function(e,i){
+    if(e.g&&(i==0||x[i-1].g!==e.g))h+='<div class="ss"><span class="sst xn">'+ssTitle(e)+(k!=null?sDots(e,k,i,1):"")+'</span>';
+    h+=exLine(e,0,k,i);
+    if(e.g&&(i==x.length-1||x[i+1].g!==e.g))h+='</div>'});return h}
 function planCard(){var p=PLAN[sel];if(!p)return"";
   var h='<div class="pc"><b>📋 Plan: '+esc(p.t)+(p.a?" · "+esc(p.a):"")+'</b><span class="none"> · '+esc(p.w)+'</span>'+
     (p.dur?'<span class="xl">'+p.dur+' min</span>':"")+(p.n?'<small>'+esc(p.n)+'</small>':"")+
