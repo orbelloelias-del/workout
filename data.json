@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-11-01T18:48:36.000Z",
+ "saved": "2026-11-01T18:52:19.000Z",
  "data": {
   "2026-09-06": [
    {
@@ -29799,6 +29799,112 @@
     "start": "20:41",
     "len": "60"
    }
+  ],
+  "2026-11-01": [
+   {
+    "id": 1797000000002,
+    "cat": "Strength",
+    "sub": "Squat",
+    "notes": "Comeback after 2-week break. Barbell squat instead of hack squat (focus on full ROM); calf raises + hip adduction as a superset.",
+    "start": "20:10",
+    "len": "45",
+    "ex": [
+     {
+      "pat": "Squat",
+      "name": "Squat",
+      "eq": "Barbell",
+      "pos": "",
+      "grip": "",
+      "det": "belt, deep, full ROM",
+      "iso": false,
+      "sets": "3",
+      "reps": "6",
+      "kg": "70",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Squat",
+      "name": "Leg press",
+      "eq": "Machine",
+      "pos": "Seated",
+      "grip": "",
+      "det": "slow eccentrics",
+      "iso": false,
+      "sets": "3",
+      "reps": "10",
+      "kg": "40",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Squat",
+      "name": "Knee extension",
+      "eq": "Cable",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "8",
+      "kg": "60",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Squat",
+      "name": "Knee extension",
+      "eq": "Cable",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": true,
+      "sets": "3",
+      "reps": "6",
+      "kg": "18",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Squat",
+      "name": "Calf raises",
+      "eq": "Smith machine",
+      "pos": "Standing",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "10",
+      "kg": "40",
+      "rest": "",
+      "ru": "m",
+      "stars": "",
+      "g": "ss1",
+      "gr": "3"
+     },
+     {
+      "pat": "Squat",
+      "name": "Hip adduction",
+      "eq": "Cable",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "8",
+      "kg": "29",
+      "rest": "",
+      "ru": "m",
+      "stars": "",
+      "g": "ss1",
+      "gr": "3"
+     }
+    ]
+   }
   ]
  },
  "bodyWeight": {
@@ -30868,7 +30974,8 @@
       "ru": "m",
       "stars": "",
       "g": "ss1",
-      "gr": "3"
+      "gr": "3",
+      "done": 3
      },
      {
       "pat": "Squat",
@@ -30880,7 +30987,7 @@
       "iso": false,
       "sets": "3",
       "reps": "8",
-      "kg": "35",
+      "kg": "29",
       "rest": "",
       "ru": "m",
       "stars": "",
