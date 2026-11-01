@@ -62,7 +62,7 @@ tr.first td{border-top:2px solid var(--line)}
 .bt{display:flex;gap:6px;align-self:flex-start}
 .item>div:first-child{flex:1;min-width:0}
 .ss{width:100%;box-sizing:border-box;align-self:stretch;border:2px solid var(--acc);border-radius:12px;padding:6px 12px 10px;margin:10px 0}.sst{display:block;color:var(--acc);font-weight:700}.ssh{display:flex;justify-content:space-between;align-items:center;gap:8px}.ssh .sst{flex:1}.ss .xl:first-child{margin-top:2px}
-.xl{display:block;margin:6px 0}.xl u{color:var(--fg);text-underline-offset:2px}.xd{display:block;color:var(--mut)}.xn{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px;color:var(--fg)}.sds{display:inline-flex;gap:6px}.sd{width:20px;height:20px;min-height:0;padding:0;border-radius:50%;border:2px solid var(--acc);background:transparent;cursor:pointer}.sd.on{background:var(--acc)}
+.xl{display:block;margin:6px 0}.xl u{color:var(--fg);text-underline-offset:2px}.xd{display:block;color:var(--mut)}.xn{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px;color:var(--fg)}.sds{display:inline-flex;gap:5px;align-items:center}.sd{width:.9em;height:.9em;min-height:0;min-width:0;padding:0;margin:0;box-sizing:border-box;border-radius:50%;border:1.5px solid var(--mut);background:transparent;cursor:pointer;box-shadow:none}.sd.on{background:var(--acc);border-color:var(--acc)}
 .lab.pl{background:none;border:1px dashed var(--mut);border-left:3px solid var(--mut);color:var(--mut)}
 .pc{margin-top:12px;padding:10px;border:1px dashed var(--line);border-radius:10px}.pc small{display:block;color:var(--mut);margin:6px 0}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:12px}
@@ -144,11 +144,12 @@ var $=function(i){return document.getElementById(i)};
 $("dows").innerHTML=DOW.map(function(d){return '<div class="dow">'+d+'</div>'}).join("");
 
 function nm(x){return x.cat?(x.cat+(x.sub?" · "+x.sub:"")):x.type}
-function exLine(e,ss,k,i){var p=[],n=[],hs=e.sets&&!e.g,r=e.t?esc(e.t)+" s hold":e.reps?esc(e.reps)+(hs?"":(e.reps==1?" rep":" reps")):"";
-  if(hs)n.push(esc(e.sets)+(r?"":(e.sets==1?" set":" sets")));
-  if(r)n.push(r+(e.iso?" each":""));
+function exLine(e,ss,k,i){var p=[],n=[],hs=e.sets&&!e.g;
+  if(hs)n.push(esc(e.sets)+(e.sets==1?" set":" sets"));
+  if(e.t)n.push(esc(e.t)+" s hold"+(e.iso?" each":""));
+  else if(e.reps)n.push(esc(e.reps)+(e.reps==1?" rep":" reps")+(e.iso?" each":""));
   if(e.kg)n.push(esc(e.kg)+" kg");
-  if(n.length)p.push(n.join(" × "));
+  if(n.length)p.push(n.join(" · "));
   if(e.rest)p.push("rest "+esc(e.rest)+(e.ru=="m"?" min":" s"));
   if(e.stars)p.push(esc(e.stars).replace(/\*/g,"★"));
   var g=[e.eq,e.pos,e.grip,e.det].filter(Boolean).map(esc);if(e.iso)g.push("<em>isolateral</em>");
