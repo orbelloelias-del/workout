@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-11-01T18:05:57.000Z",
+ "saved": "2026-11-01T18:07:36.000Z",
  "data": {
   "2026-09-06": [
    {
@@ -30791,15 +30791,15 @@
     "ex": [
      {
       "pat": "Squat",
-      "name": "Hack squat",
-      "eq": "Machine",
+      "name": "Squat",
+      "eq": "Barbell",
       "pos": "",
       "grip": "",
-      "det": "",
+      "det": "deep, full ROM, 3 s down, 1 s pause at the bottom",
       "iso": false,
       "sets": "2",
       "reps": "8",
-      "kg": "72.5",
+      "kg": "60",
       "rest": "",
       "ru": "m",
       "stars": ""
@@ -30880,7 +30880,7 @@
       "stars": ""
      }
     ],
-    "n": "COMEBACK after a 2-week break: 2 sets, about 10% lighter, stop 3+ reps before failure."
+    "n": "COMEBACK after a 2-week break: 2 sets, about 10% lighter, stop 3+ reps before failure. Barbell squat instead of hack squat today, with full range of motion as the focus."
    },
    "2026-11-02": {
     "t": "Endurance",
