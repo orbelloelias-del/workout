@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-11-01T18:02:52.485Z",
+ "saved": "2026-11-01T18:05:57.000Z",
  "data": {
   "2026-09-06": [
    {
@@ -30786,297 +30786,6 @@
     "n": "Day off."
    },
    "2026-11-01": {
-    "t": "Pull",
-    "w": "Week 1 · Comeback · Nov 1 – Nov 7",
-    "ex": [
-     {
-      "pat": "Pull",
-      "name": "Pull ups",
-      "eq": "Bar",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "5",
-      "kg": "20",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Cable pulls",
-      "eq": "Cable",
-      "pos": "Seated",
-      "grip": "Pronated",
-      "det": "wide",
-      "iso": false,
-      "sets": "2",
-      "reps": "10",
-      "kg": "40",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Rows",
-      "eq": "Pulley",
-      "pos": "Seated",
-      "grip": "Pronated",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "9",
-      "kg": "30",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Rear delt pulls",
-      "eq": "Cable",
-      "pos": "Standing",
-      "grip": "",
-      "det": "",
-      "iso": true,
-      "sets": "2",
-      "reps": "10",
-      "kg": "4",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Concentration curls",
-      "eq": "Dumbbells",
-      "pos": "Seated",
-      "grip": "Supinated",
-      "det": "",
-      "iso": true,
-      "sets": "2",
-      "reps": "9",
-      "kg": "9",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Bicep curls",
-      "eq": "Cable",
-      "pos": "Standing",
-      "grip": "Pronated",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "9",
-      "kg": "12.5",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     }
-    ],
-    "n": "COMEBACK after a 2-week break: 2 sets, about 10% lighter, stop 3+ reps before failure. Pull ups 2×5 @ 20 kg."
-   },
-   "2026-11-02": {
-    "t": "Hinge",
-    "w": "Week 1 · Comeback · Nov 1 – Nov 7",
-    "ex": [
-     {
-      "pat": "Hinge",
-      "name": "Deadlift",
-      "eq": "Barbell",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "8",
-      "kg": "90",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Hinge",
-      "name": "Leg press",
-      "eq": "Machine",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "10",
-      "kg": "77.5",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Hinge",
-      "name": "Knee flexion",
-      "eq": "Cable",
-      "pos": "Lying",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "8",
-      "kg": "20",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Hinge",
-      "name": "Hip thrusts",
-      "eq": "Machine",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "10",
-      "kg": "27.5",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Hinge",
-      "name": "Hip abduction",
-      "eq": "Machine",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "10",
-      "kg": "30",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Hinge",
-      "name": "Calf press",
-      "eq": "Smith machine",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "10",
-      "kg": "35",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     }
-    ],
-    "n": "COMEBACK after a 2-week break: 2 sets, about 10% lighter, stop 3+ reps before failure."
-   },
-   "2026-11-03": {
-    "t": "Push",
-    "w": "Week 1 · Comeback · Nov 1 – Nov 7",
-    "ex": [
-     {
-      "pat": "Push",
-      "name": "Bench press",
-      "eq": "Barbell",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "6",
-      "kg": "67.5",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Push",
-      "name": "Dips",
-      "eq": "Parallettes",
-      "pos": "",
-      "grip": "",
-      "det": "weighted",
-      "iso": false,
-      "sets": "2",
-      "reps": "8",
-      "kg": "17.5",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Push",
-      "name": "Shoulder press",
-      "eq": "Dumbbells",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "8",
-      "kg": "27.5",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Push",
-      "name": "Lateral raises",
-      "eq": "Dumbbells",
-      "pos": "Seated",
-      "grip": "Neutral",
-      "det": "",
-      "iso": true,
-      "sets": "2",
-      "reps": "10",
-      "kg": "4.5",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Push",
-      "name": "Frontal raises",
-      "eq": "Dumbbells",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": true,
-      "sets": "2",
-      "reps": "10",
-      "kg": "4.5",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Push",
-      "name": "Elbow extension",
-      "eq": "Cable",
-      "pos": "Standing",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "8",
-      "kg": "20",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     }
-    ],
-    "n": "COMEBACK after a 2-week break: 2 sets, about 10% lighter, stop 3+ reps before failure."
-   },
-   "2026-11-04": {
     "t": "Squat",
     "w": "Week 1 · Comeback · Nov 1 – Nov 7",
     "ex": [
@@ -31173,7 +30882,7 @@
     ],
     "n": "COMEBACK after a 2-week break: 2 sets, about 10% lighter, stop 3+ reps before failure."
    },
-   "2026-11-05": {
+   "2026-11-02": {
     "t": "Endurance",
     "w": "Week 1 · Comeback · Nov 1 – Nov 7",
     "a": "Running",
@@ -31227,6 +30936,297 @@
      }
     ]
    },
+   "2026-11-03": {
+    "t": "Pull",
+    "w": "Week 1 · Comeback · Nov 1 – Nov 7",
+    "ex": [
+     {
+      "pat": "Pull",
+      "name": "Pull ups",
+      "eq": "Bar",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "5",
+      "kg": "20",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Pull",
+      "name": "Cable pulls",
+      "eq": "Cable",
+      "pos": "Seated",
+      "grip": "Pronated",
+      "det": "wide",
+      "iso": false,
+      "sets": "2",
+      "reps": "10",
+      "kg": "40",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Pull",
+      "name": "Rows",
+      "eq": "Pulley",
+      "pos": "Seated",
+      "grip": "Pronated",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "9",
+      "kg": "30",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Pull",
+      "name": "Rear delt pulls",
+      "eq": "Cable",
+      "pos": "Standing",
+      "grip": "",
+      "det": "",
+      "iso": true,
+      "sets": "2",
+      "reps": "10",
+      "kg": "4",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Pull",
+      "name": "Concentration curls",
+      "eq": "Dumbbells",
+      "pos": "Seated",
+      "grip": "Supinated",
+      "det": "",
+      "iso": true,
+      "sets": "2",
+      "reps": "9",
+      "kg": "9",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Pull",
+      "name": "Bicep curls",
+      "eq": "Cable",
+      "pos": "Standing",
+      "grip": "Pronated",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "9",
+      "kg": "12.5",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     }
+    ],
+    "n": "COMEBACK after a 2-week break: 2 sets, about 10% lighter, stop 3+ reps before failure. Pull ups 2×5 @ 20 kg."
+   },
+   "2026-11-04": {
+    "t": "Hinge",
+    "w": "Week 1 · Comeback · Nov 1 – Nov 7",
+    "ex": [
+     {
+      "pat": "Hinge",
+      "name": "Deadlift",
+      "eq": "Barbell",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "8",
+      "kg": "90",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Leg press",
+      "eq": "Machine",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "10",
+      "kg": "77.5",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Knee flexion",
+      "eq": "Cable",
+      "pos": "Lying",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "8",
+      "kg": "20",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Hip thrusts",
+      "eq": "Machine",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "10",
+      "kg": "27.5",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Hip abduction",
+      "eq": "Machine",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "10",
+      "kg": "30",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Calf press",
+      "eq": "Smith machine",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "10",
+      "kg": "35",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     }
+    ],
+    "n": "COMEBACK after a 2-week break: 2 sets, about 10% lighter, stop 3+ reps before failure."
+   },
+   "2026-11-05": {
+    "t": "Push",
+    "w": "Week 1 · Comeback · Nov 1 – Nov 7",
+    "ex": [
+     {
+      "pat": "Push",
+      "name": "Bench press",
+      "eq": "Barbell",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "6",
+      "kg": "67.5",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Push",
+      "name": "Dips",
+      "eq": "Parallettes",
+      "pos": "",
+      "grip": "",
+      "det": "weighted",
+      "iso": false,
+      "sets": "2",
+      "reps": "8",
+      "kg": "17.5",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Push",
+      "name": "Shoulder press",
+      "eq": "Dumbbells",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "8",
+      "kg": "27.5",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Push",
+      "name": "Lateral raises",
+      "eq": "Dumbbells",
+      "pos": "Seated",
+      "grip": "Neutral",
+      "det": "",
+      "iso": true,
+      "sets": "2",
+      "reps": "10",
+      "kg": "4.5",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Push",
+      "name": "Frontal raises",
+      "eq": "Dumbbells",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": true,
+      "sets": "2",
+      "reps": "10",
+      "kg": "4.5",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Push",
+      "name": "Elbow extension",
+      "eq": "Cable",
+      "pos": "Standing",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "8",
+      "kg": "20",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     }
+    ],
+    "n": "COMEBACK after a 2-week break: 2 sets, about 10% lighter, stop 3+ reps before failure."
+   },
    "2026-11-06": {
     "t": "Rest",
     "w": "Week 1 · Comeback · Nov 1 – Nov 7",
@@ -31238,6 +31238,157 @@
     "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
    },
    "2026-11-08": {
+    "t": "Squat",
+    "w": "Week 2 · Build · Nov 8 – Nov 14",
+    "ex": [
+     {
+      "pat": "Squat",
+      "name": "Hack squat",
+      "eq": "Machine",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "8",
+      "kg": "80",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Squat",
+      "name": "Leg press",
+      "eq": "Machine",
+      "pos": "Seated",
+      "grip": "",
+      "det": "slow eccentrics",
+      "iso": false,
+      "sets": "3",
+      "reps": "10",
+      "kg": "45",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Squat",
+      "name": "Knee extension",
+      "eq": "Cable",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "8",
+      "kg": "66",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Squat",
+      "name": "Knee extension",
+      "eq": "Cable",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": true,
+      "sets": "3",
+      "reps": "8",
+      "kg": "25",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Squat",
+      "name": "Calf raises",
+      "eq": "Smith machine",
+      "pos": "Standing",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "10",
+      "kg": "40",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Squat",
+      "name": "Hip adduction",
+      "eq": "Cable",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "8",
+      "kg": "40",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     }
+    ],
+    "n": "Back to your normal weights, stay 2+ reps from failure."
+   },
+   "2026-11-09": {
+    "t": "Endurance",
+    "w": "Week 2 · Build · Nov 8 – Nov 14",
+    "a": "Running",
+    "dur": 30,
+    "n": "5 min walk warm-up, 25 min continuous easy run.",
+    "ex": [
+     {
+      "pat": "Core",
+      "name": "Bicycle crunches",
+      "eq": "",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "28",
+      "kg": "",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Core",
+      "name": "Dead bug",
+      "eq": "",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": true,
+      "sets": "3",
+      "reps": "12",
+      "kg": "",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Core",
+      "name": "Russian twists",
+      "eq": "",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "28",
+      "kg": "",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     }
+    ]
+   },
+   "2026-11-10": {
     "t": "Pull",
     "w": "Week 2 · Build · Nov 8 – Nov 14",
     "ex": [
@@ -31334,7 +31485,7 @@
     ],
     "n": "🎯 Pull ups: 3×6 @ 20 kg."
    },
-   "2026-11-09": {
+   "2026-11-11": {
     "t": "Hinge",
     "w": "Week 2 · Build · Nov 8 – Nov 14",
     "ex": [
@@ -31431,7 +31582,7 @@
     ],
     "n": "Back to your normal weights, stay 2+ reps from failure."
    },
-   "2026-11-10": {
+   "2026-11-12": {
     "t": "Push",
     "w": "Week 2 · Build · Nov 8 – Nov 14",
     "ex": [
@@ -31528,9 +31679,19 @@
     ],
     "n": "Back to your normal weights, stay 2+ reps from failure."
    },
-   "2026-11-11": {
-    "t": "Squat",
+   "2026-11-13": {
+    "t": "Rest",
     "w": "Week 2 · Build · Nov 8 – Nov 14",
+    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
+   },
+   "2026-11-14": {
+    "t": "Rest",
+    "w": "Week 2 · Build · Nov 8 – Nov 14",
+    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
+   },
+   "2026-11-15": {
+    "t": "Squat",
+    "w": "Week 3 · Build · Nov 15 – Nov 21",
     "ex": [
      {
       "pat": "Squat",
@@ -31625,9 +31786,9 @@
     ],
     "n": "Back to your normal weights, stay 2+ reps from failure."
    },
-   "2026-11-12": {
+   "2026-11-16": {
     "t": "Endurance",
-    "w": "Week 2 · Build · Nov 8 – Nov 14",
+    "w": "Week 3 · Build · Nov 15 – Nov 21",
     "a": "Running",
     "dur": 30,
     "n": "5 min walk warm-up, 25 min continuous easy run.",
@@ -31679,17 +31840,7 @@
      }
     ]
    },
-   "2026-11-13": {
-    "t": "Rest",
-    "w": "Week 2 · Build · Nov 8 – Nov 14",
-    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
-   },
-   "2026-11-14": {
-    "t": "Rest",
-    "w": "Week 2 · Build · Nov 8 – Nov 14",
-    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
-   },
-   "2026-11-15": {
+   "2026-11-17": {
     "t": "Pull",
     "w": "Week 3 · Build · Nov 15 – Nov 21",
     "ex": [
@@ -31786,7 +31937,7 @@
     ],
     "n": "🎯 Pull ups: 3×7 @ 20 kg. Top of the range on the other exercises."
    },
-   "2026-11-16": {
+   "2026-11-18": {
     "t": "Hinge",
     "w": "Week 3 · Build · Nov 15 – Nov 21",
     "ex": [
@@ -31883,7 +32034,7 @@
     ],
     "n": "Back to your normal weights, stay 2+ reps from failure."
    },
-   "2026-11-17": {
+   "2026-11-19": {
     "t": "Push",
     "w": "Week 3 · Build · Nov 15 – Nov 21",
     "ex": [
@@ -31980,157 +32131,6 @@
     ],
     "n": "Back to your normal weights, stay 2+ reps from failure."
    },
-   "2026-11-18": {
-    "t": "Squat",
-    "w": "Week 3 · Build · Nov 15 – Nov 21",
-    "ex": [
-     {
-      "pat": "Squat",
-      "name": "Hack squat",
-      "eq": "Machine",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "8",
-      "kg": "80",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Squat",
-      "name": "Leg press",
-      "eq": "Machine",
-      "pos": "Seated",
-      "grip": "",
-      "det": "slow eccentrics",
-      "iso": false,
-      "sets": "3",
-      "reps": "10",
-      "kg": "45",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Squat",
-      "name": "Knee extension",
-      "eq": "Cable",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "8",
-      "kg": "66",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Squat",
-      "name": "Knee extension",
-      "eq": "Cable",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": true,
-      "sets": "3",
-      "reps": "8",
-      "kg": "25",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Squat",
-      "name": "Calf raises",
-      "eq": "Smith machine",
-      "pos": "Standing",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "10",
-      "kg": "40",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Squat",
-      "name": "Hip adduction",
-      "eq": "Cable",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "8",
-      "kg": "40",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     }
-    ],
-    "n": "Back to your normal weights, stay 2+ reps from failure."
-   },
-   "2026-11-19": {
-    "t": "Endurance",
-    "w": "Week 3 · Build · Nov 15 – Nov 21",
-    "a": "Running",
-    "dur": 30,
-    "n": "5 min walk warm-up, 25 min continuous easy run.",
-    "ex": [
-     {
-      "pat": "Core",
-      "name": "Bicycle crunches",
-      "eq": "",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "28",
-      "kg": "",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Core",
-      "name": "Dead bug",
-      "eq": "",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": true,
-      "sets": "3",
-      "reps": "12",
-      "kg": "",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Core",
-      "name": "Russian twists",
-      "eq": "",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "28",
-      "kg": "",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     }
-    ]
-   },
    "2026-11-20": {
     "t": "Rest",
     "w": "Week 3 · Build · Nov 15 – Nov 21",
@@ -32142,297 +32142,6 @@
     "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
    },
    "2026-11-22": {
-    "t": "Pull",
-    "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
-    "ex": [
-     {
-      "pat": "Pull",
-      "name": "Pull ups",
-      "eq": "Bar",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "8",
-      "kg": "20",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Cable pulls",
-      "eq": "Cable",
-      "pos": "Seated",
-      "grip": "Pronated",
-      "det": "wide",
-      "iso": false,
-      "sets": "2",
-      "reps": "8",
-      "kg": "40",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Rows",
-      "eq": "Pulley",
-      "pos": "Seated",
-      "grip": "Pronated",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "8",
-      "kg": "29",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Rear delt pulls",
-      "eq": "Cable",
-      "pos": "Standing",
-      "grip": "",
-      "det": "",
-      "iso": true,
-      "sets": "2",
-      "reps": "8",
-      "kg": "4.5",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Concentration curls",
-      "eq": "Dumbbells",
-      "pos": "Seated",
-      "grip": "Supinated",
-      "det": "",
-      "iso": true,
-      "sets": "2",
-      "reps": "8",
-      "kg": "10",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Bicep curls",
-      "eq": "Cable",
-      "pos": "Standing",
-      "grip": "Pronated",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "8",
-      "kg": "12.5",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     }
-    ],
-    "n": "🎯 GOAL ATTEMPT: pull ups 3×8 @ 20 kg, 2 min rest. The other exercises are lighter so you are fresh."
-   },
-   "2026-11-23": {
-    "t": "Hinge",
-    "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
-    "ex": [
-     {
-      "pat": "Hinge",
-      "name": "Deadlift",
-      "eq": "Barbell",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "8",
-      "kg": "90",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Hinge",
-      "name": "Leg press",
-      "eq": "Machine",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "10",
-      "kg": "80",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Hinge",
-      "name": "Knee flexion",
-      "eq": "Cable",
-      "pos": "Lying",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "8",
-      "kg": "20",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Hinge",
-      "name": "Hip thrusts",
-      "eq": "Machine",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "10",
-      "kg": "30",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Hinge",
-      "name": "Hip abduction",
-      "eq": "Machine",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "10",
-      "kg": "30",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Hinge",
-      "name": "Calf press",
-      "eq": "Smith machine",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "10",
-      "kg": "40",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     }
-    ],
-    "n": "DELOAD: 2 sets, a bit lighter, well short of failure."
-   },
-   "2026-11-24": {
-    "t": "Push",
-    "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
-    "ex": [
-     {
-      "pat": "Push",
-      "name": "Bench press",
-      "eq": "Barbell",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "6",
-      "kg": "70",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Push",
-      "name": "Dips",
-      "eq": "Parallettes",
-      "pos": "",
-      "grip": "",
-      "det": "weighted",
-      "iso": false,
-      "sets": "2",
-      "reps": "8",
-      "kg": "20",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Push",
-      "name": "Shoulder press",
-      "eq": "Dumbbells",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "8",
-      "kg": "27.5",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Push",
-      "name": "Lateral raises",
-      "eq": "Dumbbells",
-      "pos": "Seated",
-      "grip": "Neutral",
-      "det": "",
-      "iso": true,
-      "sets": "2",
-      "reps": "10",
-      "kg": "5",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Push",
-      "name": "Frontal raises",
-      "eq": "Dumbbells",
-      "pos": "Seated",
-      "grip": "",
-      "det": "",
-      "iso": true,
-      "sets": "2",
-      "reps": "10",
-      "kg": "5",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Push",
-      "name": "Elbow extension",
-      "eq": "Cable",
-      "pos": "Standing",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "2",
-      "reps": "8",
-      "kg": "20",
-      "rest": "2",
-      "ru": "m",
-      "stars": ""
-     }
-    ],
-    "n": "DELOAD: 2 sets, a bit lighter, well short of failure."
-   },
-   "2026-11-25": {
     "t": "Squat",
     "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
     "ex": [
@@ -32529,7 +32238,7 @@
     ],
     "n": "DELOAD: 2 sets, a bit lighter, well short of failure."
    },
-   "2026-11-26": {
+   "2026-11-23": {
     "t": "Endurance",
     "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
     "a": "Walking",
@@ -32584,6 +32293,297 @@
      }
     ]
    },
+   "2026-11-24": {
+    "t": "Pull",
+    "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
+    "ex": [
+     {
+      "pat": "Pull",
+      "name": "Pull ups",
+      "eq": "Bar",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "8",
+      "kg": "20",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Pull",
+      "name": "Cable pulls",
+      "eq": "Cable",
+      "pos": "Seated",
+      "grip": "Pronated",
+      "det": "wide",
+      "iso": false,
+      "sets": "2",
+      "reps": "8",
+      "kg": "40",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Pull",
+      "name": "Rows",
+      "eq": "Pulley",
+      "pos": "Seated",
+      "grip": "Pronated",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "8",
+      "kg": "29",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Pull",
+      "name": "Rear delt pulls",
+      "eq": "Cable",
+      "pos": "Standing",
+      "grip": "",
+      "det": "",
+      "iso": true,
+      "sets": "2",
+      "reps": "8",
+      "kg": "4.5",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Pull",
+      "name": "Concentration curls",
+      "eq": "Dumbbells",
+      "pos": "Seated",
+      "grip": "Supinated",
+      "det": "",
+      "iso": true,
+      "sets": "2",
+      "reps": "8",
+      "kg": "10",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Pull",
+      "name": "Bicep curls",
+      "eq": "Cable",
+      "pos": "Standing",
+      "grip": "Pronated",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "8",
+      "kg": "12.5",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     }
+    ],
+    "n": "🎯 GOAL ATTEMPT: pull ups 3×8 @ 20 kg, 2 min rest. The other exercises are lighter so you are fresh."
+   },
+   "2026-11-25": {
+    "t": "Hinge",
+    "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
+    "ex": [
+     {
+      "pat": "Hinge",
+      "name": "Deadlift",
+      "eq": "Barbell",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "8",
+      "kg": "90",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Leg press",
+      "eq": "Machine",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "10",
+      "kg": "80",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Knee flexion",
+      "eq": "Cable",
+      "pos": "Lying",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "8",
+      "kg": "20",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Hip thrusts",
+      "eq": "Machine",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "10",
+      "kg": "30",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Hip abduction",
+      "eq": "Machine",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "10",
+      "kg": "30",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Calf press",
+      "eq": "Smith machine",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "10",
+      "kg": "40",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     }
+    ],
+    "n": "DELOAD: 2 sets, a bit lighter, well short of failure."
+   },
+   "2026-11-26": {
+    "t": "Push",
+    "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
+    "ex": [
+     {
+      "pat": "Push",
+      "name": "Bench press",
+      "eq": "Barbell",
+      "pos": "",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "6",
+      "kg": "70",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Push",
+      "name": "Dips",
+      "eq": "Parallettes",
+      "pos": "",
+      "grip": "",
+      "det": "weighted",
+      "iso": false,
+      "sets": "2",
+      "reps": "8",
+      "kg": "20",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Push",
+      "name": "Shoulder press",
+      "eq": "Dumbbells",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "8",
+      "kg": "27.5",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Push",
+      "name": "Lateral raises",
+      "eq": "Dumbbells",
+      "pos": "Seated",
+      "grip": "Neutral",
+      "det": "",
+      "iso": true,
+      "sets": "2",
+      "reps": "10",
+      "kg": "5",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Push",
+      "name": "Frontal raises",
+      "eq": "Dumbbells",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": true,
+      "sets": "2",
+      "reps": "10",
+      "kg": "5",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Push",
+      "name": "Elbow extension",
+      "eq": "Cable",
+      "pos": "Standing",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "2",
+      "reps": "8",
+      "kg": "20",
+      "rest": "2",
+      "ru": "m",
+      "stars": ""
+     }
+    ],
+    "n": "DELOAD: 2 sets, a bit lighter, well short of failure."
+   },
    "2026-11-27": {
     "t": "Rest",
     "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
@@ -32604,7 +32604,7 @@
   ],
   "goals": [
    {
-    "m": "By Sun Nov 22, 2026",
+    "m": "By Tue Nov 24, 2026",
     "t": "Pull ups · 3 sets × 8 reps @ 20 kg",
     "ex": "Pull ups"
    },
@@ -32614,6 +32614,6 @@
     "ex": "Bench press"
    }
   ],
-  "focus": "November: comeback week first (Nov 1–5, lighter), then two build weeks. Pull is the focus; Push, Squat and Hinge stay at your normal weights. Endurance days: running or walking + 3 core exercises. Sun–Thu: Pull, Hinge, Push, Squat, Endurance; Fridays and Saturdays off. On Sun Nov 22 you test the pull-up goal (3×8 @ 20 kg), then deload that week."
+  "focus": "November: comeback week first (Nov 1–5, lighter), then two build weeks. Pull is the focus; Push, Squat and Hinge stay at your normal weights. Endurance days: running or walking + 3 core exercises. Sun–Thu: Squat, Endurance, Pull, Hinge, Push (continuing from your last Push); Fridays and Saturdays off. On Tue Nov 24 you test the pull-up goal (3×8 @ 20 kg), then deload that week."
  }
 }
