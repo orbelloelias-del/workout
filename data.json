@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-11-01T18:10:18.000Z",
+ "saved": "2026-11-01T18:11:55.000Z",
  "data": {
   "2026-09-06": [
    {
@@ -30797,7 +30797,7 @@
       "grip": "",
       "det": "belt, deep, full ROM, 3 s down, 1 s pause at the bottom",
       "iso": false,
-      "sets": "2",
+      "sets": "3",
       "reps": "6",
       "kg": "70",
       "rest": "",
