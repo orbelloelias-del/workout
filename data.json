@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-11-01T18:53:15.000Z",
+ "saved": "2026-11-04T17:21:39.000Z",
  "data": {
   "2026-09-06": [
    {
@@ -30999,60 +30999,18 @@
     "n": "COMEBACK after a 2-week break: 3 sets, about 10% lighter, stop 3+ reps before failure. Barbell squat instead of hack squat today, with full range of motion as the focus."
    },
    "2026-11-02": {
-    "t": "Endurance",
+    "t": "Rest",
     "w": "Week 1 · Comeback · Nov 1 – Nov 7",
-    "a": "Running",
-    "dur": 25,
-    "n": "COMEBACK: easy 25 min run/walk, 4 min easy run + 1 min walk. Core 3 rounds.",
-    "ex": [
-     {
-      "pat": "Core",
-      "name": "Bicycle crunches",
-      "eq": "",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "28",
-      "kg": "",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Core",
-      "name": "Dead bug",
-      "eq": "",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": true,
-      "sets": "3",
-      "reps": "12",
-      "kg": "",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Core",
-      "name": "Russian twists",
-      "eq": "",
-      "pos": "",
-      "grip": "",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "28",
-      "kg": "",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     }
-    ]
+    "n": "Missed.",
+    "ex": []
    },
    "2026-11-03": {
+    "t": "Rest",
+    "w": "Week 1 · Comeback · Nov 1 – Nov 7",
+    "n": "Missed.",
+    "ex": []
+   },
+   "2026-11-04": {
     "t": "Pull",
     "w": "Week 1 · Comeback · Nov 1 – Nov 7",
     "ex": [
@@ -31149,7 +31107,7 @@
     ],
     "n": "COMEBACK after a 2-week break: 3 sets, about 10% lighter, stop 3+ reps before failure. Pull ups 2×5 @ 20 kg."
    },
-   "2026-11-04": {
+   "2026-11-05": {
     "t": "Hinge",
     "w": "Week 1 · Comeback · Nov 1 – Nov 7",
     "ex": [
@@ -31246,9 +31204,21 @@
     ],
     "n": "COMEBACK after a 2-week break: 3 sets, about 10% lighter, stop 3+ reps before failure."
    },
-   "2026-11-05": {
-    "t": "Push",
+   "2026-11-06": {
+    "t": "Rest",
     "w": "Week 1 · Comeback · Nov 1 – Nov 7",
+    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep.",
+    "ex": []
+   },
+   "2026-11-07": {
+    "t": "Rest",
+    "w": "Week 1 · Comeback · Nov 1 – Nov 7",
+    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep.",
+    "ex": []
+   },
+   "2026-11-08": {
+    "t": "Push",
+    "w": "Week 2 · Build · Nov 8 – Nov 14",
     "ex": [
      {
       "pat": "Push",
@@ -31343,17 +31313,7 @@
     ],
     "n": "COMEBACK after a 2-week break: 3 sets, about 10% lighter, stop 3+ reps before failure."
    },
-   "2026-11-06": {
-    "t": "Rest",
-    "w": "Week 1 · Comeback · Nov 1 – Nov 7",
-    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
-   },
-   "2026-11-07": {
-    "t": "Rest",
-    "w": "Week 1 · Comeback · Nov 1 – Nov 7",
-    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
-   },
-   "2026-11-08": {
+   "2026-11-09": {
     "t": "Squat",
     "w": "Week 2 · Build · Nov 8 – Nov 14",
     "ex": [
@@ -31450,7 +31410,7 @@
     ],
     "n": "Back to your normal weights, stay 2+ reps from failure."
    },
-   "2026-11-09": {
+   "2026-11-10": {
     "t": "Endurance",
     "w": "Week 2 · Build · Nov 8 – Nov 14",
     "a": "Running",
@@ -31504,7 +31464,7 @@
      }
     ]
    },
-   "2026-11-10": {
+   "2026-11-11": {
     "t": "Pull",
     "w": "Week 2 · Build · Nov 8 – Nov 14",
     "ex": [
@@ -31601,7 +31561,7 @@
     ],
     "n": "🎯 Pull ups: 3×6 @ 20 kg."
    },
-   "2026-11-11": {
+   "2026-11-12": {
     "t": "Hinge",
     "w": "Week 2 · Build · Nov 8 – Nov 14",
     "ex": [
@@ -31698,9 +31658,21 @@
     ],
     "n": "Back to your normal weights, stay 2+ reps from failure."
    },
-   "2026-11-12": {
-    "t": "Push",
+   "2026-11-13": {
+    "t": "Rest",
     "w": "Week 2 · Build · Nov 8 – Nov 14",
+    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep.",
+    "ex": []
+   },
+   "2026-11-14": {
+    "t": "Rest",
+    "w": "Week 2 · Build · Nov 8 – Nov 14",
+    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep.",
+    "ex": []
+   },
+   "2026-11-15": {
+    "t": "Push",
+    "w": "Week 3 · Build · Nov 15 – Nov 21",
     "ex": [
      {
       "pat": "Push",
@@ -31795,17 +31767,7 @@
     ],
     "n": "Back to your normal weights, stay 2+ reps from failure."
    },
-   "2026-11-13": {
-    "t": "Rest",
-    "w": "Week 2 · Build · Nov 8 – Nov 14",
-    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
-   },
-   "2026-11-14": {
-    "t": "Rest",
-    "w": "Week 2 · Build · Nov 8 – Nov 14",
-    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
-   },
-   "2026-11-15": {
+   "2026-11-16": {
     "t": "Squat",
     "w": "Week 3 · Build · Nov 15 – Nov 21",
     "ex": [
@@ -31902,7 +31864,7 @@
     ],
     "n": "Back to your normal weights, stay 2+ reps from failure."
    },
-   "2026-11-16": {
+   "2026-11-17": {
     "t": "Endurance",
     "w": "Week 3 · Build · Nov 15 – Nov 21",
     "a": "Running",
@@ -31956,7 +31918,7 @@
      }
     ]
    },
-   "2026-11-17": {
+   "2026-11-18": {
     "t": "Pull",
     "w": "Week 3 · Build · Nov 15 – Nov 21",
     "ex": [
@@ -32053,7 +32015,7 @@
     ],
     "n": "🎯 Pull ups: 3×7 @ 20 kg. Top of the range on the other exercises."
    },
-   "2026-11-18": {
+   "2026-11-19": {
     "t": "Hinge",
     "w": "Week 3 · Build · Nov 15 – Nov 21",
     "ex": [
@@ -32150,9 +32112,21 @@
     ],
     "n": "Back to your normal weights, stay 2+ reps from failure."
    },
-   "2026-11-19": {
-    "t": "Push",
+   "2026-11-20": {
+    "t": "Rest",
     "w": "Week 3 · Build · Nov 15 – Nov 21",
+    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep.",
+    "ex": []
+   },
+   "2026-11-21": {
+    "t": "Rest",
+    "w": "Week 3 · Build · Nov 15 – Nov 21",
+    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep.",
+    "ex": []
+   },
+   "2026-11-22": {
+    "t": "Push",
+    "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
     "ex": [
      {
       "pat": "Push",
@@ -32247,17 +32221,7 @@
     ],
     "n": "Back to your normal weights, stay 2+ reps from failure."
    },
-   "2026-11-20": {
-    "t": "Rest",
-    "w": "Week 3 · Build · Nov 15 – Nov 21",
-    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
-   },
-   "2026-11-21": {
-    "t": "Rest",
-    "w": "Week 3 · Build · Nov 15 – Nov 21",
-    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
-   },
-   "2026-11-22": {
+   "2026-11-23": {
     "t": "Squat",
     "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
     "ex": [
@@ -32354,7 +32318,7 @@
     ],
     "n": "DELOAD: 3 sets, a bit lighter, well short of failure."
    },
-   "2026-11-23": {
+   "2026-11-24": {
     "t": "Endurance",
     "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
     "a": "Walking",
@@ -32409,7 +32373,7 @@
      }
     ]
    },
-   "2026-11-24": {
+   "2026-11-25": {
     "t": "Pull",
     "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
     "ex": [
@@ -32506,7 +32470,7 @@
     ],
     "n": "🎯 GOAL ATTEMPT: pull ups 3×8 @ 20 kg, 2 min rest. The other exercises are lighter so you are fresh."
    },
-   "2026-11-25": {
+   "2026-11-26": {
     "t": "Hinge",
     "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
     "ex": [
@@ -32603,9 +32567,21 @@
     ],
     "n": "DELOAD: 3 sets, a bit lighter, well short of failure."
    },
-   "2026-11-26": {
-    "t": "Push",
+   "2026-11-27": {
+    "t": "Rest",
     "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
+    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep.",
+    "ex": []
+   },
+   "2026-11-28": {
+    "t": "Rest",
+    "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
+    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep.",
+    "ex": []
+   },
+   "2026-11-29": {
+    "t": "Push",
+    "w": "Week 5 · Deload · Nov 29 – Dec 5",
     "ex": [
      {
       "pat": "Push",
@@ -32699,16 +32675,6 @@
      }
     ],
     "n": "DELOAD: 3 sets, a bit lighter, well short of failure."
-   },
-   "2026-11-27": {
-    "t": "Rest",
-    "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
-    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
-   },
-   "2026-11-28": {
-    "t": "Rest",
-    "w": "Week 4 · Goal test + deload · Nov 22 – Nov 28",
-    "n": "Day off (no training Fri/Sat). Light walk and stretching, good sleep."
    }
   },
   "calOn": true,
@@ -32720,7 +32686,7 @@
   ],
   "goals": [
    {
-    "m": "By Tue Nov 24, 2026",
+    "m": "By Wed Nov 25, 2026",
     "t": "Pull ups · 3 sets × 8 reps @ 20 kg",
     "ex": "Pull ups"
    },
@@ -32730,6 +32696,6 @@
     "ex": "Bench press"
    }
   ],
-  "focus": "November: comeback week first (Nov 1–5, lighter), then two build weeks. Pull is the focus; Push, Squat and Hinge stay at your normal weights. Endurance days: running or walking + 3 core exercises. Sun–Thu: Squat, Endurance, Pull, Hinge, Push (continuing from your last Push); Fridays and Saturdays off. On Tue Nov 24 you test the pull-up goal (3×8 @ 20 kg), then deload that week."
+  "focus": "November: comeback week first, then two build weeks. Pull is the focus; Push, Squat and Hinge stay at your normal weights. Endurance days: running or walking + 3 core exercises. Rotation continues from your last workout: Pull, Hinge, Push, Squat, Endurance, with Fridays and Saturdays off. On Wed Nov 25 you test the pull-up goal (3×8 @ 20 kg), then deload."
  }
 }
