@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-11-04T17:38:06.000Z",
+ "saved": "2026-11-04T17:45:56.000Z",
  "data": {
   "2026-09-06": [
    {
@@ -31062,15 +31062,15 @@
      },
      {
       "pat": "Pull",
-      "name": "Rear delt pulls",
+      "name": "Shoulder adduction",
       "eq": "Cable",
-      "pos": "Standing",
+      "pos": "Kneeling",
       "grip": "",
-      "det": "",
+      "det": "instead of rear delt pulls",
       "iso": true,
       "sets": "3",
       "reps": "10",
-      "kg": "4",
+      "kg": "11",
       "rest": "",
       "ru": "m",
       "stars": ""
