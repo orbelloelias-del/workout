@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-11-04T17:45:56.000Z",
+ "saved": "2026-11-04T17:50:35.000Z",
  "data": {
   "2026-09-06": [
    {
@@ -31043,22 +31043,8 @@
       "kg": "45",
       "rest": "",
       "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Rows",
-      "eq": "Pulley",
-      "pos": "Seated",
-      "grip": "Pronated",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "9",
-      "kg": "30",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
+      "stars": "",
+      "done": 3
      },
      {
       "pat": "Pull",
@@ -31071,6 +31057,22 @@
       "sets": "3",
       "reps": "10",
       "kg": "11",
+      "rest": "",
+      "ru": "m",
+      "stars": "",
+      "done": 1
+     },
+     {
+      "pat": "Pull",
+      "name": "Rows",
+      "eq": "Pulley",
+      "pos": "Seated",
+      "grip": "Pronated",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "9",
+      "kg": "30",
       "rest": "",
       "ru": "m",
       "stars": ""
