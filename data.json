@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-11-04T17:21:39.000Z",
+ "saved": "2026-11-04T17:38:06.000Z",
  "data": {
   "2026-09-06": [
    {
@@ -31027,19 +31027,20 @@
       "kg": "20",
       "rest": "2",
       "ru": "m",
-      "stars": ""
+      "stars": "",
+      "done": 3
      },
      {
       "pat": "Pull",
       "name": "Cable pulls",
       "eq": "Cable",
       "pos": "Seated",
-      "grip": "Pronated",
-      "det": "wide",
+      "grip": "Wide neutral",
+      "det": "wide neutral-grip lat bar",
       "iso": false,
       "sets": "3",
-      "reps": "10",
-      "kg": "40",
+      "reps": "8",
+      "kg": "45",
       "rest": "",
       "ru": "m",
       "stars": ""
