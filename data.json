@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-11-04T17:56:54.000Z",
+ "saved": "2026-11-04T17:59:08.000Z",
  "data": {
   "2026-09-06": [
    {
@@ -31080,6 +31080,21 @@
      },
      {
       "pat": "Pull",
+      "name": "Bicep curls",
+      "eq": "Cable",
+      "pos": "Standing",
+      "grip": "Pronated",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "8",
+      "kg": "15",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Pull",
       "name": "Concentration curls",
       "eq": "Dumbbells",
       "pos": "Seated",
@@ -31089,21 +31104,6 @@
       "sets": "3",
       "reps": "9",
       "kg": "9",
-      "rest": "",
-      "ru": "m",
-      "stars": ""
-     },
-     {
-      "pat": "Pull",
-      "name": "Bicep curls",
-      "eq": "Cable",
-      "pos": "Standing",
-      "grip": "Pronated",
-      "det": "",
-      "iso": false,
-      "sets": "3",
-      "reps": "9",
-      "kg": "12.5",
       "rest": "",
       "ru": "m",
       "stars": ""
