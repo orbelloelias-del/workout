@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-11-15T20:05:00.000Z",
+ "saved": "2026-11-15T20:13:00.000Z",
  "data": {
   "2022-08-13": [
    {
@@ -30018,6 +30018,48 @@
     "dur": "30",
     "dist": "3.5"
    }
+  ],
+  "2026-11-15": [
+   {
+    "id": 1797000000005,
+    "cat": "Strength",
+    "sub": "Hinge",
+    "notes": "Quick Hinge, no deadlifts. Leg press 6 sets.",
+    "start": "",
+    "len": "",
+    "ex": [
+     {
+      "pat": "Hinge",
+      "name": "Leg press",
+      "eq": "Machine",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "6",
+      "reps": "10",
+      "kg": "66",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     },
+     {
+      "pat": "Hinge",
+      "name": "Knee flexion",
+      "eq": "Machine",
+      "pos": "Seated",
+      "grip": "",
+      "det": "",
+      "iso": false,
+      "sets": "3",
+      "reps": "10",
+      "kg": "23",
+      "rest": "",
+      "ru": "m",
+      "stars": ""
+     }
+    ]
+   }
   ]
  },
  "bodyWeight": {
@@ -31809,24 +31851,22 @@
       "rest": "",
       "ru": "m",
       "stars": "",
-      "done": 4
+      "done": 6
      },
      {
       "pat": "Hinge",
       "name": "Knee flexion",
-      "eq": "Cable",
-      "pos": "Lying",
+      "eq": "Machine",
+      "pos": "Seated",
       "grip": "",
       "det": "",
       "iso": false,
       "sets": "3",
-      "reps": "8",
-      "kg": "20",
+      "reps": "10",
+      "kg": "23",
       "rest": "",
       "ru": "m",
-      "stars": "",
-      "g": "g1",
-      "gr": "3"
+      "stars": ""
      },
      {
       "pat": "Hinge",
