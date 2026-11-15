@@ -172,7 +172,7 @@ function det(x){var d=[],l=[];
   if(x.notes)l.push('<span class="xl"><i>'+esc(x.notes)+'</i></span>');
   return l.join("")}
 
-function render(){
+function render(){buildEP();
   var y=cur.getFullYear(),m=cur.getMonth();
   $("title").textContent=MONTHS[m]+" "+y;
   var first=new Date(y,m,1).getDay(),days=new Date(y,m+1,0).getDate(),h="",total=0,active=0;
@@ -182,7 +182,7 @@ function render(){
     if(w.length){active++;total+=w.length}
     h+='<button class="day'+(w.length?' done':'')+(k===iso(now)?' today':'')+(k===sel?' sel':'')+'" data-k="'+k+'"><span>'+d+'</span><span class="labs">'+
       w.slice(0,2).map(function(x){return '<span class="lab">'+esc(innerWidth<560?(x.sub||x.cat||x.type||nm(x)):nm(x))+'</span>'}).join("")+
-      (w.length>2?'<span class="lab">+'+(w.length-2)+' more</span>':'')+(!w.length&&PLAN[k]?'<span class="lab pl">'+esc(PLAN[k].a||PLAN[k].t)+'</span>':'')+'</span></button>';
+      (w.length>2?'<span class="lab">+'+(w.length-2)+' more</span>':'')+(!w.length&&EP[k]?'<span class="lab pl">'+esc(EP[k].a||EP[k].t)+'</span>':'')+'</span></button>';
   }
   $("grid").innerHTML=h;
   $("stat").textContent=total?("This month: "+total+(total>1?" workouts":" workout")+" on "+active+(active>1?" days":" day")):"No workouts logged this month yet";
@@ -328,9 +328,9 @@ $("wiz").oninput=function(e){var t=e.target,k=t.dataset.f;
 $("wiz").onkeydown=function(e){var t=e.target;if(e.key=="Enter"&&t.id=="na"){e.preventDefault();t.nextElementSibling.click()}};
 $("grid").onclick=function(e){var b=e.target.closest("[data-k]");if(b){sel=b.dataset.k;W=null;adding=null;render()}};
 $("list").onclick=function(e){
-  var sdv=e.target.getAttribute("data-sd");if(sdv){var q=sdv.split("|"),pk=q[0],pi=+q[1],j=+q[2],pe=(PLAN[pk]||{ex:[]}).ex[pi];if(pe){var cd=sDone(pe,pk,pi),nv=cd==j?j-1:j,L=sGet();L[pk+"|"+pi]={v:nv,s:+pe.done||0};try{localStorage.setItem("wc-sets",JSON.stringify(L))}catch(x){}
+  var sdv=e.target.getAttribute("data-sd");if(sdv){var q=sdv.split("|"),pk=q[0],pi=+q[1],j=+q[2],pe=(EP[pk]||{ex:[]}).ex[pi];if(pe){var cd=sDone(pe,pk,pi),nv=cd==j?j-1:j,L=sGet();L[pk+"|"+pi]={v:nv,s:+pe.done||0};try{localStorage.setItem("wc-sets",JSON.stringify(L))}catch(x){}
     document.querySelectorAll('[data-sd^="'+pk+'|'+pi+'|"]').forEach(function(b){b.classList.toggle("on",+b.dataset.sd.split("|")[2]<=nv)})}return}
-  if(e.target.getAttribute("data-useplan")){var pl=PLAN[sel];if(!pl||W)return;W=newW();
+  if(e.target.getAttribute("data-useplan")){var pl=EP[sel];if(!pl||W)return;W=newW();
     W.ex=JSON.parse(JSON.stringify(pl.ex||[]));W.ex.forEach(function(e){delete e.done});if(pl.t=="Endurance"){W.cat="Endurance";W.sub=pl.a;W.dur=String(pl.dur);W.notes=pl.n;W.ex.forEach(function(e){e.g="gp";e.gr=W.ex[0].sets||"3"})}else{W.cat="Strength";W.sub=pl.t}
     panel();wiz();$("wiz").scrollIntoView({behavior:"smooth",block:"start"});return}
   var gc=e.target.getAttribute("data-gc");
@@ -406,7 +406,32 @@ $("dbv").onclick=function(e){var b=e.target.closest("[data-a],[data-rm]");if(!b)
   if(t.eq&&eqList().indexOf(t.eq)<0)S.eq.push(t.eq);
   save();dbf={pat:f.pat,name:"",eq:"",pos:"",grip:"",det:""};dbRender()};
 // ---- Training plan (Sep 30 - Oct 31, 2026) ----
-var PLAN={};
+var PLAN={},EP={};
+// Effective plan: the stored PLAN is never changed. Past days without a logged workout show Rest,
+// logged days show the planned session they covered, and the sessions not done yet move forward
+// in plan order onto the next training slots (today included), so the rotation follows real training.
+function wkType(x){return x.cat=="Endurance"?"Endurance":(x.sub||x.cat||"")}
+function buildEP(){
+  var ks=Object.keys(PLAN).sort(),out={},today=iso(now);EP=out;if(!ks.length)return out;
+  var bs=ks[0];ks.forEach(function(k,i){if(k<=today&&/^Week 1\b/.test(PLAN[k].w||"")&&(i==0||PLAN[ks[i-1]].w!==PLAN[k].w))bs=k});
+  ks.forEach(function(k){if(k<bs)out[k]=k<today&&!(data[k]||[]).length&&PLAN[k].t!="Rest"?{t:"Rest",w:PLAN[k].w,n:"No workout logged."}:PLAN[k]});
+  var q=ks.filter(function(k){return k>=bs&&PLAN[k].t!="Rest"}).map(function(k){return {k:k,p:PLAN[k],used:false}});
+  function ds(k){return new Date(k+"T00:00:00")}
+  function cp(s,k,w){var o=JSON.parse(JSON.stringify(s.p));if(w)o.w=w;if(s.k!==k)o.from=s.k;return o}
+  // 1) past + today: logged days use up the earliest matching planned session; untrained past days are Rest
+  var last=ks[ks.length-1],end=today>last?today:last;
+  for(var d=ds(bs);iso(d)<=today;d.setDate(d.getDate()+1)){var k=iso(d),w=data[k]||[],pw=(PLAN[k]||{}).w||"",m=null;
+    w.forEach(function(x){var t=wkType(x);for(var j=0;j<q.length;j++)if(!q[j].used&&q[j].p.t==t){q[j].used=true;if(!m)m=q[j];break}});
+    if(m)out[k]=cp(m,k,pw);else if(k<today&&(PLAN[k]||k<=last))out[k]={t:"Rest",w:pw,n:"No workout logged."}}
+  // 2) today (if not trained) + future: fill the plan's training slots with the sessions still to do
+  var rest=q.filter(function(s){return !s.used}),pat={};
+  ks.slice(-7).forEach(function(k){if(PLAN[k].t!="Rest")pat[ds(k).getDay()]=1});
+  var d=ds(today);if((data[today]||[]).length)d.setDate(d.getDate()+1);
+  for(var n=0;rest.length&&n<120;n++,d.setDate(d.getDate()+1)){var k=iso(d),p=PLAN[k],slot=p?p.t!="Rest":pat[d.getDay()];
+    var su=new Date(d.getFullYear(),d.getMonth(),d.getDate()-d.getDay()),sa=new Date(su.getFullYear(),su.getMonth(),su.getDate()+6),wl=p?p.w:"Catch-up · "+fmt(iso(su)).replace(/, \d+$/,"")+" – "+fmt(iso(sa)).replace(/, \d+$/,"");
+    if(slot)out[k]=cp(rest.shift(),k,wl);else out[k]={t:"Rest",w:wl,n:p?p.n:""}}
+  for(;iso(d)<=last;d.setDate(d.getDate()+1)){var k=iso(d);if(PLAN[k])out[k]={t:"Rest",w:PLAN[k].w,n:PLAN[k].n||""}}
+  return out}
 function bestOf(n){var b=null;eachEx(function(p,e,d){if(e.name!=n||(+e.sets||0)<3)return;var k=+e.kg||0,r=+e.reps||0;if(!b||k>b.k||(k==b.k&&r>b.r))b={k:k,r:r,d:d}});return b?b.r+" reps @ "+b.k+" kg ("+fmt(b.d)+")":"not logged yet"}
 function pex(p,k){if(!p.ex||!p.ex.length)return "";
   if(p.t=="Endurance"){var r=p.ex[0].sets||"3";return '<div class="ss"><span class="sst">'+ssTitle({gr:r})+'</span>'+p.ex.map(function(e){return exLine(Object.assign({},e,{g:"gp"}))}).join("")+'</div>'}
@@ -414,15 +439,15 @@ function pex(p,k){if(!p.ex||!p.ex.length)return "";
     if(e.g&&(i==0||x[i-1].g!==e.g)){h+='<div class="ss"><span class="sst">'+ssTitle(e)+'</span>';g0=i}
     h+=exLine(e,0,k,i);
     if(e.g&&(i==x.length-1||x[i+1].g!==e.g))h+=(k!=null?'<span class="xd xn">'+sDots(x[g0],k,g0,1)+'</span>':'')+'</div>'});return h}
-function planCard(){var p=PLAN[sel];if(!p)return"";
-  var h='<div class="pc"><b>📋 Plan: '+esc(p.t)+(p.a?" · "+esc(p.a):"")+'</b><span class="none"> · '+esc(p.w)+'</span>'+
+function planCard(){var p=EP[sel];if(!p)return"";
+  var h='<div class="pc"><b>📋 Plan: '+esc(p.t)+(p.a?" · "+esc(p.a):"")+'</b><span class="none"> · '+esc(p.w)+'</span>'+(p.from?'<small>Moved from '+DOW[new Date(p.from+"T00:00:00").getDay()]+' '+fmt(p.from).replace(/, \d+$/,"")+' · '+esc(PLAN[p.from].w)+'</small>':"")+
     (p.dur?'<span class="xl">'+p.dur+' min</span>':"")+(p.n?'<small>'+esc(p.n)+'</small>':"")+
     (p.t=="Endurance"?'<div class="lbl">Core (3 exercises)</div>':"")+pex(p,sel);
   if(p.t!="Rest"&&!W&&!(data[sel]||[]).length)h+='<button class="pri" data-useplan="1">Use this plan</button>';
   return h+'</div>'}
-function planRender(){var ks=Object.keys(PLAN).sort(),wk="",
+function planRender(){buildEP();var ks=Object.keys(EP).sort(),wk="",
   G=S.goals||[],h=G.length||S.focus?'<div class="panel" style="margin-top:0"><h2>🎯 Monthly focus</h2>'+G.map(function(g){return '<div class="item"><div><b>'+esc(g.m)+': '+esc(g.t)+'</b><small>Best logged (3+ sets): '+esc(bestOf(g.ex))+'</small></div></div>'}).join("")+(S.focus?'<div class="none" style="margin-top:8px">'+esc(S.focus)+'</div>':'')+'</div>':'';
-  ks.forEach(function(k){var p=PLAN[k];
+  ks.forEach(function(k){var p=EP[k];
     if(p.w!=wk){if(wk)h+='</div>';wk=p.w;h+='<div class="panel"><h2>'+esc(wk)+'</h2>'}
     var d=new Date(k+"T00:00:00"),done=(data[k]||[]).length;
     h+='<div class="item" data-k="'+k+'" style="cursor:pointer"><div><b>'+DOW[d.getDay()]+' '+fmt(k).replace(/, \d+$/,"")+' · '+esc(p.a||p.t)+(p.a?' <span class="none">(Endurance)</span>':'')+(done?' ✓':'')+(k===iso(now)?' (today)':'')+'</b><small>'+
