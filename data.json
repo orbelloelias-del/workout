@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-11-15T20:29:00.000Z",
+ "saved": "2026-11-15T20:30:00.000Z",
  "data": {
   "2022-08-13": [
    {
@@ -31930,24 +31930,26 @@
       "kg": "23",
       "rest": "",
       "ru": "m",
-      "stars": ""
+      "stars": "",
+      "done": 3
      },
      {
       "pat": "Hinge",
-      "name": "Hip thrusts",
+      "name": "Knee flexion",
       "eq": "Machine",
-      "pos": "",
+      "pos": "Lying",
       "grip": "",
-      "det": "",
+      "det": "prone knee curl",
       "iso": false,
       "sets": "3",
       "reps": "10",
-      "kg": "27.5",
+      "kg": "23",
       "rest": "",
       "ru": "m",
       "stars": "",
       "g": "g1",
-      "gr": "3"
+      "gr": "3",
+      "done": 3
      },
      {
       "pat": "Hinge",
@@ -31958,30 +31960,46 @@
       "det": "",
       "iso": false,
       "sets": "3",
-      "reps": "12",
-      "kg": "27",
+      "reps": "10",
+      "kg": "23",
       "rest": "",
       "ru": "m",
       "stars": "",
-      "g": "g2",
-      "gr": "3"
+      "g": "g1",
+      "gr": "3",
+      "done": 3
      },
      {
       "pat": "Hinge",
-      "name": "Calf press",
-      "eq": "Smith machine",
-      "pos": "",
       "grip": "",
-      "det": "",
       "iso": false,
-      "sets": "3",
-      "reps": "10",
-      "kg": "35",
+      "kg": "40",
       "rest": "",
       "ru": "m",
       "stars": "",
-      "g": "g2",
-      "gr": "3"
+      "name": "Calf raises",
+      "eq": "Smith machine",
+      "pos": "Standing",
+      "det": "",
+      "sets": "3",
+      "reps": "10",
+      "done": 3
+     },
+     {
+      "pat": "Hinge",
+      "grip": "",
+      "iso": false,
+      "kg": "",
+      "rest": "",
+      "ru": "m",
+      "stars": "",
+      "name": "Nordic hamstring curl",
+      "eq": "",
+      "pos": "Kneeling",
+      "det": "assisted with a stability ball",
+      "sets": "2",
+      "reps": "10",
+      "done": 2
      }
     ]
    },
