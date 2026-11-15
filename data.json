@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-11-15T20:19:30.000Z",
+ "saved": "2026-11-15T20:21:30.000Z",
  "data": {
   "2022-08-13": [
    {
@@ -30024,7 +30024,7 @@
     "id": 1797000000005,
     "cat": "Strength",
     "sub": "Hinge",
-    "notes": "Quick Hinge, no deadlifts. Leg press 6 sets. Prone knee curl + hip abduction as a superset.",
+    "notes": "Quick Hinge, no deadlifts. Leg press 6 sets.",
     "start": "",
     "len": "",
     "ex": [
@@ -30064,14 +30064,16 @@
       "eq": "Machine",
       "pos": "Lying",
       "grip": "",
-      "det": "prone knee curl · superset with hip abduction",
+      "det": "prone knee curl",
       "iso": false,
       "sets": "3",
       "reps": "10",
       "kg": "23",
       "rest": "",
       "ru": "m",
-      "stars": ""
+      "stars": "",
+      "g": "g1",
+      "gr": "3"
      },
      {
       "pat": "Hinge",
@@ -30079,14 +30081,16 @@
       "eq": "Machine",
       "pos": "Seated",
       "grip": "",
-      "det": "superset with prone knee curl",
+      "det": "",
       "iso": false,
       "sets": "3",
       "reps": "10",
       "kg": "23",
       "rest": "",
       "ru": "m",
-      "stars": ""
+      "stars": "",
+      "g": "g1",
+      "gr": "3"
      }
     ]
    }
