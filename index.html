@@ -155,7 +155,9 @@ function exLine(e,ss,k,i){var p=[],n=[],hs=e.sets&&!e.g;
   var g=[e.eq,e.pos,e.grip,e.det].filter(Boolean).map(esc);if(e.iso)g.push("<em>isolateral</em>");
   return '<span class="xl xe"><u>'+esc(e.name)+'</u>'+(g.length?'<span class="xd">'+g.join(" · ")+'</span>':"")+(p.length||k?'<span class="xd xn">'+p.join(" · ")+(k!=null?sDots(e,k,i):"")+'</span>':"")+'</span>'}
 function sGet(){try{return JSON.parse(localStorage.getItem("wc-sets")||"{}")}catch(x){return {}}}
-function sDone(e,k,i){var l=sGet()[k+"|"+i],s=+e.done||0;return l&&l.s===s?l.v:s}
+// sets of this exercise (same name, any machine/weight/reps) already logged on day k
+function sLogged(e,k){var nmx=String(e.name||"").trim().toLowerCase(),c=0;if(!nmx)return 0;(data[k]||[]).forEach(function(w){(w.ex||[]).forEach(function(x){if(String(x.name||"").trim().toLowerCase()==nmx)c+=parseInt(x.gr||x.sets,10)||1})});return c}
+function sDone(e,k,i){var l=sGet()[k+"|"+i],s=+e.done||0,v=l&&l.s===s?l.v:s;return Math.max(v,sLogged(e,k))}
 function sDots(e,k,i,f){var n=parseInt(f?(e.gr||e.sets):e.sets,10)||0;if((e.g&&!f)||!n||n>12)return"";var d=sDone(e,k,i),h='<span class="sds">';
   for(var j=1;j<=n;j++)h+='<button class="sd'+(j<=d?' on':'')+'" data-sd="'+k+'|'+i+'|'+j+'" aria-label="Set '+j+'"></button>';return h+'</span>'}
 function ssTitle(e){return 'Superset · '+esc(e.gr||e.sets||"")+(e.gr==1?" round":" rounds")}
