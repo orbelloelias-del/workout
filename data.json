@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-11-15T20:21:30.000Z",
+ "saved": "2026-11-15T20:29:00.000Z",
  "data": {
   "2022-08-13": [
    {
@@ -30091,6 +30091,36 @@
       "stars": "",
       "g": "g1",
       "gr": "3"
+     },
+     {
+      "pat": "Hinge",
+      "grip": "",
+      "iso": false,
+      "kg": "40",
+      "rest": "",
+      "ru": "m",
+      "stars": "",
+      "name": "Calf raises",
+      "eq": "Smith machine",
+      "pos": "Standing",
+      "det": "",
+      "sets": "3",
+      "reps": "10"
+     },
+     {
+      "pat": "Hinge",
+      "grip": "",
+      "iso": false,
+      "kg": "",
+      "rest": "",
+      "ru": "m",
+      "stars": "",
+      "name": "Nordic hamstring curl",
+      "eq": "",
+      "pos": "Kneeling",
+      "det": "assisted with a stability ball",
+      "sets": "2",
+      "reps": "10"
      }
     ]
    }
