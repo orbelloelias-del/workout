@@ -62,7 +62,7 @@ tr.first td{border-top:2px solid var(--line)}
 .bt{display:flex;gap:6px;align-self:flex-start}
 .item>div:first-child{flex:1;min-width:0}
 .ss{position:relative;width:100%;box-sizing:border-box;align-self:stretch;padding:2px 0 2px 16px;margin:10px 0}.sst.xn{color:var(--acc)}.ss::before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:7px;border:2px solid var(--acc);border-right:none}.sst{display:block;color:var(--acc);font-weight:700}.ssh{display:flex;justify-content:space-between;align-items:center;gap:8px}.ssh .sst{flex:1}.ss .xl:first-child{margin-top:2px}
-.xl{display:block;margin:6px 0}.xl u{color:var(--fg);text-underline-offset:2px}.xd{display:block;color:var(--mut)}.xn{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px;color:var(--fg)}.sds{display:inline-flex;gap:5px;align-items:center;margin-left:auto}.xe+.xe{border-top:1px dashed var(--mut);border-top-style:dotted;padding-top:6px}.sd{width:.9em;height:.9em;min-height:0;min-width:0;padding:0;margin:0;box-sizing:border-box;border-radius:50%;border:1.5px solid var(--mut);background:transparent;cursor:pointer;box-shadow:none}.sd.on{background:var(--acc);border-color:var(--acc)}
+.xl{display:block;margin:6px 0}.xl u{color:var(--fg);text-underline-offset:2px}.xd{display:block;color:var(--mut)}.xn{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px;color:var(--fg)}.sds{display:inline-flex;gap:5px;align-items:center;margin-left:auto}.xe+.xe{border-top:1px dashed var(--mut);border-top-style:dotted;padding-top:6px}.sd{width:.9em;height:.9em;min-height:0;min-width:0;padding:0;margin:0;box-sizing:border-box;border-radius:50%;border:1.5px solid var(--mut);background:transparent;cursor:pointer;box-shadow:none}.sd.on{background:var(--acc);border-color:var(--acc)}span.sd{display:inline-block;cursor:default}
 .lab.pl{background:none;border:1px dashed var(--mut);border-left:3px solid var(--mut);color:var(--mut)}
 .pc{margin-top:12px;padding:10px;border:1px dashed var(--line);border-radius:10px}.pc small{display:block;color:var(--mut);margin:6px 0}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:12px}
@@ -144,7 +144,7 @@ var $=function(i){return document.getElementById(i)};
 $("dows").innerHTML=DOW.map(function(d){return '<div class="dow">'+d+'</div>'}).join("");
 
 function nm(x){return x.cat?(x.cat+(x.sub?" · "+x.sub:"")):x.type}
-function exLine(e,ss,k,i){var p=[],n=[],hs=e.sets&&!e.g;
+function exLine(e,ss,k,i,lg){var p=[],n=[],hs=e.sets&&!e.g;
   if(hs)n.push(esc(e.sets)+(e.sets==1?" set":" sets"));
   if(e.t)n.push(esc(e.t)+" s hold"+(e.iso?" each":""));
   else if(e.reps)n.push(esc(e.reps)+(e.reps==1?" rep":" reps")+(e.iso?" each":""));
@@ -153,13 +153,15 @@ function exLine(e,ss,k,i){var p=[],n=[],hs=e.sets&&!e.g;
   if(e.rest)p.push("rest "+esc(e.rest)+(e.ru=="m"?" min":" s"));
   if(e.stars)p.push(esc(e.stars).replace(/\*/g,"★"));
   var g=[e.eq,e.pos,e.grip,e.det].filter(Boolean).map(esc);if(e.iso)g.push("<em>isolateral</em>");
-  return '<span class="xl xe"><u>'+esc(e.name)+'</u>'+(g.length?'<span class="xd">'+g.join(" · ")+'</span>':"")+(p.length||k?'<span class="xd xn">'+p.join(" · ")+(k!=null?sDots(e,k,i):"")+'</span>':"")+'</span>'}
+  return '<span class="xl xe"><u>'+esc(e.name)+'</u>'+(g.length?'<span class="xd">'+g.join(" · ")+'</span>':"")+(p.length||k?'<span class="xd xn">'+p.join(" · ")+(k!=null?sDots(e,k,i):lg?lDots(e):"")+'</span>':"")+'</span>'}
 function sGet(){try{return JSON.parse(localStorage.getItem("wc-sets")||"{}")}catch(x){return {}}}
 // sets of this exercise (same name, any machine/weight/reps) already logged on day k
 function sLogged(e,k){var nmx=String(e.name||"").trim().toLowerCase(),c=0;if(!nmx)return 0;(data[k]||[]).forEach(function(w){(w.ex||[]).forEach(function(x){if(String(x.name||"").trim().toLowerCase()==nmx)c+=parseInt(x.gr||x.sets,10)||1})});return c}
 function sDone(e,k,i){var l=sGet()[k+"|"+i],s=+e.done||0,v=l&&l.s===s?l.v:s;return Math.max(v,sLogged(e,k))}
 function sDots(e,k,i,f){var n=parseInt(f?(e.gr||e.sets):e.sets,10)||0;if((e.g&&!f)||!n||n>12)return"";var d=sDone(e,k,i),h='<span class="sds">';
   for(var j=1;j<=n;j++)h+='<button class="sd'+(j<=d?' on':'')+'" data-sd="'+k+'|'+i+'|'+j+'" aria-label="Set '+j+'"></button>';return h+'</span>'}
+// logged exercise: one filled dot per completed set
+function lDots(e){var n=parseInt(e.sets,10)||0;if(e.g||!n||n>12)return"";return '<span class="sds">'+Array(n+1).join('<span class="sd on"></span>')+'</span>'}
 function ssTitle(e){return 'Superset · '+esc(e.gr||e.sets||"")+(e.gr==1?" round":" rounds")}
 function det(x){var d=[],l=[];
   if(x.start)l.push('<span class="xl">Time started: '+esc(x.start)+' · Lasted: '+esc(x.len||60)+' minutes</span>');
@@ -169,7 +171,7 @@ function det(x){var d=[],l=[];
     if(e.g&&e.g!==gi)l.push('<div class="ss"><span class="sst">'+ssTitle(e)+'</span>');
     if(!e.g&&gi)l.push('</div>');
     if(e.g&&gi&&e.g!==gi){}
-    l.push(exLine(e));gi=e.g||null;
+    l.push(exLine(e,0,null,i,1));gi=e.g||null;
     var nx2=x.ex[i+1];if(gi&&(!nx2||nx2.g!==gi)){l.push('</div>');gi=null}})}
   if(x.notes)l.push('<span class="xl"><i>'+esc(x.notes)+'</i></span>');
   return l.join("")}
