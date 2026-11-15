@@ -161,7 +161,7 @@ function sDone(e,k,i){var l=sGet()[k+"|"+i],s=+e.done||0,v=l&&l.s===s?l.v:s;retu
 function sDots(e,k,i,f){var n=parseInt(f?(e.gr||e.sets):e.sets,10)||0;if((e.g&&!f)||!n||n>12)return"";var d=sDone(e,k,i),h='<span class="sds">';
   for(var j=1;j<=n;j++)h+='<button class="sd'+(j<=d?' on':'')+'" data-sd="'+k+'|'+i+'|'+j+'" aria-label="Set '+j+'"></button>';return h+'</span>'}
 // logged exercise: one filled dot per completed set
-function lDots(e){var n=parseInt(e.sets,10)||0;if(e.g||!n||n>12)return"";return '<span class="sds">'+Array(n+1).join('<span class="sd on"></span>')+'</span>'}
+function lDots(e){var n=parseInt(e.g?(e.gr||e.sets):e.sets,10)||0;if(!n||n>12)return"";return '<span class="sds">'+Array(n+1).join('<span class="sd on"></span>')+'</span>'}
 function ssTitle(e){return 'Superset · '+esc(e.gr||e.sets||"")+(e.gr==1?" round":" rounds")}
 function det(x){var d=[],l=[];
   if(x.start)l.push('<span class="xl">Time started: '+esc(x.start)+' · Lasted: '+esc(x.len||60)+' minutes</span>');
