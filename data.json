@@ -1,6 +1,6 @@
 {
  "version": 1,
- "saved": "2026-11-04T18:13:30.000Z",
+ "saved": "2026-11-15T19:56:00.000Z",
  "data": {
   "2022-08-13": [
    {
@@ -30006,6 +30006,17 @@
       "stars": ""
      }
     ]
+   }
+  ],
+  "2026-11-08": [
+   {
+    "id": 1797000000004,
+    "cat": "Endurance",
+    "sub": "Running",
+    "notes": "Treadmill intervals: alternating 2 min at speed 5 and 2 min at speed 9, 30 min total. Distance estimated from the speeds.",
+    "ex": [],
+    "dur": "30",
+    "dist": "3.5"
    }
   ]
  },
